@@ -1255,3 +1255,83 @@ a:hover {
   box-shadow:
     0 0 10px #9b35ff;
                          }
+/* ✨ پس‌زمینه شاینی و متحرک */
+body {
+    background:
+        radial-gradient(circle at 20% 20%, rgba(140, 50, 255, .22), transparent 30%),
+        radial-gradient(circle at 80% 70%, rgba(80, 120, 255, .18), transparent 30%),
+        #05020d;
+    background-size: 200% 200%;
+    animation: magicalBG 10s ease-in-out infinite;
+}
+
+/* ✨ درخشش روی صفحه */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    background:
+        radial-gradient(circle at 15% 30%, rgba(255,255,255,.8) 0 1px, transparent 2px),
+        radial-gradient(circle at 70% 20%, rgba(190,140,255,.9) 0 1.5px, transparent 3px),
+        radial-gradient(circle at 40% 80%, rgba(255,255,255,.7) 0 1px, transparent 2px),
+        radial-gradient(circle at 90% 60%, rgba(150,100,255,.8) 0 1px, transparent 2px);
+    background-size: 180px 180px, 240px 240px, 210px 210px, 270px 270px;
+    animation: sparkleMove 7s linear infinite;
+    opacity: .8;
+}
+
+@keyframes magicalBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes sparkleMove {
+    0% {
+        transform: translateY(0);
+        opacity: .5;
+    }
+    50% {
+        transform: translateY(-15px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: .5;
+    }
+}
+
+/* ✨ کادر اصلی */
+.hero,
+.welcome,
+.main-card {
+    box-shadow:
+        0 0 15px #8b2cff,
+        0 0 35px rgba(130, 40, 255, .55),
+        inset 0 0 25px rgba(140, 50, 255, .15);
+    border: 1px solid rgba(170, 80, 255, .7);
+}
+
+/* ✨ دکمه‌ها */
+button,
+.btn,
+a.button {
+    transition: .3s ease;
+}
+
+button:hover,
+.btn:hover,
+a.button:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow:
+        0 0 15px #9b35ff,
+        0 0 35px rgba(150, 50, 255, .8);
+}

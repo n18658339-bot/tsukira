@@ -2486,3 +2486,112 @@ button:hover,
         bottom: 10px !important;
     }
 }
+/* =========================================
+   ✨ چیدمان شخصیت‌ها دور قاب
+   فقط این بخش را به انتهای CSS اضافه کن
+========================================= */
+
+/* بخش کارت‌ها */
+.characters-section {
+    position: relative !important;
+    overflow: visible !important;
+}
+
+/* خود قاب/بخش نگهدارنده */
+.characters-section .character-frame {
+    position: relative !important;
+    overflow: visible !important;
+}
+
+/* تمام کارت‌های شخصیت */
+.characters-section .character-card {
+    position: absolute !important;
+    z-index: 20 !important;
+}
+
+/* =========================================
+   🎭 دازای — بالا سمت چپ قاب
+========================================= */
+
+.characters-section .character-card.dazai {
+    left: -145px !important;
+    top: 35px !important;
+    right: auto !important;
+    bottom: auto !important;
+
+    transform: rotate(-7deg) !important;
+}
+
+/* =========================================
+   🔵 گوجو — بالا سمت راست قاب
+========================================= */
+
+.characters-section .character-card.gojo {
+    right: -145px !important;
+    top: 35px !important;
+    left: auto !important;
+    bottom: auto !important;
+
+    transform: rotate(7deg) !important;
+}
+
+/* =========================================
+   🟣 وانیتاس — پایین سمت راست/کنار قاب
+========================================= */
+
+.characters-section .character-card.vanitas {
+    right: -145px !important;
+    bottom: 35px !important;
+    left: auto !important;
+    top: auto !important;
+
+    transform: rotate(-6deg) !important;
+}
+
+/* =========================================
+   ✨ کارت‌ها روی قاب دیده شوند
+========================================= */
+
+.characters-section .character-card img {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+}
+
+/* جمله‌های شخصیت‌ها */
+.characters-section .character-card .character-quote {
+    position: absolute !important;
+    z-index: 30 !important;
+}
+
+/* =========================================
+   💜 افکت هاور
+========================================= */
+
+.characters-section .character-card:hover {
+    z-index: 100 !important;
+    transform: scale(1.05) rotate(0deg) !important;
+}
+
+/* =========================================
+   📱 موبایل
+========================================= */
+
+@media (max-width: 700px) {
+
+    .characters-section .character-card.dazai {
+        left: -55px !important;
+        top: 25px !important;
+    }
+
+    .characters-section .character-card.gojo {
+        right: -55px !important;
+        top: 25px !important;
+    }
+
+    .characters-section .character-card.vanitas {
+        right: -55px !important;
+        bottom: 25px !important;
+    }
+}

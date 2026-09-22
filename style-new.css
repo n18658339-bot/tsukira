@@ -2108,3 +2108,201 @@ button:hover,
         font-size: 14px !important;
     }
     }
+/* ===============================
+   ✨ قاب اصلی شخصیت‌ها
+================================ */
+
+.character-frame {
+    position: relative;
+    width: 92%;
+    max-width: 1100px;
+    min-height: 720px;
+    margin: 100px auto;
+    border: 2px solid #7b2cff;
+    border-radius: 35px;
+    background: radial-gradient(
+        circle at center,
+        rgba(100, 20, 180, 0.18),
+        #050009 70%
+    );
+    box-shadow:
+        0 0 20px rgba(130, 40, 255, .8),
+        0 0 60px rgba(100, 20, 255, .45),
+        inset 0 0 40px rgba(120, 30, 255, .2);
+}
+
+/* مرکز قاب */
+
+.frame-center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 40%;
+    text-align: center;
+    color: white;
+    z-index: 2;
+}
+
+.frame-center span {
+    font-size: 28px;
+    font-weight: bold;
+    color: #b66cff;
+    text-shadow:
+        0 0 10px #8b2cff,
+        0 0 25px #8b2cff;
+}
+
+.frame-center h2 {
+    font-size: 32px;
+    margin: 25px 0;
+    line-height: 1.8;
+}
+
+.frame-center p {
+    font-size: 17px;
+    line-height: 2;
+    opacity: .85;
+}
+
+
+/* ===============================
+   🖼️ کارت شخصیت‌ها
+================================ */
+
+.character-card {
+    position: absolute;
+    width: 230px;
+    padding: 12px;
+    border: 2px solid #9b4dff;
+    border-radius: 25px;
+    background: rgba(8, 2, 18, .9);
+    box-shadow:
+        0 0 15px rgba(130, 40, 255, .8),
+        0 0 40px rgba(100, 20, 255, .35);
+    text-align: center;
+    z-index: 5;
+    transition: .4s ease;
+}
+
+.character-card:hover {
+    transform: scale(1.06);
+    box-shadow:
+        0 0 25px #a855ff,
+        0 0 70px rgba(140, 50, 255, .7);
+}
+
+.character-card img {
+    display: block;
+    width: 100%;
+    height: 270px;
+    object-fit: cover;
+    border-radius: 18px;
+    border: 1px solid #a855ff;
+}
+
+
+/* اسم */
+
+.character-info h3 {
+    margin: 12px 0 8px;
+    color: white;
+    font-size: 22px;
+    text-shadow: 0 0 12px #a855ff;
+}
+
+
+/* جمله */
+
+.character-info p {
+    color: #ddd;
+    font-size: 14px;
+    line-height: 1.9;
+    margin: 0 5px 8px;
+}
+
+
+/* ===============================
+   📍 جای شخصیت‌ها دور قاب
+================================ */
+
+.dazai {
+    top: 45px;
+    left: 45px;
+    transform: rotate(-5deg);
+}
+
+.vanitas {
+    top: 45px;
+    right: 45px;
+    transform: rotate(5deg);
+}
+
+.gojo {
+    bottom: 45px;
+    left: 50%;
+    transform: translateX(-50%) rotate(0deg);
+}
+
+
+/* ===============================
+   📱 موبایل
+================================ */
+
+@media (max-width: 700px) {
+
+    .character-frame {
+        width: 94%;
+        min-height: 1100px;
+        margin: 70px auto;
+    }
+
+    .frame-center {
+        top: 48%;
+        width: 70%;
+    }
+
+    .frame-center span {
+        font-size: 22px;
+    }
+
+    .frame-center h2 {
+        font-size: 22px;
+    }
+
+    .frame-center p {
+        font-size: 14px;
+    }
+
+    .character-card {
+        width: 145px;
+        padding: 8px;
+    }
+
+    .character-card img {
+        height: 180px;
+    }
+
+    .character-info h3 {
+        font-size: 18px;
+    }
+
+    .character-info p {
+        font-size: 11px;
+        line-height: 1.7;
+    }
+
+    .dazai {
+        top: 25px;
+        left: 15px;
+    }
+
+    .vanitas {
+        top: 25px;
+        right: 15px;
+    }
+
+    .gojo {
+        bottom: 25px;
+    }
+}

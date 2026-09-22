@@ -2595,3 +2595,269 @@ button:hover,
         bottom: 25px !important;
     }
 }
+/* =====================================================
+   چیدمان نهایی کارت‌های گوجو، دازای و وانیتاس
+   همه کارت‌ها داخل همان قاب اصلی
+===================================================== */
+
+.character-frame {
+    position: relative !important;
+    width: min(900px, 92vw) !important;
+    min-height: 720px !important;
+    margin: 80px auto !important;
+    overflow: visible !important;
+    isolation: isolate;
+}
+
+
+/* خود کارت‌ها */
+
+.character-frame .character-card {
+    position: absolute !important;
+    width: 190px !important;
+    height: 280px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+
+    overflow: hidden !important;
+
+    border: 2px solid #9b4dff !important;
+    border-radius: 30px !important;
+
+    background: rgba(7, 2, 18, 0.94) !important;
+
+    box-shadow:
+        0 0 12px #7b2cff,
+        0 0 30px rgba(143, 55, 255, 0.75),
+        inset 0 0 20px rgba(122, 44, 255, 0.25) !important;
+
+    z-index: 20 !important;
+}
+
+
+/* عکس داخل کارت */
+
+.character-frame .character-card img {
+    display: block !important;
+
+    position: absolute !important;
+    inset: 0 !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    object-fit: cover !important;
+
+    opacity: 1 !important;
+    visibility: visible !important;
+
+    z-index: 1 !important;
+}
+
+
+/* لایه تیره خیلی ملایم روی عکس */
+
+.character-frame .character-card::after {
+    content: "" !important;
+
+    position: absolute !important;
+    inset: 0 !important;
+
+    background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.05),
+        rgba(0,0,0,0.45)
+    ) !important;
+
+    pointer-events: none !important;
+
+    z-index: 2 !important;
+}
+
+
+/* اطلاعات شخصیت */
+
+.character-frame .character-info {
+    position: absolute !important;
+
+    left: 10px !important;
+    right: 10px !important;
+    bottom: 12px !important;
+
+    z-index: 5 !important;
+
+    text-align: center !important;
+}
+
+
+/* اسم */
+
+.character-frame .character-name {
+    display: inline-block !important;
+
+    padding: 8px 20px !important;
+
+    border: 2px solid #a84cff !important;
+    border-radius: 30px !important;
+
+    background: rgba(5, 0, 15, 0.9) !important;
+
+    color: white !important;
+
+    font-size: 20px !important;
+    font-weight: bold !important;
+
+    box-shadow:
+        0 0 12px #8b3dff !important;
+}
+
+
+/* جمله */
+
+.character-frame .character-quote {
+    margin: 10px 0 0 !important;
+
+    color: #ffffff !important;
+
+    font-size: 13px !important;
+    line-height: 1.8 !important;
+
+    text-shadow:
+        0 0 8px #a94cff !important;
+}
+
+
+/* =====================================================
+   گوجو
+   بالا - سمت چپ قاب
+===================================================== */
+
+.character-frame .character-card.gojo {
+    left: -35px !important;
+    top: 35px !important;
+
+    transform: rotate(-5deg) !important;
+}
+
+
+/* =====================================================
+   دازای
+   پایین - سمت چپ قاب
+===================================================== */
+
+.character-frame .character-card.dazai {
+    left: -35px !important;
+    bottom: 35px !important;
+
+    transform: rotate(4deg) !important;
+}
+
+
+/* =====================================================
+   وانیتاس
+   پایین - سمت راست قاب
+===================================================== */
+
+.character-frame .character-card.vanitas {
+    right: -35px !important;
+    bottom: 35px !important;
+
+    transform: rotate(-4deg) !important;
+}
+
+
+/* هاور */
+
+.character-frame .character-card:hover {
+    transform:
+        translateY(-10px)
+        scale(1.04)
+        rotate(0deg) !important;
+
+    z-index: 100 !important;
+
+    box-shadow:
+        0 0 15px #a84cff,
+        0 0 45px #7b2cff,
+        0 0 80px rgba(168, 76, 255, 0.6) !important;
+}
+
+
+/* =====================================================
+   متن‌های اطراف قاب
+===================================================== */
+
+.character-frame .frame-text {
+    position: absolute !important;
+
+    z-index: 10 !important;
+
+    color: white !important;
+
+    text-shadow:
+        0 0 8px #a84cff,
+        0 0 20px #7b2cff !important;
+}
+
+.character-frame .frame-text-top {
+    top: -55px !important;
+    left: 50% !important;
+
+    transform: translateX(-50%) !important;
+
+    white-space: nowrap !important;
+}
+
+.character-frame .frame-text-bottom {
+    bottom: -55px !important;
+    left: 50% !important;
+
+    transform: translateX(-50%) !important;
+
+    white-space: nowrap !important;
+}
+
+
+/* =====================================================
+   موبایل
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .character-frame {
+        width: 82vw !important;
+        min-height: 650px !important;
+
+        margin-top: 100px !important;
+        margin-bottom: 100px !important;
+    }
+
+    .character-frame .character-card {
+        width: 145px !important;
+        height: 220px !important;
+    }
+
+    .character-frame .character-card.gojo {
+        left: -20px !important;
+        top: 25px !important;
+    }
+
+    .character-frame .character-card.dazai {
+        left: -20px !important;
+        bottom: 25px !important;
+    }
+
+    .character-frame .character-card.vanitas {
+        right: -20px !important;
+        bottom: 25px !important;
+    }
+
+    .character-frame .character-name {
+        font-size: 16px !important;
+        padding: 6px 14px !important;
+    }
+
+    .character-frame .character-quote {
+        font-size: 10px !important;
+    }
+    }

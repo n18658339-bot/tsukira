@@ -1335,3 +1335,96 @@ a.button:hover {
         0 0 15px #9b35ff,
         0 0 35px rgba(150, 50, 255, .8);
 }
+/* ✨ TSUKIRA — Magical Shiny Background */
+
+body {
+    background:
+        radial-gradient(circle at 20% 20%, rgba(120, 40, 255, 0.28), transparent 30%),
+        radial-gradient(circle at 80% 70%, rgba(70, 100, 255, 0.22), transparent 32%),
+        radial-gradient(circle at 50% 50%, #16052b, #03010a 75%);
+    background-size: 200% 200%;
+    animation: tsukirabg 12s ease infinite;
+}
+
+/* ✨ ستاره‌های متحرک */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+
+    background-image:
+        radial-gradient(circle, rgba(255,255,255,.9) 1px, transparent 2px),
+        radial-gradient(circle, rgba(190,120,255,.8) 1px, transparent 2px),
+        radial-gradient(circle, rgba(120,180,255,.7) 1px, transparent 2px);
+
+    background-size:
+        170px 170px,
+        230px 230px,
+        310px 310px;
+
+    animation: starsMove 8s linear infinite;
+    opacity: .75;
+}
+
+/* ✨ حرکت نور پس‌زمینه */
+@keyframes tsukirabg {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* ✨ حرکت ستاره‌ها */
+@keyframes starsMove {
+    0% {
+        transform: translateY(0);
+        opacity: .45;
+    }
+
+    50% {
+        transform: translateY(-18px);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: .45;
+    }
+}
+
+/* ✨ درخشش کادر اصلی */
+.hero,
+.welcome,
+.main-card {
+    border-color: rgba(170, 70, 255, .75);
+    box-shadow:
+        0 0 12px rgba(150, 50, 255, .8),
+        0 0 35px rgba(120, 40, 255, .45),
+        inset 0 0 25px rgba(150, 50, 255, .12);
+}
+
+/* ✨ درخشش دکمه‌ها */
+button,
+.btn {
+    box-shadow:
+        0 0 10px rgba(150, 50, 255, .7),
+        0 0 25px rgba(120, 40, 255, .35);
+    transition: .3s ease;
+}
+
+button:hover,
+.btn:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow:
+        0 0 18px rgba(180, 80, 255, 1),
+        0 0 40px rgba(130, 40, 255, .7);
+}

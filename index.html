@@ -1,1 +1,83 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <title>TSUKIRA 🌙</title>
+
+  <link rel="stylesheet" href="style-new.css">
+</head>
+
+<body>
+
+<header>
+  <nav>
+    <a class="logo" href="/">TSUKIRA 🌙</a>
+    <a href="/">خانه</a>
+    <a href="#discover">انیمه‌ها</a>
+    <a href="#library">کتابخانه</a>
+    <button id="auth">ورود / ثبت‌نام</button>
+  </nav>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="hero-content">
+
+    <span class="eyebrow">✦ WELCOME TO TSUKIRA</span>
+
+    <h1>
+      جایی که
+      <br>
+      <span>داستان‌ها زنده می‌شوند.</span>
+    </h1>
+
+    <p>
+      دنیای انیمه، شخصیت‌ها و داستان‌هایی که دوستشان داری؛
+      همه در یک خانه.
+    </p>
+
+    <button
+      class="hero-btn"
+      onclick="document.getElementById('discover').scrollIntoView({behavior:'smooth'})">
+      کشف دنیای انیمه ✦
+    </button>
+
+  </div>
+</section>
+
+<section id="discover">
+  <h2>🔥 انیمه‌ها</h2>
+  <p class="section-text">دنیای مورد علاقه‌ات را پیدا کن.</p>
+  <div id="anime" class="grid"></div>
+</section>
+
+<section id="library">
+  <h2>📚 کتابخانه من</h2>
+  <p class="section-text">انیمه‌هایی که انتخاب کردی اینجا هستند.</p>
+  <div id="lists"></div>
+</section>
+
+<section id="profile">
+  <h2>👤 حساب من</h2>
+  <div id="me" class="box">
+    برای دیدن حساب وارد شوید.
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <strong>TSUKIRA 🌙</strong>
+  <br>
+  جایی که داستان‌ها زنده می‌شوند.
+  <br><br>
+  © 2026 TSUKIRA
+</footer>
+
+<script src="app.js"></script>
+
+</body>
+</html>

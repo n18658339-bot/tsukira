@@ -1696,3 +1696,199 @@ button:hover,
         font-size: 13px;
     }
 }
+/* =========================================
+   ✨ چیدمان نهایی کارت‌های شخصیت
+   کارت‌ها اطراف کادر اصلی قرار می‌گیرند
+   ========================================= */
+
+.character-cards,
+.characters-section,
+#characters,
+.character-section {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    min-height: 850px;
+    margin: 80px auto;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* کادر اصلی وسط */
+.hero,
+.welcome,
+.main-card {
+    position: relative;
+    z-index: 5;
+}
+
+/* همه کارت‌های شخصیت */
+.character-card {
+    position: absolute !important;
+    width: 250px;
+    height: 360px;
+    padding: 10px;
+    box-sizing: border-box;
+
+    background: rgba(8, 3, 25, 0.88);
+    border: 2px solid #9b4dff;
+    border-radius: 28px;
+
+    box-shadow:
+        0 0 12px rgba(150, 50, 255, .9),
+        0 0 30px rgba(120, 40, 255, .65),
+        inset 0 0 20px rgba(130, 50, 255, .25);
+
+    overflow: hidden;
+    z-index: 3;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+
+    transition: .35s ease;
+}
+
+/* عکس داخل کارت */
+.character-card img {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    border-radius: 24px;
+    z-index: 1;
+}
+
+/* لایه تیره روی عکس */
+.character-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+        to top,
+        rgba(5, 0, 15, .95) 0%,
+        rgba(5, 0, 15, .25) 45%,
+        transparent 75%
+    );
+
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* اسم شخصیت */
+.character-card h3 {
+    position: relative;
+    z-index: 4;
+
+    margin: 0 0 8px 0;
+    padding: 12px 28px;
+
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+
+    background: rgba(15, 3, 35, .9);
+    border: 2px solid #b45cff;
+    border-radius: 25px;
+
+    box-shadow:
+        0 0 10px #a94dff,
+        0 0 25px rgba(160, 50, 255, .7);
+
+    text-align: center;
+}
+
+/* متن انگلیسی زیر اسم */
+.character-card p {
+    display: none;
+}
+
+/* =========================================
+   🎭 جای کارت‌ها
+   ========================================= */
+
+/* گوجو - بالا سمت چپ */
+.character-card.gojo {
+    left: 25px;
+    top: 70px;
+    transform: rotate(-4deg);
+}
+
+/* دازای - پایین سمت چپ */
+.character-card.dazai {
+    left: 25px;
+    bottom: 35px;
+    transform: rotate(3deg);
+}
+
+/* وانیتاس - پایین سمت راست */
+.character-card.vanitas {
+    right: 25px;
+    bottom: 35px;
+    transform: rotate(-3deg);
+}
+
+/* =========================================
+   ✨ افکت هاور
+   ========================================= */
+
+.character-card:hover {
+    transform: translateY(-10px) scale(1.04) rotate(0deg);
+    z-index: 10;
+
+    box-shadow:
+        0 0 18px rgba(180, 80, 255, 1),
+        0 0 45px rgba(140, 50, 255, .9),
+        inset 0 0 25px rgba(180, 70, 255, .35);
+}
+
+
+/* =========================================
+   📱 موبایل
+   ========================================= */
+
+@media (max-width: 700px) {
+
+    .character-cards,
+    .characters-section,
+    #characters,
+    .character-section {
+        min-height: 950px;
+        margin-top: 40px;
+    }
+
+    .character-card {
+        width: 150px;
+        height: 230px;
+    }
+
+    /* گوجو */
+    .character-card.gojo {
+        left: 5px;
+        top: 40px;
+    }
+
+    /* دازای */
+    .character-card.dazai {
+        left: 5px;
+        bottom: 30px;
+    }
+
+    /* وانیتاس */
+    .character-card.vanitas {
+        right: 5px;
+        bottom: 30px;
+    }
+
+    .character-card h3 {
+        font-size: 16px;
+        padding: 8px 15px;
+    }
+    }

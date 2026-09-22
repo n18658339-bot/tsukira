@@ -599,3 +599,196 @@ h2 {
     background: linear-gradient(#8b22d6, #315cff);
     border-radius: 10px;
         }
+/* ===== TSUKIRA NEON SHINY THEME ===== */
+
+body {
+  background:
+    radial-gradient(circle at 15% 20%, rgba(130, 40, 255, 0.28), transparent 28%),
+    radial-gradient(circle at 85% 70%, rgba(50, 130, 255, 0.20), transparent 30%),
+    linear-gradient(135deg, #030305, #090014 45%, #02040a);
+  background-attachment: fixed;
+  color: #f4f0ff;
+  overflow-x: hidden;
+}
+
+/* نورهای متحرک روی پس‌زمینه */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(90px);
+  z-index: -1;
+  animation: neonFloat 8s ease-in-out infinite alternate;
+}
+
+body::before {
+  background: rgba(150, 0, 255, 0.28);
+  top: -120px;
+  left: -100px;
+}
+
+body::after {
+  background: rgba(40, 120, 255, 0.20);
+  right: -120px;
+  bottom: -120px;
+  animation-delay: -4s;
+}
+
+@keyframes neonFloat {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(80px, 50px) scale(1.18);
+  }
+  100% {
+    transform: translate(-40px, 90px) scale(0.95);
+  }
+}
+
+/* هدر */
+header {
+  background: rgba(5, 5, 10, 0.82) !important;
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(160, 70, 255, 0.45);
+  box-shadow:
+    0 0 25px rgba(130, 30, 255, 0.25),
+    0 8px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* لینک‌ها */
+nav a {
+  color: #f2eaff !important;
+  transition: 0.3s ease;
+}
+
+nav a:hover {
+  color: #c77dff !important;
+  text-shadow:
+    0 0 8px #9d4edd,
+    0 0 18px #6a00ff;
+}
+
+/* کادرهای اصلی */
+main,
+.hero,
+.card,
+section {
+  background: rgba(10, 7, 18, 0.72);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(160, 80, 255, 0.28);
+  box-shadow:
+    0 0 25px rgba(110, 30, 255, 0.12),
+    inset 0 0 25px rgba(90, 20, 180, 0.05);
+}
+
+/* تیترها */
+h1,
+h2,
+h3 {
+  color: #ffffff;
+  text-shadow:
+    0 0 8px rgba(180, 100, 255, 0.8),
+    0 0 20px rgba(120, 30, 255, 0.45);
+}
+
+/* متن */
+p {
+  color: #ddd4eb;
+}
+
+/* دکمه‌ها */
+button,
+.btn,
+a.button {
+  background: linear-gradient(
+    135deg,
+    #21003d,
+    #6500a8,
+    #24115f
+  ) !important;
+  color: white !important;
+  border: 1px solid rgba(190, 110, 255, 0.7) !important;
+  box-shadow:
+    0 0 10px rgba(150, 50, 255, 0.45),
+    0 0 25px rgba(100, 30, 255, 0.18);
+  transition: all 0.3s ease;
+}
+
+button:hover,
+.btn:hover,
+a.button:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 0 15px #b44cff,
+    0 0 35px rgba(100, 50, 255, 0.55);
+}
+
+/* افکت شاینی متحرک */
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  top: -80%;
+  left: -120%;
+  width: 60%;
+  height: 260%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.16),
+    rgba(190,120,255,0.12),
+    transparent
+  );
+  transform: rotate(25deg);
+  animation: shine 5s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes shine {
+  0% {
+    left: -120%;
+  }
+  100% {
+    left: 160%;
+  }
+}
+
+/* لینک‌های داخل محتوا */
+main a {
+  color: #c58aff;
+  text-shadow: 0 0 8px rgba(160, 70, 255, 0.45);
+}
+
+main a:hover {
+  color: #8ecbff;
+}
+
+/* اسکرول‌بار */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #030305;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#8b2cff, #4f8cff);
+  border-radius: 10px;
+  box-shadow: 0 0 10px #8b2cff;
+}
+
+/* درخشش انتخاب متن */
+::selection {
+  background: rgba(145, 50, 255, 0.55);
+  color: white;
+    }

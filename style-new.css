@@ -1,1 +1,206 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Tahoma, Arial, sans-serif;
+  direction: rtl;
+  background: #fffaf5;
+  color: #222;
+  line-height: 1.8;
+}
+
+/* Header */
+header {
+  background: #171717;
+  color: white;
+  padding: 15px 25px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 3px 15px rgba(0,0,0,.15);
+}
+
+nav {
+  max-width: 1100px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  transition: .2s;
+}
+
+nav a:hover {
+  background: #333;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* Main */
+main {
+  max-width: 1100px;
+  margin: auto;
+  padding: 35px 20px;
+}
+
+section {
+  margin-bottom: 45px;
+}
+
+h1 {
+  font-size: 42px;
+  line-height: 1.4;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 30px;
+  margin-bottom: 15px;
+}
+
+p {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 70px 20px;
+  background: linear-gradient(135deg, #fff4e8, #ffffff);
+  border-radius: 25px;
+  margin-bottom: 35px;
+}
+
+.hero h1 {
+  color: #111;
+}
+
+.hero p {
+  max-width: 700px;
+  margin: 0 auto 25px;
+}
+
+/* Buttons */
+button,
+.btn {
+  display: inline-block;
+  border: none;
+  background: #111;
+  color: white;
+  padding: 12px 22px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  text-decoration: none;
+  transition: .2s;
+}
+
+button:hover,
+.btn:hover {
+  transform: translateY(-2px);
+  background: #333;
+}
+
+/* Boxes */
+.box {
+  background: white;
+  border-radius: 18px;
+  padding: 25px;
+  margin-top: 20px;
+  box-shadow: 0 5px 20px rgba(0,0,0,.08);
+  border: 1px solid #eee;
+}
+
+/* Anime cards */
+#anime-list,
+#lists {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 18px;
+  box-shadow: 0 5px 18px rgba(0,0,0,.08);
+  transition: .2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card h3 {
+  margin-bottom: 8px;
+  font-size: 21px;
+}
+
+/* Footer */
+footer {
+  background: #171717;
+  color: white;
+  text-align: center;
+  padding: 30px 20px;
+  margin-top: 50px;
+}
+
+footer p {
+  margin: 5px 0;
+  font-size: 15px;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  header {
+    padding: 12px 15px;
+  }
+
+  nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  nav a {
+    font-size: 14px;
+  }
+
+  main {
+    padding: 20px 15px;
+  }
+
+  .hero {
+    padding: 45px 15px;
+  }
+
+  h1 {
+    font-size: 32px;
+  }
+
+  h2 {
+    font-size: 25px;
+  }
+
+  p {
+    font-size: 16px;
+  }
+  }

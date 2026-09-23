@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TSUKIRA - Anime World</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0f0b18;
+    color: white;
+}
+
+header {
+    background: linear-gradient(135deg, #241044, #12091e);
+    padding: 25px 18px;
+    text-align: center;
+    border-bottom: 1px solid #6d3bb8;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 32px;
+}
+
+header p {
+    color: #c9a8ff;
+    margin-top: 8px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 15px;
+    background: #171020;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    background: #28153d;
+    padding: 10px 16px;
+    border-radius: 12px;
+    transition: 0.2s;
+}
+
+nav a:hover {
+    background: #713fc0;
+}
+
+section {
+    padding: 30px 18px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.section-title {
+    font-size: 27px;
+    margin-bottom: 20px;
+}
+
+.search-box {
+    width: 100%;
+    padding: 15px;
+    border-radius: 14px;
+    border: 1px solid #7040b5;
+    background: #181020;
+    color: white;
+    font-size: 16px;
+    margin-bottom: 25px;
+    outline: none;
+}
+
+.search-box:focus {
+    border-color: #b47aff;
+}
+
+.anime-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
+}
+
+.anime-card {
+    background: #191122;
+    border: 1px solid #34204b;
+    border-radius: 18px;
+    padding: 20px;
+    transition: 0.25s;
+}
+
+.anime-card:hover {
+    transform: translateY(-5px);
+    border-color: #8b50d0;
+}
+
+.anime-card h3 {
+    margin-top: 0;
+    color: #d2adff;
+    font-size: 22px;
+}
+
+.anime-card p {
+    color: #c9c1d3;
+    line-height: 1.8;
+}
+
+.rating {
+    color: #ffd75e;
+    margin: 12px 0;
+}
+
+.genre {
+    display: inline-block;
+    background: #2d1945;
+    color: #cda7ff;
+    padding: 5px 9px;
+    border-radius: 8px;
+    margin: 3px;
+    font-size: 13px;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 11px 15px;
+    font-size: 14px;
+}
+
+.library-btn {
+    width: 100%;
+    background: #713fc0;
+    color: white;
+    margin-top: 12px;
+}
+
+.library-btn:hover {
+    background: #8d58df;
+}
+
+.library-btn.saved {
+    background: #26734d;
+}
+
+.empty {
+    text-align: center;
+    color: #a9a0b3;
+    padding: 30px;
+}
+
+.account-box {
+    background: #191122;
+    border: 1px solid #34204b;
+    border-radius: 18px;
+    padding: 25px;
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    color: #81758e;
+    border-top: 1px solid #2e203b;
+    margin-top: 30px;
+}
+
+.hidden {
+    display: none;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🌙 TSUKIRA</h1>
+    <p>Anime World</p>
+</header>
+
+<nav>
+    <a href="#anime">🔥 انیمه‌ها</a>
+    <a href="#library">📚 کتابخانه من</a>
+    <a href="#account">👤 حساب من</a>
+</nav>
+
+
+<!-- ANIME SECTION -->
+<section id="anime">
+
+    <h2 class="section-title">🔥 انیمه‌ها</h2>
+
+    <input
+        type="text"
+        id="searchInput"
+        class="search-box"
+        placeholder="🔎 اسم انیمه را جستجو کن..."
+    >
+
+    <div id="animeList" class="anime-grid"></div>
+
+</section>
+
+
+<!-- LIBRARY SECTION -->
+<section id="library">
+
+    <h2 class="section-title">📚 کتابخانه من</h2>
+
+    <div id="libraryList" class="anime-grid"></div>
+
+</section>
+
+
+<!-- ACCOUNT SECTION -->
+<section id="account">
+
+    <h2 class="section-title">👤 حساب من</h2>
+
+    <div class="account-box">
+
+        <h3>🌙 خوش اومدی به TSUKIRA</h3>
+
+        <p>
+            اینجا می‌تونی انیمه‌های مورد علاقه‌ات رو
+            به کتابخانه شخصیت اضافه کنی.
+        </p>
+
+        <p id="libraryCount">
+            تعداد انیمه‌های کتابخانه: ۰
+        </p>
+
+    </div>
+
+</section>
+
+
+<footer>
+    TSUKIRA © 2026
+</footer>
+
+
+<script>
+
+const animeData = [
+
+    {
+        id: 1,
+        title: "Attack on Titan",
+        rating: "9.1",
+        genres: ["Action", "Drama", "Fantasy"],
+        description:
+        "داستان بشریت در جهانی که برای زنده ماندن از دست تایتان‌ها مبارزه می‌کند."
+    },
+
+    {
+        id: 2,
+        title: "Jujutsu Kaisen",
+        rating: "8.6",
+        genres: ["Action", "Supernatural", "Fantasy"],
+        description:
+        "داستان یوجی ایتادوری و دنیای جادوگران جوجوتسو."
+    },
+
+    {
+        id: 3,
+        title: "Haikyuu!!",
+        rating: "8.7",
+        genres: ["Sports", "Comedy", "Drama"],
+        description:
+        "داستان هیناتا شویو و تلاش او برای تبدیل شدن به یک بازیکن بزرگ والیبال."
+    },
+
+    {
+        id: 4,
+        title: "The Case Study of Vanitas",
+        rating: "8.2",
+        genres: ["Fantasy", "Mystery", "Vampire"],
+        description:
+        "ماجرایی مرموز درباره خون‌آشام‌ها و کتابی افسانه‌ای به نام کتاب وانیتاس."
+    },
+
+    {
+        id: 5,
+        title: "Bungo Stray Dogs",
+        rating: "8.5",
+        genres: ["Action", "Mystery", "Supernatural"],
+        description:
+        "گروهی از افراد دارای قدرت‌های عجیب که در آژانس کارآگاهی مسلح فعالیت می‌کنند."
+    },
+
+    {
+        id: 6,
+        title: "Solo Leveling",
+        rating: "8.8",
+        genres: ["Action", "Fantasy", "Adventure"],
+        description:
+        "سونگ جین‌وو از ضعیف‌ترین شکارچی به یکی از قدرتمندترین افراد تبدیل می‌شود."
+    },
+
+    {
+        id: 7,
+        title: "Bleach",
+        rating: "8.2",
+        genres: ["Action", "Adventure", "Supernatural"],
+        description:
+        "ایچیگو کوروساکی پس از به دست آوردن قدرت شینیگامی وارد دنیایی خطرناک می‌شود."
+    },
+
+    {
+        id: 8,
+        title: "Oshi no Ko",
+        rating: "8.3",
+        genres: ["Drama", "Mystery", "Music"],
+        description:
+        "داستانی درباره دنیای پنهان صنعت سرگرمی و رازهای زندگی آیدل‌ها."
+    }
+
+];
+
+
+let library =
+    JSON.parse(localStorage.getItem("tsukiraLibrary")) || [];
+
+
+function displayAnime(list) {
+
+    const container =
+        document.getElementById("animeList");
+
+    container.innerHTML = "";
+
+    if (list.length === 0) {
+
+        container.innerHTML =
+        `<div class="empty">
+            😭 انیمه‌ای پیدا نشد
+        </div>`;
+
+        return;
+    }
+
+
+    list.forEach(anime => {
+
+        const isSaved =
+            library.includes(anime.id);
+
+
+        const card =
+        document.createElement("div");
+
+        card.className = "anime-card";
+
+
+        card.innerHTML = `
+
+            <h3>${anime.title}</h3>
+
+            <div class="rating">
+                ⭐ ${anime.rating}
+            </div>
+
+            <div>
+                ${anime.genres
+                    .map(g => `<span class="genre">${g}</span>`)
+                    .join("")
+                }
+            </div>
+
+            <p>
+                ${anime.description}
+            </p>
+
+            <button
+                class="library-btn ${isSaved ? "saved" : ""}"
+                onclick="toggleLibrary(${anime.id})"
+            >
+                ${isSaved
+                    ? "✓ داخل کتابخانه"
+                    : "➕ افزودن به کتابخانه"
+                }
+            </button>
+
+        `;
+
+
+        container.appendChild(card);
+
+    });
+
+}
+
+
+function toggleLibrary(id) {
+
+    if (library.includes(id)) {
+
+        library =
+        library.filter(item => item !== id);
+
+    } else {
+
+        library.push(id);
+
+    }
+
+
+    localStorage.setItem(
+        "tsukiraLibrary",
+        JSON.stringify(library)
+    );
+
+
+    displayAnime(animeData);
+
+    displayLibrary();
+
+    updateCount();
+
+}
+
+
+function displayLibrary() {
+
+    const container =
+        document.getElementById("libraryList");
+
+    container.innerHTML = "";
+
+
+    const savedAnime =
+        animeData.filter(anime =>
+            library.includes(anime.id)
+        );
+
+
+    if (savedAnime.length === 0) {
+
+        container.innerHTML =
+        `<div class="empty">
+            📚 هنوز انیمه‌ای به کتابخانه اضافه نکردی.
+        </div>`;
+
+        return;
+
+    }
+
+
+    savedAnime.forEach(anime => {
+
+        const card =
+        document.createElement("div");
+
+        card.className = "anime-card";
+
+
+        card.innerHTML = `
+
+            <h3>${anime.title}</h3>
+
+            <div class="rating">
+                ⭐ ${anime.rating}
+            </div>
+
+            <p>
+                ${anime.description}
+            </p>
+
+            <button
+                class="library-btn saved"
+                onclick="toggleLibrary(${anime.id})"
+            >
+                ❌ حذف از کتابخانه
+            </button>
+
+        `;
+
+
+        container.appendChild(card);
+
+    });
+
+}
+
+
+function updateCount() {
+
+    document.getElementById("libraryCount")
+        .textContent =
+        "تعداد انیمه‌های کتابخانه: " + library.length;
+
+}
+
+
+document
+.getElementById("searchInput")
+.addEventListener("input", function() {
+
+    const query =
+        this.value.toLowerCase().trim();
+
+
+    const filtered =
+        animeData.filter(anime =>
+            anime.title.toLowerCase()
+            .includes(query)
+        );
+
+
+    displayAnime(filtered);
+
+});
+
+
+displayAnime(animeData);
+
+displayLibrary();
+
+updateCount();
+
+</script>
+
+</body>
+          </html>

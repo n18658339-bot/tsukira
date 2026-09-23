@@ -1897,3 +1897,74 @@ document.querySelectorAll(".tsukira-character-card").forEach(function(card) {
        style="width:250px;max-width:100%;">
 
 </div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const characterImages = {
+        "هیناتا": "876f0505-9244-4565-96e1-8fe2007e9d2.png",
+        "Hinata": "876f0505-9244-4565-96e1-8fe2007e9d2.png",
+
+        "گوجو": "d0ae872b-96e2-4067-b0f1-8584f77638b5.png",
+        "Gojo": "d0ae872b-96e2-4067-b0f1-8584f77638b5.png",
+
+        "وانیتاس": "d806f067-0aae-4d0d-bae8-dacf5919fc9.png",
+        "Vanitas": "d806f067-0aae-4d0d-bae8-dacf5919fc9.png",
+
+        "دازای": "8d22bb45-f0c5-4044-bace-3c5fd191f14a.png",
+        "Dazai": "8d22bb45-f0c5-4044-bace-3c5fd191f14a.png"
+    };
+
+    function addCharacterImages() {
+
+        const allElements = document.querySelectorAll("*");
+
+        allElements.forEach(function (element) {
+
+            if (element.children.length > 0) return;
+
+            const text = element.textContent.trim();
+
+            for (const name in characterImages) {
+
+                if (text === name) {
+
+                    let box = element.closest(
+                        ".card, .character-card, .anime-card, .character, article, section"
+                    );
+
+                    if (!box) {
+                        box = element.parentElement;
+                    }
+
+                    if (!box) return;
+
+                    if (box.querySelector(".auto-character-image")) return;
+
+                    const img = document.createElement("img");
+
+                    img.className = "auto-character-image";
+                    img.src = "./" + characterImages[name];
+                    img.alt = name;
+
+                    img.style.width = "100%";
+                    img.style.maxWidth = "420px";
+                    img.style.height = "auto";
+                    img.style.display = "block";
+                    img.style.margin = "15px auto";
+                    img.style.borderRadius = "18px";
+                    img.style.objectFit = "cover";
+                    img.style.boxShadow =
+                        "0 0 25px rgba(150,70,255,.65)";
+
+                    box.insertBefore(img, box.firstChild);
+
+                    break;
+                }
+            }
+        });
+    }
+
+    addCharacterImages();
+
+});
+</script>

@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TSUKIRA ✦ Anime World</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    overflow-x:hidden;
+    font-family:Tahoma,Arial,sans-serif;
+    color:white;
+    background:
+        radial-gradient(circle at 15% 15%,rgba(151,70,255,.25),transparent 28%),
+        radial-gradient(circle at 85% 20%,rgba(80,100,255,.20),transparent 28%),
+        radial-gradient(circle at 50% 90%,rgba(210,50,255,.16),transparent 30%),
+        linear-gradient(135deg,#05030a,#10071c,#05030b);
+}
+
+/* ✦ ستاره‌ها */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-2;
+    opacity:.45;
+    background-image:
+        radial-gradient(circle,#fff 1px,transparent 1px),
+        radial-gradient(circle,#b98aff 1px,transparent 1px);
+    background-size:90px 90px,145px 145px;
+    background-position:15px 20px,50px 70px;
+}
+
+/* ✦ نور متحرک */
+body::after{
+    content:"";
+    position:fixed;
+    width:600px;
+    height:600px;
+    border-radius:50%;
+    background:rgba(126,45,255,.10);
+    filter:blur(100px);
+    top:-250px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:-1;
+    animation:floatGlow 6s ease-in-out infinite alternate;
+}
+
+@keyframes floatGlow{
+    from{
+        transform:translateX(-50%) scale(.8);
+        opacity:.5;
+    }
+    to{
+        transform:translateX(-50%) scale(1.2);
+        opacity:1;
+    }
+}
+
+/* ✦ هدر */
+
+.hero{
+    position:relative;
+    padding:80px 20px 55px;
+    text-align:center;
+}
+
+.hero::before{
+    content:"✦";
+    position:absolute;
+    top:25px;
+    left:12%;
+    color:#b987ff;
+    font-size:25px;
+    animation:twinkle 2s infinite;
+}
+
+.hero::after{
+    content:"✦";
+    position:absolute;
+    top:90px;
+    right:13%;
+    color:#8b72ff;
+    font-size:18px;
+    animation:twinkle 2.5s infinite;
+}
+
+@keyframes twinkle{
+    0%,100%{
+        opacity:.25;
+        transform:scale(.7);
+    }
+    50%{
+        opacity:1;
+        transform:scale(1.3);
+    }
+}
+
+.logo{
+    font-size:clamp(42px,9vw,78px);
+    font-weight:900;
+    letter-spacing:9px;
+    color:#eee0ff;
+    text-shadow:
+        0 0 8px #fff,
+        0 0 20px #a765ff,
+        0 0 40px #792cff,
+        0 0 80px rgba(126,45,255,.8);
+    animation:logoGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes logoGlow{
+    from{
+        filter:brightness(.9);
+    }
+    to{
+        filter:brightness(1.3);
+    }
+}
+
+.hero p{
+    margin-top:20px;
+    color:#cbb9df;
+    font-size:15px;
+    line-height:2.2;
+}
+
+/* ✦ منو */
+
+.nav{
+    width:min(850px,92%);
+    margin:0 auto 55px;
+    padding:10px;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:8px;
+    border:1px solid rgba(193,143,255,.25);
+    border-radius:20px;
+    background:rgba(17,8,29,.65);
+    backdrop-filter:blur(15px);
+    box-shadow:
+        0 10px 40px rgba(0,0,0,.35),
+        0 0 25px rgba(117,50,255,.08);
+}
+
+.nav a{
+    color:#d8c9e9;
+    text-decoration:none;
+    padding:11px 20px;
+    border-radius:13px;
+    transition:.3s;
+    font-size:14px;
+}
+
+.nav a:hover{
+    color:white;
+    background:rgba(139,70,255,.25);
+    box-shadow:0 0 20px rgba(139,70,255,.35);
+}
+
+/* ✦ بخش شخصیت‌ها */
+
+.characters{
+    width:min(1200px,92%);
+    margin:auto;
+    padding-bottom:90px;
+}
+
+.title{
+    text-align:center;
+    margin-bottom:38px;
+}
+
+.title h2{
+    font-size:clamp(27px,5vw,40px);
+    color:#eadbff;
+    text-shadow:
+        0 0 8px #fff,
+        0 0 25px #934fff;
+}
+
+.title p{
+    margin-top:12px;
+    color:#a99cb5;
+    font-size:13px;
+}
+
+/* ✦ کارت‌ها */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:24px;
+}
+
+.card{
+    position:relative;
+    overflow:hidden;
+    border-radius:25px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(38,17,62,.94),
+            rgba(9,5,16,.98)
+        );
+    border:1px solid rgba(178,115,255,.30);
+    box-shadow:
+        0 20px 45px rgba(0,0,0,.45),
+        0 0 25px rgba(113,50,255,.10);
+    transition:
+        transform .4s ease,
+        box-shadow .4s ease,
+        border-color .4s ease;
+}
+
+.card:hover{
+    transform:translateY(-12px);
+    border-color:rgba(215,177,255,.75);
+    box-shadow:
+        0 25px 55px rgba(0,0,0,.55),
+        0 0 35px rgba(133,63,255,.35),
+        inset 0 0 30px rgba(140,70,255,.08);
+}
+
+/* نور روی کارت */
+
+.card::before{
+    content:"";
+    position:absolute;
+    z-index:4;
+    top:-120%;
+    left:-80%;
+    width:60%;
+    height:300%;
+    transform:rotate(25deg);
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.18),
+        transparent
+    );
+    transition:.8s;
+    pointer-events:none;
+}
+
+.card:hover::before{
+    left:130%;
+}
+
+/* ✦ عکس */
+
+.image-box{
+    width:100%;
+    aspect-ratio:3/4;
+    overflow:hidden;
+    background:#10091a;
+    position:relative;
+}
+
+.image-box img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    transition:transform .6s ease,filter .4s ease;
+}
+
+.card:hover .image-box img{
+    transform:scale(1.08);
+    filter:brightness(1.08);
+}
+
+.image-box::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        to top,
+        rgba(6,3,12,.85),
+        transparent 45%
+    );
+    pointer-events:none;
+}
+
+/* ✦ اطلاعات */
+
+.info{
+    padding:20px;
+    text-align:center;
+}
+
+.info h3{
+    color:#f0e4ff;
+    font-size:21px;
+    margin-bottom:10px;
+    text-shadow:0 0 14px rgba(167,95,255,.7);
+}
+
+.info span{
+    display:inline-block;
+    padding:6px 13px;
+    border-radius:30px;
+    color:#bca6d7;
+    background:rgba(139,72,255,.10);
+    border:1px solid rgba(172,110,255,.20);
+    font-size:11px;
+}
+
+/* ✦ درباره */
+
+.about{
+    width:min(850px,92%);
+    margin:0 auto 80px;
+    padding:35px 25px;
+    text-align:center;
+    border:1px solid rgba(178,115,255,.22);
+    border-radius:25px;
+    background:rgba(20,9,33,.65);
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.3),
+        inset 0 0 30px rgba(125,60,255,.05);
+}
+
+.about h2{
+    color:#e6d3ff;
+    margin-bottom:18px;
+}
+
+.about p{
+    color:#b9adbf;
+    line-height:2.5;
+    font-size:14px;
+}
+
+/* ✦ فوتر */
+
+footer{
+    padding:45px 20px;
+    text-align:center;
+    border-top:1px solid rgba(177,115,255,.15);
+    background:rgba(4,2,8,.75);
+}
+
+footer h3{
+    color:#d9c1ff;
+    font-size:25px;
+    text-shadow:0 0 15px #8d4dff;
+}
+
+footer p{
+    margin-top:12px;
+    color:#777080;
+    font-size:12px;
+}
+
+/* ✦ ریسپانسیو */
+
+@media(max-width:950px){
+
+    .cards{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:600px){
+
+    .hero{
+        padding-top:55px;
+    }
+
+    .logo{
+        letter-spacing:5px;
+    }
+
+    .cards{
+        grid-template-columns:1fr;
+        gap:25px;
+    }
+
+    .card{
+        max-width:430px;
+        width:100%;
+        margin:auto;
+    }
+
+    .image-box{
+        aspect-ratio:4/5;
+    }
+}
+</style>
+</head>
+
+
+<body>
+
+<!-- ✦ HERO -->
+
+<header class="hero">
+
+    <div class="logo">TSUKIRA</div>
+
+    <p>
+        ✦ جایی که داستان‌ها زنده می‌شوند ✦
+        <br>
+        دنیای شخصیت‌های محبوب انیمه
+    </p>
+
+</header>
+
+
+<!-- ✦ NAV -->
+
+<nav class="nav">
+
+    <a href="#characters">شخصیت‌ها</a>
+
+    <a href="#about">درباره TSUKIRA</a>
+
+</nav>
+
+
+<!-- ✦ CHARACTERS -->
+
+<main>
+
+<section class="characters" id="characters">
+
+    <div class="title">
+
+        <h2>✦ شخصیت‌های محبوب ✦</h2>
+
+        <p>
+            چهار شخصیت از دنیای انیمه
+        </p>
+
+    </div>
+
+
+    <div class="cards">
+
+
+        <!-- DAZAI -->
+
+        <article class="card">
+
+            <div class="image-box">
+
+                <img
+                    src="8d22bb45-f0c5-4044-bace-3c5fdf19f14a.png"
+                    alt="دازای اوسامو"
+                >
+
+            </div>
+
+            <div class="info">
+
+                <h3>دازای اوسامو</h3>
+
+                <span>Bungou Stray Dogs</span>
+
+            </div>
+
+        </article>
+
+
+        <!-- VANITAS -->
+
+        <article class="card">
+
+            <div class="image-box">
+
+                <img
+                    src="d80b6f67-0aae-4d0d-bae8-dacf5919fc9c.png"
+                    alt="وانیتاس"
+                >
+
+            </div>
+
+            <div class="info">
+
+                <h3>وانیتاس</h3>
+
+                <span>The Case Study of Vanitas</span>
+
+            </div>
+
+        </article>
+
+
+        <!-- GOJO -->
+
+        <article class="card">
+
+            <div class="image-box">
+
+                <img
+                    src="d9ae872b-96e2-4067-b0f1-8584f77638b5.png"
+                    alt="گوجو ساتورو"
+                >
+
+            </div>
+
+            <div class="info">
+
+                <h3>گوجو ساتورو</h3>
+
+                <span>Jujutsu Kaisen</span>
+
+            </div>
+
+        </article>
+
+
+        <!-- CHARACTER 4 -->
+
+        <article class="card">
+
+            <div class="image-box">
+
+                <img
+                    src="dab2c16d-ddd5-4fd4-85cb-a60fbe4edff3.png"
+                    alt="شخصیت انیمه"
+                >
+
+            </div>
+
+            <div class="info">
+
+                <h3>شخصیت محبوب</h3>
+
+                <span>Anime</span>
+
+            </div>
+
+        </article>
+
+
+    </div>
+
+</section>
+
+
+<!-- ✦ ABOUT -->
+
+<section class="about" id="about">
+
+    <h2>✦ درباره TSUKIRA ✦</h2>
+
+    <p>
+        به دنیای TSUKIRA خوش اومدی؛
+        جایی برای شخصیت‌های محبوب، داستان‌های فراموش‌نشدنی
+        و دنیای رنگارنگ انیمه.
+        <br><br>
+        ✦ اینجا تازه شروع ماجراست ✦
+    </p>
+
+</section>
+
+</main>
+
+
+<!-- ✦ FOOTER -->
+
+<footer>
+
+    <h3>TSUKIRA</h3>
+
+    <p>
+        ✦ Anime World ✦
+    </p>
+
+    <p>
+        © 2026 TSUKIRA
+    </p>
+
+</footer>
+
+</body>
+  </html>

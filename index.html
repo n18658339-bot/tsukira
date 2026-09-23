@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TSUKIRA | شخصیت‌های محبوب</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(120,50,255,.25), transparent 30%),
+        radial-gradient(circle at 80% 10%, rgba(80,120,255,.18), transparent 25%),
+        radial-gradient(circle at 50% 100%, rgba(160,40,255,.18), transparent 35%),
+        #05030b;
+    color:#fff;
+    font-family:Tahoma, Arial, sans-serif;
+    overflow-x:hidden;
+}
+
+/* نورهای پس زمینه */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background:
+        linear-gradient(
+            120deg,
+            transparent 0%,
+            rgba(170,100,255,.05) 45%,
+            rgba(100,150,255,.08) 50%,
+            transparent 55%
+        );
+    animation:shine 7s linear infinite;
+    z-index:-1;
+}
+
+@keyframes shine{
+    0%{
+        transform:translateX(-100%);
+    }
+    100%{
+        transform:translateX(100%);
+    }
+}
+
+/* هدر */
+
+.hero{
+    width:100%;
+    padding:70px 20px 45px;
+    text-align:center;
+}
+
+.hero h1{
+    font-size:clamp(35px,8vw,70px);
+    letter-spacing:6px;
+    color:#d8b7ff;
+    text-shadow:
+        0 0 10px #9d55ff,
+        0 0 25px #762cff,
+        0 0 55px rgba(130,50,255,.7);
+    margin-bottom:18px;
+}
+
+.hero p{
+    color:#c9b9dc;
+    font-size:15px;
+    line-height:2;
+}
+
+/* بخش شخصیت‌ها */
+
+.characters{
+    width:min(1200px,92%);
+    margin:0 auto;
+    padding:20px 0 80px;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.section-title h2{
+    font-size:28px;
+    color:#e2c8ff;
+    text-shadow:0 0 18px rgba(150,70,255,.8);
+    margin-bottom:12px;
+}
+
+.section-title p{
+    color:#aaa0b8;
+    font-size:14px;
+}
+
+/* گرید */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:25px;
+}
+
+/* کارت */
+
+.card{
+    position:relative;
+    overflow:hidden;
+    border-radius:22px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(35,15,60,.95),
+            rgba(10,7,20,.98)
+        );
+    border:1px solid rgba(160,100,255,.45);
+    box-shadow:
+        0 0 20px rgba(110,50,255,.15),
+        inset 0 0 25px rgba(120,50,255,.08);
+    cursor:pointer;
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease,
+        border-color .35s ease;
+}
+
+.card:hover{
+    transform:translateY(-10px) scale(1.015);
+    border-color:#b878ff;
+    box-shadow:
+        0 15px 45px rgba(90,30,255,.35),
+        0 0 30px rgba(170,80,255,.2),
+        inset 0 0 30px rgba(150,70,255,.12);
+}
+
+.card::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-120%;
+    width:70%;
+    height:100%;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.12),
+        transparent
+    );
+    transform:skewX(-20deg);
+    transition:.7s;
+    z-index:3;
+    pointer-events:none;
+}
+
+.card:hover::before{
+    left:150%;
+}
+
+/* عکس */
+
+.card-image{
+    width:100%;
+    aspect-ratio:3 / 4;
+    overflow:hidden;
+    background:#10091b;
+}
+
+.card-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    transition:transform .5s ease;
+}
+
+.card:hover .card-image img{
+    transform:scale(1.06);
+}
+
+/* متن کارت */
+
+.card-content{
+    padding:18px 18px 20px;
+    text-align:center;
+}
+
+.card-content h3{
+    color:#ead9ff;
+    font-size:21px;
+    margin-bottom:9px;
+    text-shadow:0 0 12px rgba(160,90,255,.5);
+}
+
+.card-content span{
+    display:inline-block;
+    color:#a99bb7;
+    font-size:12px;
+    border:1px solid rgba(170,120,255,.25);
+    border-radius:30px;
+    padding:5px 12px;
+    background:rgba(130,60,255,.07);
+}
+
+/* فوتر */
+
+footer{
+    text-align:center;
+    padding:35px 20px 50px;
+    border-top:1px solid rgba(170,100,255,.15);
+    color:#82788c;
+    font-size:13px;
+}
+
+/* پاپ آپ */
+
+.popup{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.82);
+    backdrop-filter:blur(10px);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    z-index:9999;
+}
+
+.popup.show{
+    display:flex;
+}
+
+.popup-box{
+    position:relative;
+    width:min(700px,100%);
+    max-height:90vh;
+    overflow:auto;
+    border-radius:25px;
+    padding:30px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(35,15,55,.98),
+            rgba(8,5,15,.99)
+        );
+    border:1px solid rgba(180,110,255,.5);
+    box-shadow:
+        0 0 60px rgba(100,30,255,.35),
+        inset 0 0 35px rgba(150,70,255,.08);
+}
+
+.close{
+    position:absolute;
+    top:12px;
+    left:15px;
+    width:38px;
+    height:38px;
+    border:1px solid rgba(190,120,255,.4);
+    border-radius:50%;
+    background:rgba(100,40,180,.18);
+    color:#fff;
+    font-size:22px;
+    cursor:pointer;
+}
+
+.popup-image{
+    width:100%;
+    max-height:420px;
+    object-fit:cover;
+    border-radius:18px;
+    margin-bottom:22px;
+    border:1px solid rgba(180,100,255,.3);
+}
+
+.popup-box h2{
+    text-align:center;
+    color:#e6caff;
+    margin-bottom:18px;
+    text-shadow:0 0 15px rgba(160,70,255,.7);
+}
+
+.popup-box p{
+    color:#c4b8cc;
+    line-height:2.2;
+    text-align:center;
+    font-size:14px;
+}
+
+/* موبایل */
+
+@media(max-width:600px){
+
+    .hero{
+        padding-top:45px;
+    }
+
+    .hero h1{
+        letter-spacing:3px;
+    }
+
+    .cards{
+        grid-template-columns:repeat(2,1fr);
+        gap:14px;
+    }
+
+    .card{
+        border-radius:16px;
+    }
+
+    .card-content{
+        padding:13px 8px 15px;
+    }
+
+    .card-content h3{
+        font-size:16px;
+    }
+
+    .card-content span{
+        font-size:10px;
+        padding:4px 8px;
+    }
+
+    .popup-box{
+        padding:22px 16px;
+    }
+}
+
+@media(max-width:360px){
+
+    .cards{
+        grid-template-columns:1fr;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="hero">
+
+    <h1>TSUKIRA</h1>
+
+    <p>
+        دنیای شخصیت‌های محبوب ✦
+        <br>
+        مجموعه‌ای از شخصیت‌های مورد علاقه
+    </p>
+
+</header>
+
+
+<main class="characters">
+
+    <div class="section-title">
+
+        <h2>✦ شخصیت‌های محبوب ✦</h2>
+
+        <p>
+            روی هر شخصیت بزن تا اطلاعات بیشتری ببینی
+        </p>
+
+    </div>
+
+
+    <div class="cards">
+
+
+        <!-- GOJO -->
+
+        <article
+            class="card"
+            onclick="openCharacter(
+                'گوجو ساتورو',
+                'Jujutsu Kaisen',
+                './d9ae872b-96e2-4067-b0f1-8584f7638b65.png',
+                'ساتورو گوجو، یکی از قدرتمندترین جادوگران دنیای Jujutsu Kaisen است؛ شخصیتی با اعتمادبه‌نفس بالا، قدرت بسیار زیاد و ظاهری آرام و جذاب.'
+            )"
+        >
+
+            <div class="card-image">
+
+                <img
+                    src="./d9ae872b-96e2-4067-b0f1-8584f7638b65.png"
+                    alt="Gojo"
+                >
+
+            </div>
+
+            <div class="card-content">
+
+                <h3>گوجو ساتورو</h3>
+
+                <span>Jujutsu Kaisen</span>
+
+            </div>
+
+        </article>
+
+
+        <!-- HINATA -->
+
+        <article
+            class="card"
+            onclick="openCharacter(
+                'هیناتا شویو',
+                'Haikyuu!!',
+                './876f0505-9244-4565-96e1-8f6e2007e9d2.png',
+                'هیناتا شویو، بازیکنی پرانرژی و پرتلاش است که با وجود قد کوتاهش، با سرعت، پرش و اراده فوق‌العاده‌اش در زمین والیبال می‌درخشد.'
+            )"
+        >
+
+            <div class="card-image">
+
+                <img
+                    src="./876f0505-9244-4565-96e1-8f6e2007e9d2.png"
+                    alt="Hinata"
+                >
+
+            </div>
+
+            <div class="card-content">
+
+                <h3>هیناتا شویو</h3>
+
+                <span>Haikyuu!!</span>
+
+            </div>
+
+        </article>
+
+
+        <!-- VANITAS -->
+
+        <article
+            class="card"
+            onclick="openCharacter(
+                'وانیتاس',
+                'The Case Study of Vanitas',
+                './d806f67-0aae-4d0d-bae8-dacf5919fc9c.png',
+                'وانیتاس شخصیتی مرموز، باهوش و غیرقابل پیش‌بینی است که در دنیایی پر از خون‌آشام‌ها و رازهای تاریک زندگی می‌کند.'
+            )"
+        >
+
+            <div class="card-image">
+
+                <img
+                    src="./d806f67-0aae-4d0d-bae8-dacf5919fc9c.png"
+                    alt="Vanitas"
+                >
+
+            </div>
+
+            <div class="card-content">
+
+                <h3>وانیتاس</h3>
+
+                <span>Vanitas no Carte</span>
+
+            </div>
+
+        </article>
+
+
+        <!-- DAZAI -->
+
+        <article
+            class="card"
+            onclick="openCharacter(
+                'دازای اوسامو',
+                'Bungou Stray Dogs',
+                './8d22b645-f0c5-4044-bace-3c5dfd19f14a.png',
+                'اوسامو دازای شخصیتی مرموز، شوخ‌طبع و بسیار باهوش است که رفتارهای ظاهراً بی‌خیالش معمولاً چیزی عمیق‌تر را پنهان می‌کنند.'
+            )"
+        >
+
+            <div class="card-image">
+
+                <img
+                    src="./8d22b645-f0c5-4044-bace-3c5dfd19f14a.png"
+                    alt="Dazai"
+                >
+
+            </div>
+
+            <div class="card-content">
+
+                <h3>دازای اوسامو</h3>
+
+                <span>Bungou Stray Dogs</span>
+
+            </div>
+
+        </article>
+
+
+        <!-- KENMA -->
+
+        <article
+            class="card"
+            onclick="openCharacter(
+                'کنما کوزومه',
+                'Haikyuu!!',
+                './e05dc2ef-d3ad-4478-8f23-7607934c2d67.png',
+                'کنما کوزومه، مغز متفکر تیم نکوما است؛ بازیکنی آرام، تحلیل‌گر و بسیار باهوش که زمین والیبال را مانند یک بازی استراتژیک می‌بیند.'
+            )"
+        >
+
+            <div class="card-image">
+
+                <img
+                    src="./e05dc2ef-d3ad-4478-8f23-7607934c2d67.png"
+                    alt="Kenma"
+                >
+
+            </div>
+
+            <div class="card-content">
+
+                <h3>کنما کوزومه</h3>
+
+                <span>Haikyuu!!</span>
+
+            </div>
+
+        </article>
+
+
+    </div>
+
+</main>
+
+
+<footer>
+
+    <p>جایی که داستان‌ها زنده می‌شوند ✦</p>
+
+    <p style="margin-top:12px;">
+        © 2026 TSUKIRA
+    </p>
+
+</footer>
+
+
+<!-- POPUP -->
+
+<div
+    id="popup"
+    class="popup"
+    onclick="closePopup(event)"
+>
+
+    <div
+        class="popup-box"
+        onclick="event.stopPropagation()"
+    >
+
+        <button
+            class="close"
+            onclick="closePopup()"
+            aria-label="بستن"
+        >
+            ×
+        </button>
+
+        <img
+            id="popupImage"
+            class="popup-image"
+            src=""
+            alt=""
+        >
+
+        <h2 id="popupTitle"></h2>
+
+        <p
+            id="popupAnime"
+            style="color:#9e78c8;margin-bottom:15px;"
+        ></p>
+
+        <p id="popupText"></p>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function openCharacter(title, anime, image, text){
+
+    document.getElementById("popupTitle").textContent = title;
+
+    document.getElementById("popupAnime").textContent = anime;
+
+    document.getElementById("popupText").textContent = text;
+
+    document.getElementById("popupImage").src = image;
+
+    document.getElementById("popup").classList.add("show");
+
+    document.body.style.overflow = "hidden";
+}
+
+
+function closePopup(event){
+
+    if(event && event.target !== document.getElementById("popup")){
+        return;
+    }
+
+    document.getElementById("popup").classList.remove("show");
+
+    document.body.style.overflow = "";
+}
+
+
+document.addEventListener("keydown", function(event){
+
+    if(event.key === "Escape"){
+
+        document.getElementById("popup").classList.remove("show");
+
+        document.body.style.overflow = "";
+
+    }
+
+});
+
+</script>
+
+</body>
+                  </html>

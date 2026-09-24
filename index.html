@@ -950,3 +950,793 @@ showLibrary();
 
 </body>
   </html>
+<!-- ============================= -->
+<!--        ANIME SECTION          -->
+<!-- ============================= -->
+
+<style>
+/* ---------- Anime Section ---------- */
+
+.anime-section {
+    direction: rtl;
+    width: 100%;
+    padding: 70px 20px;
+    margin-top: 40px;
+    background:
+        radial-gradient(circle at top right, rgba(120, 70, 255, .18), transparent 35%),
+        radial-gradient(circle at bottom left, rgba(0, 210, 255, .10), transparent 35%),
+        #080912;
+    color: #fff;
+    font-family: Tahoma, Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+.anime-container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Title */
+
+.anime-title {
+    text-align: center;
+    margin-bottom: 12px;
+    font-size: 34px;
+    font-weight: 900;
+    background: linear-gradient(90deg, #8b5cf6, #22d3ee, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.anime-subtitle {
+    text-align: center;
+    color: #a7a9b8;
+    margin-bottom: 35px;
+    font-size: 15px;
+}
+
+/* Search */
+
+.anime-search-box {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 35px;
+}
+
+.anime-search {
+    width: min(600px, 100%);
+    padding: 16px 22px;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,.1);
+    outline: none;
+    background: rgba(255,255,255,.06);
+    backdrop-filter: blur(15px);
+    color: white;
+    font-size: 15px;
+    text-align: right;
+    transition: .3s;
+}
+
+.anime-search:focus {
+    border-color: #8b5cf6;
+    box-shadow: 0 0 25px rgba(139,92,246,.2);
+}
+
+.anime-search::placeholder {
+    color: #888b9c;
+}
+
+/* Cards */
+
+.anime-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 22px;
+}
+
+.anime-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 22px;
+    min-height: 340px;
+    background: #111321;
+    border: 1px solid rgba(255,255,255,.08);
+    box-shadow: 0 15px 40px rgba(0,0,0,.25);
+    transition: .35s;
+    cursor: pointer;
+}
+
+.anime-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(139,92,246,.5);
+    box-shadow: 0 20px 55px rgba(139,92,246,.18);
+}
+
+.anime-cover {
+    width: 100%;
+    height: 270px;
+    object-fit: cover;
+    display: block;
+}
+
+.anime-card-info {
+    padding: 15px;
+}
+
+.anime-card-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.anime-meta {
+    display: flex;
+    gap: 7px;
+    flex-wrap: wrap;
+}
+
+.anime-tag {
+    font-size: 11px;
+    padding: 5px 9px;
+    border-radius: 10px;
+    background: rgba(139,92,246,.15);
+    color: #c4b5fd;
+}
+
+.subtitle-tag {
+    background: rgba(34,211,238,.12);
+    color: #67e8f9;
+}
+
+/* Episode panel */
+
+.episode-panel {
+    display: none;
+    margin-top: 35px;
+    padding: 25px;
+    border-radius: 25px;
+    background: rgba(17,19,33,.88);
+    border: 1px solid rgba(255,255,255,.08);
+    box-shadow: 0 20px 60px rgba(0,0,0,.3);
+    animation: animeFade .35s ease;
+}
+
+@keyframes animeFade {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.episode-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.episode-title {
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.close-episodes {
+    border: none;
+    background: rgba(255,255,255,.08);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.close-episodes:hover {
+    background: rgba(239,68,68,.2);
+}
+
+/* Episode list */
+
+.episode-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 12px;
+}
+
+.episode-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 14px;
+    border-radius: 15px;
+    border: 1px solid rgba(255,255,255,.07);
+    background: rgba(255,255,255,.045);
+    color: white;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.episode-btn:hover {
+    background: rgba(139,92,246,.16);
+    border-color: rgba(139,92,246,.5);
+    transform: scale(1.02);
+}
+
+.episode-number {
+    font-weight: bold;
+}
+
+.episode-quality {
+    font-size: 10px;
+    color: #67e8f9;
+}
+
+/* Player */
+
+.anime-player {
+    display: none;
+    margin-top: 25px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #000;
+    border: 1px solid rgba(255,255,255,.08);
+}
+
+.anime-player video {
+    width: 100%;
+    max-height: 650px;
+    display: block;
+    background: #000;
+}
+
+.player-info {
+    padding: 15px;
+    background: #10121f;
+}
+
+.player-info strong {
+    color: #c4b5fd;
+}
+
+/* Responsive */
+
+@media (max-width: 700px) {
+
+    .anime-section {
+        padding: 50px 12px;
+    }
+
+    .anime-title {
+        font-size: 27px;
+    }
+
+    .anime-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .anime-card {
+        min-height: 250px;
+        border-radius: 16px;
+    }
+
+    .anime-cover {
+        height: 190px;
+    }
+
+    .anime-card-info {
+        padding: 10px;
+    }
+
+    .anime-card-title {
+        font-size: 14px;
+    }
+
+    .episode-panel {
+        padding: 15px;
+    }
+
+    .episode-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 400px) {
+
+    .anime-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .anime-cover {
+        height: 260px;
+    }
+}
+</style>
+
+
+<section id="anime" class="anime-section">
+
+    <div class="anime-container">
+
+        <h2 class="anime-title">🎌 دنیای انیمه</h2>
+
+        <p class="anime-subtitle">
+            تماشای انیمه‌ها با زیرنویس فارسی و کیفیت بالا
+        </p>
+
+
+        <!-- Search -->
+
+        <div class="anime-search-box">
+
+            <input
+                type="text"
+                id="animeSearch"
+                class="anime-search"
+                placeholder="🔎 اسم انیمه مورد نظر را جستجو کن..."
+                oninput="searchAnime()"
+            >
+
+        </div>
+
+
+        <!-- Anime Cards -->
+
+        <div id="animeGrid" class="anime-grid">
+
+
+            <!-- Anime 1 -->
+
+            <div
+                class="anime-card"
+                data-name="وانیتاس پرونده قضیه وانیتاس"
+                onclick="openEpisodes('vanitas')"
+            >
+
+                <!--
+                عکس انیمه را اینجا قرار بده
+                -->
+
+                <img
+                    class="anime-cover"
+                    src="images/vanitas.jpg"
+                    alt="The Case Study of Vanitas"
+                >
+
+                <div class="anime-card-info">
+
+                    <div class="anime-card-title">
+                        پرونده قضیه وانیتاس
+                    </div>
+
+                    <div class="anime-meta">
+
+                        <span class="anime-tag">
+                            🎬 ۲۴ قسمت
+                        </span>
+
+                        <span class="anime-tag subtitle-tag">
+                            🇮🇷 زیرنویس فارسی
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Anime 2 -->
+
+            <div
+                class="anime-card"
+                data-name="هایكیو haikyuu"
+                onclick="openEpisodes('haikyuu')"
+            >
+
+                <img
+                    class="anime-cover"
+                    src="images/haikyuu.jpg"
+                    alt="Haikyuu"
+                >
+
+                <div class="anime-card-info">
+
+                    <div class="anime-card-title">
+                        Haikyuu!!
+                    </div>
+
+                    <div class="anime-meta">
+
+                        <span class="anime-tag">
+                            🏐 ورزشی
+                        </span>
+
+                        <span class="anime-tag subtitle-tag">
+                            🇮🇷 زیرنویس فارسی
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Anime 3 -->
+
+            <div
+                class="anime-card"
+                data-name="جوجوتسو کایسن jujutsu kaisen"
+                onclick="openEpisodes('jujutsu')"
+            >
+
+                <img
+                    class="anime-cover"
+                    src="images/jujutsu.jpg"
+                    alt="Jujutsu Kaisen"
+                >
+
+                <div class="anime-card-info">
+
+                    <div class="anime-card-title">
+                        Jujutsu Kaisen
+                    </div>
+
+                    <div class="anime-meta">
+
+                        <span class="anime-tag">
+                            ⚔️ اکشن
+                        </span>
+
+                        <span class="anime-tag subtitle-tag">
+                            🇮🇷 زیرنویس فارسی
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- Episodes -->
+
+        <div id="episodePanel" class="episode-panel">
+
+            <div class="episode-header">
+
+                <div
+                    id="episodeTitle"
+                    class="episode-title"
+                >
+                    قسمت‌های انیمه
+                </div>
+
+                <button
+                    class="close-episodes"
+                    onclick="closeEpisodes()"
+                >
+                    ✕ بستن
+                </button>
+
+            </div>
+
+
+            <div
+                id="episodeList"
+                class="episode-list"
+            ></div>
+
+
+            <!-- Video Player -->
+
+            <div
+                id="animePlayer"
+                class="anime-player"
+            >
+
+                <video
+                    id="animeVideo"
+                    controls
+                    playsinline
+                ></video>
+
+                <div class="player-info">
+
+                    <strong id="playingEpisode">
+                        در حال پخش...
+                    </strong>
+
+                    <div>
+                        🇮🇷 زیرنویس فارسی
+                        • کیفیت بالا
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<script>
+
+/* ==================================
+       ANIME DATABASE
+================================== */
+
+const animeDatabase = {
+
+    vanitas: {
+
+        title: "پرونده قضیه وانیتاس",
+
+        episodes: 24,
+
+        folder: "videos/vanitas"
+
+    },
+
+    haikyuu: {
+
+        title: "Haikyuu!!",
+
+        episodes: 25,
+
+        folder: "videos/haikyuu"
+
+    },
+
+    jujutsu: {
+
+        title: "Jujutsu Kaisen",
+
+        episodes: 24,
+
+        folder: "videos/jujutsu"
+
+    }
+
+};
+
+
+/* ==================================
+       OPEN EPISODES
+================================== */
+
+function openEpisodes(animeId) {
+
+    const anime = animeDatabase[animeId];
+
+    if (!anime) return;
+
+    const panel =
+        document.getElementById("episodePanel");
+
+    const title =
+        document.getElementById("episodeTitle");
+
+    const list =
+        document.getElementById("episodeList");
+
+    title.innerText =
+        "🎬 " + anime.title;
+
+    list.innerHTML = "";
+
+    for (
+        let i = 1;
+        i <= anime.episodes;
+        i++
+    ) {
+
+        const button =
+            document.createElement("button");
+
+        button.className =
+            "episode-btn";
+
+        button.innerHTML = `
+
+            <span class="episode-number">
+                قسمت ${i}
+            </span>
+
+            <span class="episode-quality">
+                1080p
+            </span>
+
+        `;
+
+        button.onclick = function() {
+
+            playEpisode(
+                animeId,
+                i
+            );
+
+        };
+
+        list.appendChild(button);
+
+    }
+
+    panel.style.display = "block";
+
+    panel.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
+}
+
+
+/* ==================================
+       CLOSE EPISODES
+================================== */
+
+function closeEpisodes() {
+
+    document.getElementById(
+        "episodePanel"
+    ).style.display = "none";
+
+    document.getElementById(
+        "animePlayer"
+    ).style.display = "none";
+
+    const video =
+        document.getElementById(
+            "animeVideo"
+        );
+
+    video.pause();
+
+    video.removeAttribute("src");
+
+}
+
+
+/* ==================================
+       PLAY EPISODE
+================================== */
+
+function playEpisode(
+    animeId,
+    episodeNumber
+) {
+
+    const anime =
+        animeDatabase[animeId];
+
+    if (!anime) return;
+
+
+    /*
+       مسیر فایل ویدئو
+
+       مثال:
+
+       videos/vanitas/episode-01.mp4
+
+       videos/vanitas/episode-02.mp4
+
+       و ...
+    */
+
+    const episode =
+        String(episodeNumber)
+        .padStart(2, "0");
+
+    const videoPath =
+        `${anime.folder}/episode-${episode}.mp4`;
+
+
+    const video =
+        document.getElementById(
+            "animeVideo"
+        );
+
+    const player =
+        document.getElementById(
+            "animePlayer"
+        );
+
+    const playing =
+        document.getElementById(
+            "playingEpisode"
+        );
+
+
+    video.src = videoPath;
+
+    playing.innerText =
+        `${anime.title} — قسمت ${episodeNumber}`;
+
+
+    player.style.display =
+        "block";
+
+
+    player.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+
+
+    video.play().catch(() => {
+
+        /*
+        اگر مرورگر اجازه پخش خودکار نداد،
+        کاربر می‌تواند Play را بزند.
+        */
+
+    });
+
+}
+
+
+/* ==================================
+       SEARCH ANIME
+================================== */
+
+function searchAnime() {
+
+    const search =
+        document
+        .getElementById("animeSearch")
+        .value
+        .trim()
+        .toLowerCase();
+
+
+    const cards =
+        document.querySelectorAll(
+            ".anime-card"
+        );
+
+
+    cards.forEach(card => {
+
+        const name =
+            card
+            .getAttribute("data-name")
+            .toLowerCase();
+
+
+        if (
+            name.includes(search)
+        ) {
+
+            card.style.display =
+                "";
+
+        } else {
+
+            card.style.display =
+                "none";
+
+        }
+
+    });
+
+}
+
+</script>

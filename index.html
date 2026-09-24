@@ -1740,3 +1740,935 @@ function searchAnime() {
 }
 
 </script>
+<!-- ================================
+     TSUKIRA ANIME EPISODES SYSTEM
+================================ -->
+
+<style>
+
+.ts-anime-library {
+    direction: rtl;
+    max-width: 1150px;
+    margin: 50px auto;
+    padding: 25px;
+    color: #fff;
+    font-family: Tahoma, Arial, sans-serif;
+}
+
+.ts-anime-heading {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.ts-anime-heading h2 {
+    font-size: 32px;
+    margin: 0 0 10px;
+    color: #d8a7ff;
+}
+
+.ts-anime-heading p {
+    color: #aaa0b8;
+    font-size: 14px;
+}
+
+
+/* SEARCH */
+
+.ts-anime-search {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 17px 22px;
+    margin-bottom: 30px;
+    border-radius: 22px;
+    border: 2px solid #7139c9;
+    background: #100c1c;
+    color: white;
+    outline: none;
+    font-size: 16px;
+    text-align: right;
+}
+
+.ts-anime-search::placeholder {
+    color: #8d8797;
+}
+
+
+/* ANIME CARDS */
+
+.ts-anime-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 22px;
+}
+
+.ts-anime-card {
+    background: linear-gradient(
+        145deg,
+        #171128,
+        #0f0d18
+    );
+
+    border: 1px solid rgba(150,80,255,.2);
+    border-radius: 25px;
+    padding: 22px;
+    cursor: pointer;
+    transition: .3s;
+    box-shadow: 0 10px 35px rgba(0,0,0,.25);
+}
+
+.ts-anime-card:hover {
+    transform: translateY(-7px);
+    border-color: #8d45ff;
+    box-shadow:
+        0 15px 45px rgba(119,55,220,.25);
+}
+
+.ts-anime-card h3 {
+    color: #d9a7ff;
+    font-size: 23px;
+    margin: 0 0 12px;
+}
+
+.ts-anime-card p {
+    color: #b8b0c0;
+    line-height: 1.8;
+    font-size: 14px;
+}
+
+.ts-anime-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 15px;
+}
+
+.ts-anime-tag {
+    background: #281040;
+    color: #d7a8ff;
+    padding: 6px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+}
+
+.ts-anime-tag.sub {
+    color: #72e8ff;
+    background: #102b34;
+}
+
+
+/* EPISODE BOX */
+
+.ts-episodes {
+    display: none;
+    margin-top: 35px;
+    padding: 25px;
+    background: #100d19;
+    border: 1px solid #6330ad;
+    border-radius: 25px;
+}
+
+.ts-episodes.active {
+    display: block;
+    animation: tsFade .3s ease;
+}
+
+@keyframes tsFade {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.ts-episodes-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.ts-episodes-header h3 {
+    margin: 0;
+    color: #d9a7ff;
+    font-size: 24px;
+}
+
+.ts-close {
+    border: none;
+    background: #291533;
+    color: #fff;
+    border-radius: 12px;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+
+/* SEASONS */
+
+.ts-season {
+    margin-bottom: 25px;
+}
+
+.ts-season-title {
+    color: #cfa1ff;
+    margin-bottom: 15px;
+    font-size: 19px;
+}
+
+
+/* EPISODES */
+
+.ts-episode-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fill, minmax(150px, 1fr));
+
+    gap: 10px;
+}
+
+.ts-episode {
+    border: 1px solid #34223e;
+    background: #171222;
+    color: white;
+    border-radius: 14px;
+    padding: 13px;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.ts-episode:hover {
+    background: #3a1761;
+    border-color: #914aff;
+    transform: scale(1.03);
+}
+
+.ts-episode-number {
+    display: block;
+    font-weight: bold;
+}
+
+.ts-episode-sub {
+    display: block;
+    color: #62e3fa;
+    font-size: 10px;
+    margin-top: 6px;
+}
+
+
+/* PLAYER */
+
+.ts-player {
+    display: none;
+    margin-top: 25px;
+    overflow: hidden;
+    border-radius: 20px;
+    background: #000;
+    border: 1px solid #7139c9;
+}
+
+.ts-player.active {
+    display: block;
+}
+
+.ts-player video {
+    width: 100%;
+    max-height: 600px;
+    display: block;
+    background: #000;
+}
+
+.ts-player-info {
+    padding: 15px;
+    background: #171222;
+    color: #ddd;
+}
+
+.ts-player-info strong {
+    color: #d6a3ff;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .ts-anime-library {
+        padding: 15px;
+    }
+
+    .ts-anime-heading h2 {
+        font-size: 27px;
+    }
+
+    .ts-anime-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ts-episode-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .ts-episodes {
+        padding: 17px;
+    }
+}
+
+</style>
+
+
+<section
+    id="tsukira-anime"
+    class="ts-anime-library"
+>
+
+    <div class="ts-anime-heading">
+
+        <h2>🎬 دنیای انیمه</h2>
+
+        <p>
+            انیمه‌های مورد علاقه‌ات را انتخاب کن
+            و قسمت مورد نظرت را پیدا کن ✨
+        </p>
+
+    </div>
+
+
+    <!-- SEARCH -->
+
+    <input
+        id="tsAnimeSearch"
+        class="ts-anime-search"
+        type="text"
+        placeholder="🔎 اسم انیمه را جستجو کن..."
+        oninput="tsSearchAnime()"
+    >
+
+
+    <!-- ANIME CARDS -->
+
+    <div
+        id="tsAnimeGrid"
+        class="ts-anime-grid"
+    >
+
+
+        <!-- ATTACK ON TITAN -->
+
+        <div
+            class="ts-anime-card"
+            data-title="attack on titan اتک آن تایتان"
+            onclick="tsOpenAnime('aot')"
+        >
+
+            <h3>
+                Attack on Titan
+            </h3>
+
+            <p>
+                داستان بشریت در جهانی که برای
+                زنده ماندن از دست تایتان‌ها مبارزه می‌کند.
+            </p>
+
+            <div class="ts-anime-tags">
+
+                <span class="ts-anime-tag">
+                    ⚔️ Action
+                </span>
+
+                <span class="ts-anime-tag">
+                    👹 Fantasy
+                </span>
+
+                <span class="ts-anime-tag sub">
+                    🇮🇷 زیرنویس فارسی
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- VANITAS -->
+
+        <div
+            class="ts-anime-card"
+            data-title="vanitas پرونده قضیه وانیتاس"
+            onclick="tsOpenAnime('vanitas')"
+        >
+
+            <h3>
+                The Case Study of Vanitas
+            </h3>
+
+            <p>
+                ماجرایی رازآلود درباره خون‌آشام‌ها
+                و کتاب اسرارآمیز وانیتاس.
+            </p>
+
+            <div class="ts-anime-tags">
+
+                <span class="ts-anime-tag">
+                    🧛 Fantasy
+                </span>
+
+                <span class="ts-anime-tag">
+                    💜 Drama
+                </span>
+
+                <span class="ts-anime-tag sub">
+                    🇮🇷 زیرنویس فارسی
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- HAIKYUU -->
+
+        <div
+            class="ts-anime-card"
+            data-title="haikyuu هایکیو"
+            onclick="tsOpenAnime('haikyuu')"
+        >
+
+            <h3>
+                Haikyuu!!
+            </h3>
+
+            <p>
+                داستان تلاش یک تیم والیبال
+                برای رسیدن به بالاترین سطح.
+            </p>
+
+            <div class="ts-anime-tags">
+
+                <span class="ts-anime-tag">
+                    🏐 Sport
+                </span>
+
+                <span class="ts-anime-tag">
+                    🔥 Drama
+                </span>
+
+                <span class="ts-anime-tag sub">
+                    🇮🇷 زیرنویس فارسی
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- JUJUTSU -->
+
+        <div
+            class="ts-anime-card"
+            data-title="jujutsu kaisen جوجوتسو کایسن"
+            onclick="tsOpenAnime('jujutsu')"
+        >
+
+            <h3>
+                Jujutsu Kaisen
+            </h3>
+
+            <p>
+                مبارزه جادوگران با نفرین‌ها
+                در دنیایی پر از موجودات خطرناک.
+            </p>
+
+            <div class="ts-anime-tags">
+
+                <span class="ts-anime-tag">
+                    ⚔️ Action
+                </span>
+
+                <span class="ts-anime-tag">
+                    👻 Supernatural
+                </span>
+
+                <span class="ts-anime-tag sub">
+                    🇮🇷 زیرنویس فارسی
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- EPISODES -->
+
+    <div
+        id="tsEpisodes"
+        class="ts-episodes"
+    >
+
+        <div class="ts-episodes-header">
+
+            <h3 id="tsEpisodeTitle">
+                قسمت‌های انیمه
+            </h3>
+
+            <button
+                class="ts-close"
+                onclick="tsCloseAnime()"
+            >
+                ✕ بستن
+            </button>
+
+        </div>
+
+
+        <div id="tsEpisodeContent"></div>
+
+
+        <!-- PLAYER -->
+
+        <div
+            id="tsPlayer"
+            class="ts-player"
+        >
+
+            <video
+                id="tsVideo"
+                controls
+                playsinline
+            ></video>
+
+            <div class="ts-player-info">
+
+                <strong id="tsPlayingTitle">
+                    در حال پخش...
+                </strong>
+
+                <br>
+
+                <span>
+                    🇮🇷 زیرنویس فارسی
+                    • کیفیت بالا
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<script>
+
+/* =====================================
+       TSUKIRA ANIME DATABASE
+===================================== */
+
+const tsAnimeData = {
+
+    aot: {
+
+        title: "Attack on Titan",
+
+        seasons: [
+
+            {
+                title: "فصل اول",
+                episodes: 25
+            },
+
+            {
+                title: "فصل دوم",
+                episodes: 12
+            },
+
+            {
+                title: "فصل سوم",
+                episodes: 22
+            },
+
+            {
+                title: "فصل چهارم",
+                episodes: 30
+            }
+
+        ]
+
+    },
+
+
+    vanitas: {
+
+        title: "The Case Study of Vanitas",
+
+        seasons: [
+
+            {
+                title: "فصل اول",
+                episodes: 12
+            },
+
+            {
+                title: "فصل دوم",
+                episodes: 12
+            }
+
+        ]
+
+    },
+
+
+    haikyuu: {
+
+        title: "Haikyuu!!",
+
+        seasons: [
+
+            {
+                title: "فصل اول",
+                episodes: 25
+            },
+
+            {
+                title: "فصل دوم",
+                episodes: 25
+            },
+
+            {
+                title: "فصل سوم",
+                episodes: 10
+            },
+
+            {
+                title: "فصل چهارم",
+                episodes: 25
+            }
+
+        ]
+
+    },
+
+
+    jujutsu: {
+
+        title: "Jujutsu Kaisen",
+
+        seasons: [
+
+            {
+                title: "فصل اول",
+                episodes: 24
+            },
+
+            {
+                title: "فصل دوم",
+                episodes: 23
+            }
+
+        ]
+
+    }
+
+};
+
+
+/* =====================================
+       OPEN ANIME
+===================================== */
+
+function tsOpenAnime(animeId) {
+
+    const anime =
+        tsAnimeData[animeId];
+
+    if (!anime) return;
+
+
+    const box =
+        document.getElementById(
+            "tsEpisodes"
+        );
+
+    const title =
+        document.getElementById(
+            "tsEpisodeTitle"
+        );
+
+    const content =
+        document.getElementById(
+            "tsEpisodeContent"
+        );
+
+
+    title.innerText =
+        "🎬 " + anime.title;
+
+
+    content.innerHTML = "";
+
+
+    anime.seasons.forEach(
+        (season, seasonIndex) => {
+
+            const seasonBox =
+                document.createElement("div");
+
+            seasonBox.className =
+                "ts-season";
+
+
+            seasonBox.innerHTML = `
+
+                <div class="ts-season-title">
+                    📺 ${season.title}
+                </div>
+
+                <div
+                    class="ts-episode-grid"
+                    id="season-${animeId}-${seasonIndex}"
+                ></div>
+
+            `;
+
+
+            content.appendChild(
+                seasonBox
+            );
+
+
+            const episodeGrid =
+                seasonBox.querySelector(
+                    ".ts-episode-grid"
+                );
+
+
+            for (
+                let i = 1;
+                i <= season.episodes;
+                i++
+            ) {
+
+                const episode =
+                    document.createElement(
+                        "button"
+                    );
+
+
+                episode.className =
+                    "ts-episode";
+
+
+                episode.innerHTML = `
+
+                    <span class="ts-episode-number">
+                        قسمت ${i}
+                    </span>
+
+                    <span class="ts-episode-sub">
+                        🇮🇷 زیرنویس فارسی
+                    </span>
+
+                `;
+
+
+                episode.onclick = function() {
+
+                    tsPlayEpisode(
+                        animeId,
+                        seasonIndex + 1,
+                        i
+                    );
+
+                };
+
+
+                episodeGrid.appendChild(
+                    episode
+                );
+
+            }
+
+        }
+    );
+
+
+    box.classList.add("active");
+
+
+    box.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
+}
+
+
+/* =====================================
+       PLAY EPISODE
+===================================== */
+
+function tsPlayEpisode(
+    animeId,
+    seasonNumber,
+    episodeNumber
+) {
+
+    const anime =
+        tsAnimeData[animeId];
+
+    if (!anime) return;
+
+
+    /*
+       بعداً لینک واقعی ویدئو را
+       اینجا قرار می‌دهیم.
+
+       مثال:
+
+       https://example.com/aot/s1/e1.mp4
+
+       فعلاً فایل محلی:
+
+       videos/aot/season-1/episode-01.mp4
+    */
+
+
+    const ep =
+        String(episodeNumber)
+        .padStart(2, "0");
+
+
+    const videoPath =
+        `videos/${animeId}/season-${seasonNumber}/episode-${ep}.mp4`;
+
+
+    const video =
+        document.getElementById(
+            "tsVideo"
+        );
+
+
+    const player =
+        document.getElementById(
+            "tsPlayer"
+        );
+
+
+    const playing =
+        document.getElementById(
+            "tsPlayingTitle"
+        );
+
+
+    video.src =
+        videoPath;
+
+
+    playing.innerText =
+        `${anime.title} | فصل ${seasonNumber} | قسمت ${episodeNumber}`;
+
+
+    player.classList.add("active");
+
+
+    player.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+
+
+    video.play().catch(() => {});
+
+}
+
+
+/* =====================================
+       CLOSE
+===================================== */
+
+function tsCloseAnime() {
+
+    const box =
+        document.getElementById(
+            "tsEpisodes"
+        );
+
+    const player =
+        document.getElementById(
+            "tsPlayer"
+        );
+
+    const video =
+        document.getElementById(
+            "tsVideo"
+        );
+
+
+    box.classList.remove(
+        "active"
+    );
+
+
+    player.classList.remove(
+        "active"
+    );
+
+
+    video.pause();
+
+    video.removeAttribute(
+        "src"
+    );
+
+}
+
+
+/* =====================================
+       SEARCH
+===================================== */
+
+function tsSearchAnime() {
+
+    const query =
+        document
+        .getElementById(
+            "tsAnimeSearch"
+        )
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    const cards =
+        document.querySelectorAll(
+            ".ts-anime-card"
+        );
+
+
+    cards.forEach(card => {
+
+        const title =
+            card
+            .getAttribute(
+                "data-title"
+            )
+            .toLowerCase();
+
+
+        card.style.display =
+            title.includes(query)
+                ? ""
+                : "none";
+
+    });
+
+}
+
+                </script>

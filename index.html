@@ -1,0 +1,3445 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>TSUKIRA | Anime World</title>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap');
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Vazirmatn',sans-serif;
+    background:
+      radial-gradient(circle at 15% 10%,rgba(124,58,237,.18),transparent 28%),
+      radial-gradient(circle at 85% 25%,rgba(37,99,235,.14),transparent 30%),
+      linear-gradient(135deg,#05030b,#0b0617 45%,#050713);
+    color:#eee;
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+/* ===== BACKGROUND ===== */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background-image:
+      radial-gradient(circle,rgba(180,100,255,.5) 1px,transparent 1px);
+    background-size:80px 80px;
+    opacity:.12;
+    animation:stars 20s linear infinite;
+    z-index:0;
+}
+
+@keyframes stars{
+    from{transform:translateY(0)}
+    to{transform:translateY(80px)}
+}
+
+/* ===== HEADER ===== */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    backdrop-filter:blur(18px);
+    background:rgba(7,4,16,.82);
+    border-bottom:1px solid rgba(168,85,247,.35);
+    box-shadow:0 0 25px rgba(126,34,206,.18);
+}
+
+.navbar{
+    max-width:1250px;
+    margin:auto;
+    min-height:75px;
+    padding:12px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:800;
+    letter-spacing:3px;
+    color:#d8b4fe;
+    text-shadow:
+      0 0 8px #a855f7,
+      0 0 22px #7c3aed;
+    white-space:nowrap;
+}
+
+.logo span{
+    color:#38bdf8;
+}
+
+.nav-links{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:8px;
+}
+
+.nav-btn{
+    border:1px solid #4c1d95;
+    background:rgba(31,13,55,.75);
+    color:#eee;
+    padding:10px 14px;
+    border-radius:14px;
+    cursor:pointer;
+    transition:.25s;
+    font-family:inherit;
+}
+
+.nav-btn:hover{
+    transform:translateY(-2px);
+    border-color:#a855f7;
+    box-shadow:0 0 18px rgba(168,85,247,.4);
+    color:#fff;
+}
+
+/* ===== HERO ===== */
+
+.hero{
+    position:relative;
+    z-index:1;
+    max-width:1250px;
+    margin:auto;
+    padding:70px 20px 45px;
+    text-align:center;
+}
+
+.hero-box{
+    border:1px solid rgba(168,85,247,.45);
+    border-radius:32px;
+    padding:55px 25px;
+    background:
+      linear-gradient(
+        145deg,
+        rgba(76,29,149,.2),
+        rgba(15,23,42,.48)
+      );
+    box-shadow:
+      0 0 40px rgba(124,58,237,.15),
+      inset 0 0 50px rgba(59,130,246,.05);
+    overflow:hidden;
+    position:relative;
+}
+
+.hero-box::after{
+    content:"";
+    position:absolute;
+    width:350px;
+    height:350px;
+    border-radius:50%;
+    background:rgba(124,58,237,.13);
+    filter:blur(60px);
+    top:-180px;
+    right:-120px;
+    animation:floatGlow 5s ease-in-out infinite alternate;
+}
+
+@keyframes floatGlow{
+    from{transform:translate(0,0)}
+    to{transform:translate(-80px,80px)}
+}
+
+.hero-kicker{
+    color:#38bdf8;
+    font-size:14px;
+    letter-spacing:4px;
+    margin-bottom:15px;
+}
+
+.hero h1{
+    font-size:clamp(48px,9vw,100px);
+    color:#e9d5ff;
+    text-shadow:
+      0 0 8px #c084fc,
+      0 0 35px #7c3aed;
+    margin-bottom:12px;
+}
+
+.hero h2{
+    color:#a78bfa;
+    font-size:clamp(22px,4vw,38px);
+    margin-bottom:18px;
+}
+
+.hero p{
+    max-width:760px;
+    margin:auto;
+    color:#c4b5fd;
+    line-height:2.2;
+    font-size:16px;
+}
+
+/* ===== SEARCH ===== */
+
+.search-area{
+    max-width:900px;
+    margin:35px auto 0;
+    position:relative;
+    z-index:5;
+}
+
+.search-box{
+    width:100%;
+    padding:18px 22px;
+    border-radius:22px;
+    border:2px solid #6d28d9;
+    outline:none;
+    background:rgba(9,7,20,.82);
+    color:#fff;
+    font-family:inherit;
+    font-size:16px;
+    box-shadow:
+      0 0 15px rgba(124,58,237,.2),
+      inset 0 0 15px rgba(37,99,235,.05);
+    transition:.3s;
+}
+
+.search-box:focus{
+    border-color:#38bdf8;
+    box-shadow:
+      0 0 20px rgba(56,189,248,.3),
+      0 0 35px rgba(168,85,247,.2);
+}
+
+.search-box::placeholder{
+    color:#8b83a7;
+}
+
+/* ===== SECTIONS ===== */
+
+.section{
+    position:relative;
+    z-index:1;
+    max-width:1250px;
+    margin:0 auto;
+    padding:45px 20px;
+}
+
+.section-title{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.section-title h2{
+    color:#e9d5ff;
+    font-size:28px;
+    text-shadow:0 0 12px rgba(168,85,247,.5);
+}
+
+.section-title span{
+    color:#64748b;
+    font-size:13px;
+}
+
+/* ===== ANIME GRID ===== */
+
+.anime-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(245px,1fr));
+    gap:18px;
+}
+
+/* ===== ANIME CARD ===== */
+
+.anime-card{
+    position:relative;
+    overflow:hidden;
+    border:1px solid #32135f;
+    border-radius:23px;
+    padding:22px;
+    min-height:310px;
+    background:
+      linear-gradient(
+        145deg,
+        rgba(30,15,55,.94),
+        rgba(8,10,24,.96)
+      );
+    transition:.3s ease;
+    cursor:pointer;
+}
+
+.anime-card::before{
+    content:"";
+    position:absolute;
+    width:130px;
+    height:130px;
+    border-radius:50%;
+    background:rgba(124,58,237,.17);
+    top:-55px;
+    right:-55px;
+    filter:blur(5px);
+    transition:.4s;
+}
+
+.anime-card::after{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-120%;
+    width:70%;
+    height:100%;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.08),
+        transparent
+    );
+    transform:skewX(-20deg);
+    transition:.6s;
+}
+
+.anime-card:hover{
+    transform:translateY(-8px);
+    border-color:#a855f7;
+    box-shadow:
+      0 0 25px rgba(168,85,247,.3),
+      0 15px 45px rgba(0,0,0,.5);
+}
+
+.anime-card:hover::before{
+    transform:scale(1.7);
+    background:rgba(56,189,248,.12);
+}
+
+.anime-card:hover::after{
+    left:130%;
+}
+
+.anime-number{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    background:#241044;
+    border:1px solid #6d28d9;
+    color:#c084fc;
+    font-size:12px;
+    margin-bottom:14px;
+}
+
+.anime-card h3{
+    color:#e9d5ff;
+    font-size:21px;
+    margin-bottom:10px;
+}
+
+.anime-card .jp{
+    color:#38bdf8;
+    font-size:12px;
+    margin-bottom:12px;
+}
+
+.anime-summary{
+    color:#aaa3bd;
+    line-height:1.9;
+    font-size:13px;
+    min-height:75px;
+}
+
+.tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    margin:14px 0;
+}
+
+.tag{
+    padding:5px 9px;
+    border-radius:999px;
+    background:#21103a;
+    border:1px solid #5120a0;
+    color:#d7c0ea;
+    font-size:11px;
+}
+
+.rating{
+    color:#facc15;
+    font-size:14px;
+    margin-bottom:13px;
+}
+
+.card-actions{
+    display:flex;
+    gap:8px;
+    margin-top:auto;
+}
+
+.small-btn{
+    flex:1;
+    padding:10px 8px;
+    border-radius:12px;
+    border:1px solid #6330b8;
+    background:#170b29;
+    color:#e9d5ff;
+    cursor:pointer;
+    font-family:inherit;
+    transition:.2s;
+}
+
+.small-btn:hover{
+    background:#6d28d9;
+    color:#fff;
+}
+
+/* ===== EMPTY SEARCH ===== */
+
+.no-results{
+    display:none;
+    text-align:center;
+    padding:50px 20px;
+    color:#8b83a7;
+    border:1px dashed #4c1d95;
+    border-radius:20px;
+}
+
+/* ===== PANELS ===== */
+
+.panel{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:2000;
+    background:rgba(2,1,7,.82);
+    backdrop-filter:blur(12px);
+    padding:20px;
+    overflow-y:auto;
+}
+
+.panel.active{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.panel-box{
+    width:min(700px,100%);
+    max-height:90vh;
+    overflow-y:auto;
+    border:1px solid #7c3aed;
+    border-radius:25px;
+    background:
+      linear-gradient(
+        145deg,
+        #160b29,
+        #070914
+      );
+    box-shadow:
+      0 0 45px rgba(124,58,237,.35);
+    padding:25px;
+    position:relative;
+}
+
+.close-btn{
+    position:absolute;
+    top:12px;
+    left:12px;
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    border:1px solid #6d28d9;
+    background:#140a24;
+    color:#fff;
+    cursor:pointer;
+    font-size:18px;
+}
+
+.panel-title{
+    color:#d8b4fe;
+    font-size:27px;
+    margin-bottom:18px;
+    padding-left:45px;
+}
+
+.detail-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:10px;
+    margin:20px 0;
+}
+
+.detail-item{
+    background:#0e0a19;
+    border:1px solid #32135f;
+    border-radius:14px;
+    padding:13px;
+}
+
+.detail-item b{
+    display:block;
+    color:#38bdf8;
+    margin-bottom:5px;
+    font-size:12px;
+}
+
+.detail-item span{
+    color:#ddd6fe;
+    font-size:14px;
+}
+
+.dialogue-box{
+    border-right:4px solid #a855f7;
+    background:#10091d;
+    border-radius:15px;
+    padding:18px;
+    margin:20px 0;
+}
+
+.dialogue-label{
+    color:#c084fc;
+    margin-bottom:8px;
+}
+
+.dialogue-text{
+    color:#eee;
+    line-height:2;
+}
+
+.season-list{
+    display:grid;
+    gap:10px;
+    margin-top:15px;
+}
+
+.season-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    padding:13px;
+    border:1px solid #32135f;
+    background:#0c0916;
+    border-radius:13px;
+}
+
+.season-item span{
+    color:#ddd6fe;
+}
+
+.watch-btn{
+    margin-top:20px;
+    width:100%;
+    border:0;
+    border-radius:15px;
+    padding:14px;
+    background:linear-gradient(90deg,#7c3aed,#2563eb);
+    color:#fff;
+    font-family:inherit;
+    font-size:15px;
+    cursor:pointer;
+    box-shadow:0 0 22px rgba(99,102,241,.25);
+}
+
+/* ===== LIBRARY ===== */
+
+.library-list{
+    display:grid;
+    gap:10px;
+}
+
+.library-item{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding:14px;
+    border-radius:14px;
+    background:#0d0917;
+    border:1px solid #32135f;
+}
+
+.library-item button{
+    border:1px solid #7c3aed;
+    background:#160b29;
+    color:#ddd6fe;
+    border-radius:9px;
+    padding:7px 10px;
+    cursor:pointer;
+}
+
+/* ===== ACCOUNT ===== */
+
+.account-form{
+    display:grid;
+    gap:12px;
+}
+
+.account-form input{
+    width:100%;
+    padding:14px;
+    border-radius:12px;
+    border:1px solid #4c1d95;
+    background:#090712;
+    color:#fff;
+    outline:none;
+    font-family:inherit;
+}
+
+.account-form button{
+    padding:14px;
+    border:0;
+    border-radius:12px;
+    background:linear-gradient(90deg,#7c3aed,#2563eb);
+    color:#fff;
+    font-family:inherit;
+    cursor:pointer;
+}
+
+/* ===== FOOTER ===== */
+
+footer{
+    position:relative;
+    z-index:1;
+    text-align:center;
+    padding:40px 20px;
+    color:#8f7ba1;
+    border-top:1px solid #251139;
+    margin-top:30px;
+}
+
+.footer-logo{
+    color:#c084fc;
+    font-size:22px;
+    margin-bottom:8px;
+}
+
+/* ===== MOBILE ===== */
+
+@media(max-width:700px){
+
+    .navbar{
+        flex-direction:column;
+        padding:15px;
+    }
+
+    .logo{
+        font-size:24px;
+    }
+
+    .nav-links{
+        width:100%;
+    }
+
+    .nav-btn{
+        flex:1;
+        min-width:70px;
+        font-size:12px;
+    }
+
+    .hero{
+        padding-top:30px;
+    }
+
+    .hero-box{
+        padding:40px 18px;
+    }
+
+    .anime-grid{
+        grid-template-columns:1fr;
+    }
+
+    .section{
+        padding:30px 14px;
+    }
+
+    .panel{
+        padding:10px;
+    }
+
+}
+
+/* ===== SCROLLBAR ===== */
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-track{
+    background:#06040c;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#4c1d95;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#7c3aed;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <nav class="navbar">
+
+        <div class="logo">
+            TSUKIRA <span>月</span> ✦
+        </div>
+
+        <div class="nav-links">
+
+            <button class="nav-btn" onclick="goHome()">
+                🏠 خانه
+            </button>
+
+            <button class="nav-btn" onclick="scrollToAnime()">
+                🎌 انیمه‌ها
+            </button>
+
+            <button class="nav-btn" onclick="openLibrary()">
+                📚 کتابخانه
+            </button>
+
+            <button class="nav-btn" onclick="openAccount()">
+                👤 حساب
+            </button>
+
+        </div>
+
+    </nav>
+</header>
+
+<main>
+
+<section class="hero" id="home">
+
+    <div class="hero-box">
+
+        <div class="hero-kicker">
+            ✦ ENTER THE ANIME UNIVERSE ✦
+        </div>
+
+        <h1>TSUKIRA</h1>
+
+        <h2>دنیای مرموز انیمه</h2>
+
+        <p>
+            جایی برای کشف انیمه‌های محبوب، داستان‌های فراموش‌نشدنی،
+            شخصیت‌های خاص و لحظه‌هایی که نمی‌خواهی فراموششان کنی.
+        </p>
+
+        <div class="search-area">
+
+            <input
+                id="searchInput"
+                class="search-box"
+                type="search"
+                placeholder="🔎 اسم انیمه را جستجو کن..."
+                oninput="searchAnime()"
+            >
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section" id="anime">
+
+    <div class="section-title">
+
+        <h2>🔥 دنیای انیمه‌ها</h2>
+
+        <span id="animeCount">
+            ۵۰ انیمه
+        </span>
+
+    </div>
+
+    <div id="animeGrid" class="anime-grid"></div>
+
+    <div id="noResults" class="no-results">
+        😶 انیمه‌ای با این اسم پیدا نشد.
+    </div>
+
+</section>
+
+</main>
+
+<footer>
+
+    <div class="footer-logo">
+        ✦ TSUKIRA 月 ✦
+    </div>
+
+    <div>
+        TSUKIRA © 2026 — Anime World
+    </div>
+
+</footer>
+
+
+<!-- ===== ANIME DETAIL PANEL ===== -->
+
+<div id="animePanel" class="panel">
+
+    <div class="panel-box">
+
+        <button class="close-btn" onclick="closePanels()">
+            ×
+        </button>
+
+        <h2 id="detailTitle" class="panel-title">
+            Anime
+        </h2>
+
+        <div id="detailContent"></div>
+
+    </div>
+
+</div>
+
+
+<!-- ===== LIBRARY PANEL ===== -->
+
+<div id="libraryPanel" class="panel">
+
+    <div class="panel-box">
+
+        <button class="close-btn" onclick="closePanels()">
+            ×
+        </button>
+
+        <h2 class="panel-title">
+            📚 کتابخانه من
+        </h2>
+
+        <div id="libraryContent"></div>
+
+    </div>
+
+</div>
+
+
+<!-- ===== ACCOUNT PANEL ===== -->
+
+<div id="accountPanel" class="panel">
+
+    <div class="panel-box">
+
+        <button class="close-btn" onclick="closePanels()">
+            ×
+        </button>
+
+        <h2 class="panel-title">
+            👤 حساب کاربری
+        </h2>
+
+        <div class="account-form">
+
+            <input
+                id="username"
+                type="text"
+                placeholder="نام کاربری"
+            >
+
+            <input
+                id="email"
+                type="email"
+                placeholder="ایمیل"
+            >
+
+            <button onclick="saveAccount()">
+                💾 ذخیره اطلاعات
+            </button>
+
+        </div>
+
+        <div id="accountMessage"
+             style="margin-top:15px;color:#c084fc;">
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/*
+====================================================
+TSUKIRA
+PART 2 CONTINUES HERE
+====================================================
+*/
+
+const animeData = [
+
+{
+id:1,
+title:"Attack on Titan",
+jp:"進撃の巨人",
+genres:["Action","Drama","Fantasy"],
+rating:"9.1",
+summary:"داستان بشریت در جهانی که برای زنده ماندن از دست تایتان‌ها مبارزه می‌کند.",
+dialogue:"تا وقتی مبارزه کنیم، امید باقی می‌ماند.",
+seasons:"4",
+episodes:"89",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:[
+"فصل ۱ — 25 قسمت",
+"فصل ۲ — 12 قسمت",
+"فصل ۳ — 22 قسمت",
+"فصل نهایی — 30 قسمت"
+]
+},
+
+{
+id:2,
+title:"Demon Slayer",
+jp:"鬼滅の刃",
+genres:["Action","Fantasy"],
+rating:"8.6",
+summary:"تانجیرو برای نجات خواهرش و مقابله با شیاطین وارد مسیر سختی می‌شود.",
+dialogue:"هرچقدر هم سخت باشد، ادامه می‌دهم.",
+seasons:"4",
+episodes:"55+",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:[
+"فصل ۱ — 26 قسمت",
+"قطار موگن — فیلم",
+"منطقه سرگرمی — 11 قسمت",
+"دهکده شمشیرساز — 11 قسمت",
+"تمرین هاشیرا — 8 قسمت"
+]
+},
+
+{
+id:3,
+title:"Jujutsu Kaisen",
+jp:"呪術廻戦",
+genres:["Action","Supernatural"],
+rating:"8.6",
+summary:"یوجی ایتادوری وارد دنیای جادوگران و نفرین‌های خطرناک می‌شود.",
+dialogue:"من تصمیم می‌گیرم چگونه زندگی کنم.",
+seasons:"3+",
+episodes:"حدود 60+",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:[
+"فصل ۱ — 24 قسمت",
+"فصل ۲ — 23 قسمت",
+"فصل ۳ — اطلاعات فصل در حال به‌روزرسانی"
+]
+},
+
+{
+id:4,
+title:"Naruto",
+jp:"ナルト",
+genres:["Action","Adventure"],
+rating:"8.4",
+summary:"ناروتو رویای تبدیل شدن به هوکاگه را دنبال می‌کند.",
+dialogue:"من هیچ‌وقت از هدفم دست نمی‌کشم.",
+seasons:"1",
+episodes:"220",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:[
+"Naruto — 220 قسمت"
+]
+},
+
+{
+id:5,
+title:"Naruto Shippuden",
+jp:"ナルト 疾風伝",
+genres:["Action","Adventure","Drama"],
+rating:"8.7",
+summary:"ادامه ماجراهای ناروتو و دوستانش در برابر تهدیدهای بزرگ‌تر.",
+dialogue:"تنهایی چیزی نیست که باید تسلیمش شوی.",
+seasons:"1",
+episodes:"500",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:[
+"Naruto Shippuden — 500 قسمت"
+]
+},
+
+{
+id:6,
+title:"One Piece",
+jp:"ONE PIECE",
+genres:["Adventure","Action","Fantasy"],
+rating:"9.0",
+summary:"لـوفی و خدمه‌اش برای پیدا کردن گنج افسانه‌ای وان پیس سفر می‌کنند.",
+dialogue:"من پادشاه دزدان دریایی خواهم شد!",
+seasons:"در حال پخش",
+episodes:"1100+",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:[
+"قسمت‌های متعدد — در حال پخش"
+]
+},
+
+{
+id:7,
+title:"Bleach",
+jp:"BLEACH",
+genres:["Action","Supernatural"],
+rating:"8.2",
+summary:"ایچیگو پس از به دست آوردن قدرت شینیگامی وارد نبردی بزرگ می‌شود.",
+dialogue:"اگر قدرت داری، از آن برای محافظت استفاده کن.",
+seasons:"چند بخش",
+episodes:"366 + ادامه",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:[
+"Bleach — 366 قسمت",
+"Thousand-Year Blood War — ادامه داستان"
+]
+},
+
+{
+id:8,
+title:"Death Note",
+jp:"DEATH NOTE",
+genres:["Mystery","Psychological"],
+rating:"8.9",
+summary:"لایت یاگامی دفترچه‌ای پیدا می‌کند که با آن می‌توان نام افراد را نوشت.",
+dialogue:"این دنیا به یک تغییر اساسی نیاز دارد.",
+seasons:"1",
+episodes:"37",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:[
+"فصل اصلی — 37 قسمت"
+]
+},
+
+{
+id:9,
+title:"Hunter x Hunter",
+jp:"HUNTER×HUNTER",
+genres:["Adventure","Action"],
+rating:"9.0",
+summary:"گون برای پیدا کردن پدرش وارد آزمون هانتر می‌شود.",
+dialogue:"من می‌خواهم خودم جوابش را پیدا کنم.",
+seasons:"1",
+episodes:"148",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:[
+"Hunter x Hunter — 148 قسمت"
+]
+},
+
+{
+id:10,
+title:"My Hero Academia",
+jp:"僕のヒーローアカデミア",
+genres:["Action","School"],
+rating:"8.0",
+summary:"پسری بدون قدرت وارد مدرسه‌ای برای قهرمانان می‌شود.",
+dialogue:"قهرمان بودن یعنی نجات دادن مردم.",
+seasons:"چند فصل",
+episodes:"159+",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:[
+"فصل‌های متعدد — تعداد قسمت‌ها بر اساس فصل"
+]
+},
+
+{
+id:11,
+title:"Haikyuu!!",
+jp:"ハイキュー!!",
+genres:["Sports","Drama"],
+rating:"8.7",
+summary:"هیناتا با وجود قد کوتاهش رویای تبدیل شدن به یک بازیکن بزرگ والیبال را دنبال می‌کند.",
+dialogue:"تو هنوز شکست نخورده‌ای.",
+seasons:"4",
+episodes:"85",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:[
+"فصل ۱ — 25 قسمت",
+"فصل ۲ — 25 قسمت",
+"فصل ۳ — 10 قسمت",
+"فصل ۴ — 25 قسمت"
+]
+},
+
+{
+id:12,
+title:"Blue Lock",
+jp:"ブルーロック",
+genres:["Sports","Action"],
+rating:"8.2",
+summary:"صدها مهاجم جوان برای ساختن بهترین مهاجم فوتبال ژاپن رقابت می‌کنند.",
+dialogue:"من باید خودم را به بهترین مهاجم تبدیل کنم.",
+seasons:"2",
+episodes:"38+",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:[
+"فصل ۱ — 24 قسمت",
+"فصل ۲ — 14 قسمت"
+]
+},
+
+{
+id:13,
+title:"Tokyo Revengers",
+jp:"東京卍リベンジャーズ",
+genres:["Action","Drama"],
+rating:"7.8",
+summary:"تاکمیچی به گذشته برمی‌گردد تا سرنوشت دوستانش را تغییر دهد.",
+dialogue:"این بار فرار نمی‌کنم.",
+seasons:"3",
+episodes:"50",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:[
+"فصل ۱ — 24 قسمت",
+"فصل ۲ — 13 قسمت",
+"فصل ۳ — 13 قسمت"
+]
+},
+
+{
+id:14,
+title:"Solo Leveling",
+jp:"俺だけレベルアップな件",
+genres:["Action","Fantasy"],
+rating:"8.8",
+summary:"سونگ جین‌وو که ضعیف‌ترین شکارچی شناخته می‌شد، پس از یک اتفاق مرموز قدرتی منحصر‌به‌فرد به دست می‌آورد و وارد مسیر تبدیل شدن به قدرتمندترین شکارچی می‌شود.",
+dialogue:"این قدرت... تازه شروعشه.",
+seasons:"2",
+episodes:"25",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:["فصل ۱ — 12 قسمت","فصل ۲ — 13 قسمت"]
+},
+
+{
+id:15,
+title:"Death Note",
+jp:"デスノート",
+genres:["Mystery","Psychological"],
+rating:"8.6",
+summary:"لایت یاگامی دفترچه‌ای مرموز پیدا می‌کند که با نوشتن نام افراد در آن می‌توان جانشان را گرفت.",
+dialogue:"من عدالت این دنیا خواهم شد.",
+seasons:"1",
+episodes:"37",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:["فصل ۱ — 37 قسمت"]
+},
+
+{
+id:16,
+title:"Demon Slayer",
+jp:"鬼滅の刃",
+genres:["Action","Fantasy"],
+rating:"8.6",
+summary:"تانجیرو برای نجات خواهرش و مبارزه با شیاطین وارد سپاه شیطان‌کش می‌شود.",
+dialogue:"هرگز تسلیم نمی‌شوم.",
+seasons:"4",
+episodes:"63",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:["فصل ۱ — 26 قسمت","فصل ۲ — 18 قسمت","فصل ۳ — 11 قسمت","فصل ۴ — 8 قسمت"]
+},
+
+{
+id:17,
+title:"Jujutsu Kaisen",
+jp:"呪術廻戦",
+genres:["Action","Supernatural"],
+rating:"8.6",
+summary:"یوجی ایتادوری پس از بلعیدن یک شیء نفرین‌شده وارد دنیای جادوگران و نفرین‌ها می‌شود.",
+dialogue:"من انتخاب می‌کنم چگونه زندگی کنم.",
+seasons:"2",
+episodes:"47",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:["فصل ۱ — 24 قسمت","فصل ۲ — 23 قسمت"]
+},
+
+{
+id:18,
+title:"One Piece",
+jp:"ONE PIECE",
+genres:["Adventure","Action"],
+rating:"9.0",
+summary:"لـوفی و خدمه‌اش در جست‌وجوی گنج افسانه‌ای وان‌پیس وارد بزرگ‌ترین ماجراجویی دنیای دزدان دریایی می‌شوند.",
+dialogue:"من پادشاه دزدان دریایی می‌شوم!",
+seasons:"20+",
+episodes:"1000+",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:["قسمت‌های متعدد و آرک‌های مختلف"]
+},
+
+{
+id:19,
+title:"Naruto",
+jp:"NARUTO",
+genres:["Action","Adventure"],
+rating:"8.4",
+summary:"ناروتو، نینجایی جوان و پرانرژی، تلاش می‌کند به هوکاگه تبدیل شود و احترام روستایش را به دست آورد.",
+dialogue:"من هیچ‌وقت از حرفم برنمی‌گردم.",
+seasons:"5",
+episodes:"220",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:["فصل‌های متعدد"]
+},
+
+{
+id:20,
+title:"Naruto Shippuden",
+jp:"NARUTO -ナルト- 疾風伝",
+genres:["Action","Adventure"],
+rating:"8.7",
+summary:"ناروتو پس از سال‌ها آموزش بازمی‌گردد و درگیر نبردهای بزرگ‌تری برای نجات دوستان و روستایش می‌شود.",
+dialogue:"من از گذشته‌ام فرار نمی‌کنم.",
+seasons:"1",
+episodes:"500",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:["500 قسمت"]
+},
+
+{
+id:21,
+title:"Bleach",
+jp:"BLEACH",
+genres:["Action","Supernatural"],
+rating:"8.2",
+summary:"ایچیگو کوروساکی پس از به دست آوردن قدرت شینیگامی وارد دنیایی پر از ارواح و دشمنان قدرتمند می‌شود.",
+dialogue:"من از کسانی که دوستشان دارم محافظت می‌کنم.",
+seasons:"مجموعه اصلی + ادامه",
+episodes:"366+",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:["Bleach","Thousand-Year Blood War"]
+},
+
+{
+id:22,
+title:"Hunter x Hunter",
+jp:"HUNTER×HUNTER",
+genres:["Adventure","Fantasy"],
+rating:"9.0",
+summary:"گون برای پیدا کردن پدرش وارد آزمون هانتر می‌شود و در این مسیر دوستان و دشمنان قدرتمندی پیدا می‌کند.",
+dialogue:"من می‌خواهم خودم جوابم را پیدا کنم.",
+seasons:"1",
+episodes:"148",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:["148 قسمت"]
+},
+
+{
+id:23,
+title:"Fullmetal Alchemist Brotherhood",
+jp:"鋼の錬金術師",
+genres:["Action","Fantasy"],
+rating:"9.1",
+summary:"دو برادر کیمیاگر برای بازگرداندن بدن‌های از دست‌رفته‌شان وارد ماجرایی بزرگ و خطرناک می‌شوند.",
+dialogue:"انسان‌ها نمی‌توانند چیزی را بدون از دست دادن چیزی به دست آورند.",
+seasons:"1",
+episodes:"64",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:["64 قسمت"]
+},
+
+{
+id:24,
+title:"My Hero Academia",
+jp:"僕のヒーローアカデミア",
+genres:["Action","School"],
+rating:"8.0",
+summary:"ایزوکو میدوریا که بدون قدرت به دنیا آمده، فرصتی پیدا می‌کند تا به یک قهرمان واقعی تبدیل شود.",
+dialogue:"من می‌توانم قهرمان شوم!",
+seasons:"8",
+episodes:"159+",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:["فصل‌های ۱ تا ۸"]
+},
+
+{
+id:25,
+title:"Haikyuu!!",
+jp:"ハイキュー!!",
+genres:["Sports","Comedy"],
+rating:"8.7",
+summary:"هیناتا شويو با وجود قد کوتاهش رویای تبدیل شدن به یک بازیکن بزرگ والیبال را دنبال می‌کند.",
+dialogue:"قد بلند بودن تنها راه قوی بودن نیست.",
+seasons:"4",
+episodes:"85",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:["فصل ۱ — 25 قسمت","فصل ۲ — 25 قسمت","فصل ۳ — 10 قسمت","فصل ۴ — 25 قسمت"]
+},
+
+{
+id:26,
+title:"Blue Lock",
+jp:"ブルーロック",
+genres:["Sports","Psychological"],
+rating:"8.2",
+summary:"صدها مهاجم جوان در پروژه‌ای بی‌رحمانه برای پیدا کردن بهترین مهاجم فوتبال ژاپن رقابت می‌کنند.",
+dialogue:"فوتبال بازی‌ای برای به دنیا آمدن یک قهرمان است.",
+seasons:"2",
+episodes:"38",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:["فصل ۱ — 24 قسمت","فصل ۲ — 14 قسمت"]
+},
+
+{
+id:27,
+title:"Attack on Titan",
+jp:"進撃の巨人",
+genres:["Action","Drama"],
+rating:"9.1",
+summary:"انسان‌ها پشت دیوارها زندگی می‌کنند تا از تایتان‌هایی که آنها را شکار می‌کنند در امان بمانند.",
+dialogue:"اگر نجنگیم، نمی‌توانیم برنده شویم.",
+seasons:"4",
+episodes:"89",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:["فصل ۱","فصل ۲","فصل ۳","فصل نهایی"]
+},
+
+{
+id:28,
+title:"Tokyo Ghoul",
+jp:"東京喰種",
+genres:["Dark Fantasy","Horror"],
+rating:"7.7",
+summary:"کن کانکی پس از یک حادثه به موجودی نیمه‌انسان و نیمه‌غول تبدیل می‌شود.",
+dialogue:"من دیگر نمی‌توانم مثل قبل زندگی کنم.",
+seasons:"4",
+episodes:"48",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:["فصل ۱","فصل ۲","فصل ۳","فصل ۴"]
+},
+
+{
+id:29,
+title:"Chainsaw Man",
+jp:"チェンソーマン",
+genres:["Action","Dark Fantasy"],
+rating:"8.4",
+summary:"دنچی که زندگی سختی دارد با پوچیتا پیوند می‌خورد و به مرد اره‌برقی تبدیل می‌شود.",
+dialogue:"من فقط یک زندگی معمولی می‌خواهم.",
+seasons:"1",
+episodes:"12",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:["فصل ۱ — 12 قسمت"]
+},
+
+{
+id:30,
+title:"Spy x Family",
+jp:"SPY×FAMILY",
+genres:["Comedy","Action"],
+rating:"8.4",
+summary:"یک جاسوس برای انجام مأموریتی مهم خانواده‌ای جعلی تشکیل می‌دهد، بدون اینکه بداند اعضای خانواده‌اش رازهای خودشان را دارند.",
+dialogue:"یک خانواده جعلی هم می‌تواند واقعی شود.",
+seasons:"2",
+episodes:"37+",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:["فصل ۱","فصل ۲"]
+},
+
+{
+id:31,
+title:"Oshi no Ko",
+jp:"【推しの子】",
+genres:["Drama","Mystery"],
+rating:"8.3",
+summary:"داستانی رازآلود درباره دنیای سرگرمی، شهرت، خانواده و حقیقت پنهان پشت ستاره‌های محبوب.",
+dialogue:"دروغ هم می‌تواند نوعی عشق باشد.",
+seasons:"2",
+episodes:"24",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:["فصل ۱ — 11 قسمت","فصل ۲ — 13 قسمت"]
+},
+
+{
+id:32,
+title:"Fruits Basket",
+jp:"フルーツバスケット",
+genres:["Romance","Drama"],
+rating:"8.6",
+summary:"توهرو هوندا پس از آشنایی با خانواده سوما وارد راز عجیب نفرینی قدیمی می‌شود.",
+dialogue:"حتی آدم‌های زخمی هم می‌توانند لبخند بزنند.",
+seasons:"3",
+episodes:"63",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:["فصل ۱","فصل ۲","فصل ۳"]
+},
+
+{
+id:33,
+title:"Violet Evergarden",
+jp:"ヴァイオレット・エヴァーガーデン",
+genres:["Drama","Slice of Life"],
+rating:"8.7",
+summary:"دختری که جنگ را پشت سر گذاشته تلاش می‌کند معنی احساسات و کلمات آخر فردی مهم در زندگی‌اش را بفهمد.",
+dialogue:"دوستت دارم یعنی چه؟",
+seasons:"1",
+episodes:"13",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:["فصل اصلی — 13 قسمت"]
+},
+
+{
+id:34,
+title:"Your Lie in April",
+jp:"四月は君の嘘",
+genres:["Music","Drama"],
+rating:"8.5",
+summary:"پیانیستی که پس از یک حادثه موسیقی را کنار گذاشته با دختری ویولونیست آشنا می‌شود.",
+dialogue:"موسیقی می‌تواند قلب آدم را لمس کند.",
+seasons:"1",
+episodes:"22",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:["22 قسمت"]
+},
+
+{
+id:35,
+title:"Sword Art Online",
+jp:"ソードアート・オンライン",
+genres:["Action","Fantasy"],
+rating:"7.5",
+summary:"بازیکنان یک بازی واقعیت مجازی در دنیایی گرفتار می‌شوند که مرگ در بازی به معنای مرگ واقعی است.",
+dialogue:"این دنیا هم می‌تواند واقعی باشد.",
+seasons:"متعدد",
+episodes:"100+",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:["Aincrad","Fairy Dance","Alicization","War of Underworld"]
+},
+
+{
+id:36,
+title:"Re:Zero",
+jp:"Re:ゼロから始める異世界生活",
+genres:["Fantasy","Psychological"],
+rating:"8.2",
+summary:"سوبارو به دنیایی دیگر منتقل می‌شود و متوجه می‌شود پس از مرگ می‌تواند زمان را به نقطه‌ای مشخص بازگرداند.",
+dialogue:"من دوباره شروع می‌کنم.",
+seasons:"3",
+episodes:"66+",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:["فصل ۱","فصل ۲","فصل ۳"]
+},
+
+{
+id:37,
+title:"Black Clover",
+jp:"ブラッククローバー",
+genres:["Action","Fantasy"],
+rating:"8.2",
+summary:"آستا بدون جادو به دنیا آمده اما با اراده‌ای فوق‌العاده می‌خواهد به جادوگر اعظم تبدیل شود.",
+dialogue:"من تسلیم نمی‌شوم!",
+seasons:"1",
+episodes:"170",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:["170 قسمت"]
+},
+
+{
+id:38,
+title:"Dr. Stone",
+jp:"Dr.STONE",
+genres:["Adventure","Science"],
+rating:"8.1",
+summary:"پس از سنگ شدن تمام انسان‌ها، سنکو تلاش می‌کند تمدن را با علم دوباره از صفر بسازد.",
+dialogue:"علم هرگز تسلیم نمی‌شود.",
+seasons:"4",
+episodes:"80+",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:["فصل‌های مختلف"]
+},
+
+{
+id:39,
+title:"The Promised Neverland",
+jp:"約束のネバーランド",
+genres:["Mystery","Thriller"],
+rating:"8.2",
+summary:"کودکان یک یتیم‌خانه متوجه حقیقت وحشتناکی درباره خانه‌ای می‌شوند که در آن زندگی می‌کنند.",
+dialogue:"ما باید فرار کنیم.",
+seasons:"2",
+episodes:"23",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:["فصل ۱ — 12 قسمت","فصل ۲ — 11 قسمت"]
+},
+
+{
+id:40,
+title:"Mob Psycho 100",
+jp:"モブサイコ100",
+genres:["Action","Comedy"],
+rating:"8.6",
+summary:"موب نوجوانی با قدرت‌های روانی بسیار زیاد است که تلاش می‌کند زندگی عادی داشته باشد.",
+dialogue:"احساسات من هم مهم هستند.",
+seasons:"3",
+episodes:"37",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:["فصل ۱","فصل ۲","فصل ۳"]
+},
+
+{
+id:41,
+title:"One Punch Man",
+jp:"ワンパンマン",
+genres:["Action","Comedy"],
+rating:"8.6",
+summary:"سایتاما آن‌قدر قوی است که هر دشمنی را با یک مشت شکست می‌دهد و به دنبال هیجان واقعی می‌گردد.",
+dialogue:"من یک قهرمان برای سرگرمی هستم.",
+seasons:"3",
+episodes:"36+",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:["فصل ۱","فصل ۲","فصل ۳"]
+},
+
+{
+id:42,
+title:"Blue Exorcist",
+jp:"青の祓魔師",
+genres:["Action","Supernatural"],
+rating:"7.8",
+summary:"رین اوکومورا متوجه می‌شود فرزند شیطان است اما تصمیم می‌گیرد علیه نیروهای شیطانی مبارزه کند.",
+dialogue:"من سرنوشت خودم را انتخاب می‌کنم.",
+seasons:"4",
+episodes:"70+",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:["فصل‌های مختلف"]
+},
+
+{
+id:43,
+title:"Noragami",
+jp:"ノラガミ",
+genres:["Action","Supernatural"],
+rating:"8.0",
+summary:"خدایی ناشناس تلاش می‌کند با انجام کارهای کوچک برای مردم جایگاه خودش را پیدا کند.",
+dialogue:"یک روز همه من را خواهند شناخت.",
+seasons:"2",
+episodes:"25",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:["فصل ۱ — 12 قسمت","فصل ۲ — 13 قسمت"]
+},
+
+{
+id:44,
+title:"The Ancient Magus' Bride",
+jp:"魔法使いの嫁",
+genres:["Fantasy","Romance"],
+rating:"7.7",
+summary:"چیسه دختری تنهاست که وارد دنیای جادو و موجودات افسانه‌ای می‌شود.",
+dialogue:"شاید من هم بتوانم جایی برای خودم پیدا کنم.",
+seasons:"2",
+episodes:"48",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:["فصل ۱","فصل ۲"]
+},
+
+{
+id:45,
+title:"Vanitas no Carte",
+jp:"ヴァニタスの手記",
+genres:["Fantasy","Vampire"],
+rating:"8.0",
+summary:"در دنیایی پر از خون‌آشام‌ها، ونیتاس با استفاده از کتابی اسرارآمیز تلاش می‌کند نفرین خون‌آشام‌ها را درمان کند.",
+dialogue:"اگر سرنوشتت را دوست نداری، تغییرش بده.",
+seasons:"1",
+episodes:"24",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:["فصل ۱ — 24 قسمت"]
+},
+
+{
+id:46,
+title:"Bungo Stray Dogs",
+jp:"文豪ストレイドッグス",
+genres:["Action","Mystery"],
+rating:"8.1",
+summary:"گروهی از افراد دارای قدرت‌های ویژه در آژانس کارآگاهی مسلح با پرونده‌های عجیب روبه‌رو می‌شوند.",
+dialogue:"زندگی همیشه آن‌طور که فکر می‌کنیم نیست.",
+seasons:"5",
+episodes:"61",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:["فصل‌های ۱ تا ۵"]
+},
+
+{
+id:47,
+title:"Classroom of the Elite",
+jp:"ようこそ実力至上主義の教室へ",
+genres:["Psychological","School"],
+rating:"8.0",
+summary:"دانش‌آموزان یک مدرسه خاص در رقابت‌هایی پیچیده برای رسیدن به بالاترین سطح قرار می‌گیرند.",
+dialogue:"هرکس فقط برای خودش بازی می‌کند.",
+seasons:"3",
+episodes:"38",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:["فصل ۱","فصل ۲","فصل ۳"]
+},
+
+{
+id:48,
+title:"Mashle",
+jp:"マッシュル",
+genres:["Action","Comedy"],
+rating:"7.9",
+summary:"در دنیایی که جادو همه‌چیز است، پسری بدون جادو با قدرت بدنی عجیب‌وغریب وارد مدرسه جادوگری می‌شود.",
+dialogue:"قدرت عضلات هم یک نوع جادوست.",
+seasons:"2",
+episodes:"24",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:["فصل ۱ — 12 قسمت","فصل ۲ — 12 قسمت"]
+},
+
+{
+id:49,
+title:"Solo Leveling",
+jp:"俺だけレベルアップな件",
+genres:["Action","Fantasy"],
+rating:"8.8",
+summary:"شکارچی ضعیفی پس از یک حادثه مرموز سیستمی دریافت می‌کند که فقط خودش قادر به استفاده از آن است.",
+dialogue:"من تنها کسی هستم که می‌تواند لِول آپ کند.",
+seasons:"2",
+episodes:"25",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:["فصل ۱ — 12 قسمت","فصل ۲ — 13 قسمت"]
+},
+
+{
+id:50,
+title:"Frieren: Beyond Journey's End",
+jp:"葬送のフリーレン",
+genres:["Fantasy","Adventure"],
+rating:"8.9",
+summary:"پس از پایان یک ماجراجویی بزرگ، الفی جاودانه با گذر زمان و خاطرات دوستان قدیمی‌اش روبه‌رو می‌شود.",
+dialogue:"آدم‌ها را بعد از رفتنشان بهتر می‌شناسیم.",
+seasons:"1",
+episodes:"28",
+subtitle:"زیرنویس فارسی",
+watch:"منبع قانونی / سرویس رسمی",
+seasonList:["فصل ۱ — 28 قسمت"]
+}
+
+];
+
+/* =========================
+   نمایش انیمه‌ها
+========================= */
+
+const animeGrid = document.getElementById("animeGrid");
+const searchInput = document.getElementById("animeSearch");
+
+function renderAnime(list){
+
+    if(!animeGrid) return;
+
+    animeGrid.innerHTML = "";
+
+    list.forEach(anime => {
+
+        const card = document.createElement("article");
+
+        card.className = "anime-card";
+
+        card.innerHTML = `
+            <div class="anime-number">#${anime.id}</div>
+
+            <h3>${anime.title}</h3>
+
+            <div class="anime-jp">${anime.jp}</div>
+
+            <div class="anime-rating">
+                ⭐ ${anime.rating}
+            </div>
+
+            <div class="tags">
+                ${anime.genres.map(g => `<span class="tag">${g}</span>`).join("")}
+            </div>
+
+            <p class="anime-summary">
+                ${anime.summary}
+            </p>
+
+            <div class="dialogue-box">
+                <strong>💬 دیالوگ</strong>
+                <p>«${anime.dialogue}»</p>
+            </div>
+
+            <div class="anime-info">
+                <span>🎬 ${anime.seasons} فصل</span>
+                <span>📺 ${anime.episodes} قسمت</span>
+                <span>🇮🇷 ${anime.subtitle}</span>
+            </div>
+
+            <button class="anime-more"
+                onclick="openAnime(${anime.id})">
+                مشاهده فصل‌ها و قسمت‌ها ✨
+            </button>
+
+            <button class="library-add"
+                onclick="addToLibrary(${anime.id})">
+                ➕ افزودن به کتابخانه
+            </button>
+        `;
+
+        animeGrid.appendChild(card);
+    });
+}
+
+
+/* =========================
+   جستجوی انیمه
+========================= */
+
+if(searchInput){
+
+    searchInput.addEventListener("input", function(){
+
+        const value = this.value.trim().toLowerCase();
+
+        const filtered = animeData.filter(anime =>
+            anime.title.toLowerCase().includes(value) ||
+            anime.jp.toLowerCase().includes(value) ||
+            anime.genres.some(g =>
+                g.toLowerCase().includes(value)
+            )
+        );
+
+        renderAnime(filtered);
+    });
+
+}
+
+
+/* =========================
+   نمایش جزئیات انیمه
+========================= */
+
+function openAnime(id){
+
+    const anime = animeData.find(a => a.id === id);
+
+    if(!anime) return;
+
+    let seasonsHTML = "";
+
+    anime.seasonList.forEach((season,index) => {
+
+        seasonsHTML += `
+            <div class="season-item">
+
+                <div>
+                    <strong>🎬 ${season}</strong>
+                </div>
+
+                <button onclick="showEpisodes('${anime.title}',${index + 1})">
+                    دیدن قسمت‌ها
+                </button>
+
+            </div>
+        `;
+    });
+
+
+    const modal = document.createElement("div");
+
+    modal.className = "anime-modal";
+
+    modal.innerHTML = `
+
+        <div class="modal-content">
+
+            <button class="modal-close"
+                onclick="this.closest('.anime-modal').remove()">
+                ×
+            </button>
+
+            <div class="modal-title">
+                ${anime.title}
+            </div>
+
+            <div class="modal-rating">
+                ⭐ امتیاز ${anime.rating}
+            </div>
+
+            <p>
+                ${anime.summary}
+            </p>
+
+            <div class="modal-dialogue">
+                💬 «${anime.dialogue}»
+            </div>
+
+            <h3>
+                📚 فصل‌ها و قسمت‌ها
+            </h3>
+
+            <div class="season-list">
+                ${seasonsHTML}
+            </div>
+
+            <div class="subtitle-note">
+                🇮🇷 این بخش برای نمایش اطلاعات زیرنویس فارسی طراحی شده است.
+                برای پخش واقعی، لینک قانونی سرویس پخش را باید به هر قسمت اضافه کنی.
+            </div>
+
+        </div>
+    `;
+
+    document.body.appendChild(modal);
+}
+
+
+/* =========================
+   قسمت‌های هر فصل
+========================= */
+
+function showEpisodes(title,season){
+
+    const modal = document.createElement("div");
+
+    modal.className = "anime-modal";
+
+    let episodes = "";
+
+    for(let i = 1; i <= 12; i++){
+
+        episodes += `
+            <button class="episode-btn"
+                onclick="episodeMessage('${title}',${season},${i})">
+                قسمت ${i}
+            </button>
+        `;
+    }
+
+    modal.innerHTML = `
+
+        <div class="modal-content">
+
+            <button class="modal-close"
+                onclick="this.closest('.anime-modal').remove()">
+                ×
+            </button>
+
+            <h2>${title}</h2>
+
+            <h3>فصل ${season}</h3>
+
+            <div class="episode-grid">
+                ${episodes}
+            </div>
+
+            <p class="subtitle-note">
+                🇮🇷 زیرنویس فارسی
+            </p>
+
+        </div>
+    `;
+
+    document.body.appendChild(modal);
+}
+
+
+/* =========================
+   پیام قسمت
+========================= */
+
+function episodeMessage(title,season,episode){
+
+    alert(
+        "🎬 " + title +
+        "\n\nفصل " + season +
+        " — قسمت " + episode +
+        "\n\n🇮🇷 زیرنویس فارسی\n\n" +
+        "برای پخش، لینک قانونی قسمت را در داده‌های سایت قرار بده."
+    );
+}
+
+
+/* =========================
+   کتابخانه
+========================= */
+
+function getLibrary(){
+
+    try{
+
+        return JSON.parse(
+            localStorage.getItem("tsukiraLibrary")
+        ) || [];
+
+    }catch(e){
+
+        return [];
+    }
+}
+
+
+function addToLibrary(id){
+
+    const library = getLibrary();
+
+    if(!library.includes(id)){
+
+        library.push(id);
+
+        localStorage.setItem(
+            "tsukiraLibrary",
+            JSON.stringify(library)
+        );
+
+        alert("✨ به کتابخانه اضافه شد!");
+
+    }else{
+
+        alert("این انیمه قبلاً در کتابخانه است.");
+
+    }
+}
+
+
+function showLibrary(){
+
+    const library = getLibrary();
+
+    const items = animeData.filter(
+        anime => library.includes(anime.id)
+    );
+
+    if(items.length === 0){
+
+        alert("📚 کتابخانه هنوز خالی است.");
+
+        return;
+    }
+
+    const names = items
+        .map(anime => "• " + anime.title)
+        .join("\n");
+
+    alert(
+        "📚 کتابخانه من\n\n" + names
+    );
+}
+
+
+/* =========================
+   /* =========================================================
+   TSUKIRA — ادامه کد
+   امکانات:
+   جستجوی انیمه
+   نمایش جزئیات
+   فصل‌ها و قسمت‌ها
+   دیالوگ
+   زیرنویس فارسی
+   کتابخانه
+   حساب کاربری
+   منوی ناوبری
+========================================================= */
+
+(function(){
+
+  /* ---------- ابزارهای کمکی ---------- */
+
+  function $(selector){
+    return document.querySelector(selector);
+  }
+
+  function $$(selector){
+    return document.querySelectorAll(selector);
+  }
+
+  function safeText(value){
+    return String(value || "")
+      .replace(/</g,"&lt;")
+      .replace(/>/g,"&gt;");
+  }
+
+  /* ---------- پنجره جزئیات انیمه ---------- */
+
+  function createAnimeModal(){
+
+    if(document.getElementById("tsukiraAnimeModal")) return;
+
+    const modal = document.createElement("div");
+
+    modal.id = "tsukiraAnimeModal";
+
+    modal.innerHTML = `
+      <div class="tsukira-modal-backdrop"></div>
+
+      <div class="tsukira-modal-box">
+
+        <button class="tsukira-close" id="tsukiraCloseModal">
+          ✕
+        </button>
+
+        <div id="tsukiraAnimeContent"></div>
+
+      </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    document
+      .getElementById("tsukiraCloseModal")
+      .onclick = closeAnimeModal;
+
+    modal
+      .querySelector(".tsukira-modal-backdrop")
+      .onclick = closeAnimeModal;
+  }
+
+
+  function closeAnimeModal(){
+
+    const modal = document.getElementById("tsukiraAnimeModal");
+
+    if(modal){
+      modal.classList.remove("show");
+    }
+  }
+
+
+  function openAnimeModal(anime){
+
+    if(!anime) return;
+
+    createAnimeModal();
+
+    const modal = document.getElementById("tsukiraAnimeModal");
+
+    const content = document.getElementById("tsukiraAnimeContent");
+
+    let seasons = "";
+
+    if(Array.isArray(anime.seasonList)){
+
+      seasons = anime.seasonList.map(function(season,index){
+
+        return `
+          <div class="season-item">
+
+            <div class="season-title">
+              ${safeText(season)}
+            </div>
+
+            <button
+              class="episode-button"
+              data-anime-id="${anime.id}"
+              data-season="${index + 1}"
+            >
+              🎬 نمایش قسمت‌ها
+            </button>
+
+          </div>
+        `;
+
+      }).join("");
+
+    }else{
+
+      const count = Number(anime.seasons || 1);
+
+      for(let i=1;i<=count;i++){
+
+        seasons += `
+          <div class="season-item">
+
+            <div class="season-title">
+              فصل ${i}
+            </div>
+
+            <button
+              class="episode-button"
+              data-anime-id="${anime.id}"
+              data-season="${i}"
+            >
+              🎬 نمایش قسمت‌ها
+            </button>
+
+          </div>
+        `;
+
+      }
+
+    }
+
+
+    content.innerHTML = `
+
+      <div class="anime-detail">
+
+        <div class="anime-detail-title">
+          ${safeText(anime.title)}
+        </div>
+
+        ${
+          anime.jp
+          ? `<div class="anime-japanese">
+              ${safeText(anime.jp)}
+             </div>`
+          : ""
+        }
+
+        <div class="anime-rating">
+          ⭐ ${safeText(anime.rating || "—")}
+        </div>
+
+        <div class="anime-tags">
+
+          ${
+            Array.isArray(anime.genres)
+            ?
+            anime.genres.map(function(g){
+              return `<span>${safeText(g)}</span>`;
+            }).join("")
+            :
+            ""
+          }
+
+        </div>
+
+        <div class="detail-section">
+
+          <h3>📖 خلاصه</h3>
+
+          <p>
+            ${safeText(anime.summary || "خلاصه‌ای ثبت نشده است.")}
+          </p>
+
+        </div>
+
+
+        <div class="detail-section">
+
+          <h3>💬 دیالوگ</h3>
+
+          <div class="dialogue-box">
+
+            ${safeText(
+              anime.dialogue ||
+              "دیالوگی برای این انیمه ثبت نشده است."
+            )}
+
+          </div>
+
+        </div>
+
+
+        <div class="detail-section">
+
+          <h3>📺 اطلاعات پخش</h3>
+
+          <p>
+            فصل‌ها:
+            <b>${safeText(anime.seasons || "—")}</b>
+          </p>
+
+          <p>
+            قسمت‌ها:
+            <b>${safeText(anime.episodes || "—")}</b>
+          </p>
+
+          <p>
+            زیرنویس:
+            <b>🇮🇷 ${safeText(anime.subtitle || "زیرنویس فارسی")}</b>
+          </p>
+
+        </div>
+
+
+        <div class="detail-section">
+
+          <h3>📚 فصل‌ها</h3>
+
+          <div class="season-list">
+
+            ${seasons}
+
+          </div>
+
+        </div>
+
+
+        <button
+          class="add-library-button"
+          data-library-id="${anime.id}"
+        >
+          📚 افزودن به کتابخانه
+        </button>
+
+      </div>
+
+    `;
+
+
+    modal.classList.add("show");
+
+
+    /* دکمه فصل‌ها */
+
+    content
+      .querySelectorAll(".episode-button")
+      .forEach(function(button){
+
+        button.addEventListener("click",function(){
+
+          const animeId = Number(this.dataset.animeId);
+
+          const season = Number(this.dataset.season);
+
+          const selectedAnime =
+            Array.isArray(window.animeData)
+            ?
+            window.animeData.find(function(a){
+              return Number(a.id) === animeId;
+            })
+            :
+            null;
+
+          showEpisodes(
+            selectedAnime || anime,
+            season
+          );
+
+        });
+
+      });
+
+
+    /* کتابخانه */
+
+    const libraryButton =
+      content.querySelector(".add-library-button");
+
+    if(libraryButton){
+
+      libraryButton.onclick = function(){
+
+        addToLibrary(anime);
+
+        this.innerHTML = "✅ به کتابخانه اضافه شد";
+
+      };
+
+    }
+
+  }
+
+
+  /* ---------- قسمت‌های انیمه ---------- */
+
+  function showEpisodes(anime,season){
+
+    if(!anime) return;
+
+    createAnimeModal();
+
+    const modal =
+      document.getElementById("tsukiraAnimeModal");
+
+    const content =
+      document.getElementById("tsukiraAnimeContent");
+
+
+    const totalEpisodes =
+      Number(anime.episodes || 12);
+
+
+    let html = `
+
+      <div class="episodes-page">
+
+        <div class="episodes-title">
+
+          🎬 ${safeText(anime.title)}
+
+        </div>
+
+        <div class="episodes-subtitle">
+
+          فصل ${season} — قسمت‌ها
+
+        </div>
+
+        <div class="episodes-grid">
+
+    `;
+
+
+    for(let i=1;i<=totalEpisodes;i++){
+
+      html += `
+
+        <button
+          class="episode-card"
+          data-anime="${anime.id}"
+          data-season="${season}"
+          data-episode="${i}"
+        >
+
+          <span class="episode-number">
+            قسمت ${i}
+          </span>
+
+          <span class="episode-info">
+            🇮🇷 زیرنویس فارسی
+          </span>
+
+          <span class="episode-quality">
+            HD / 1080p
+          </span>
+
+        </button>
+
+      `;
+
+    }
+
+
+    html += `
+
+        </div>
+
+        <div class="legal-watch-note">
+
+          ⚠️ لینک پخش واقعی قسمت‌ها فقط در صورتی فعال می‌شود
+          که لینک قانونی یا منبع مجاز برای آن قسمت ثبت شده باشد.
+
+        </div>
+
+        <button
+          class="back-anime-button"
+          id="backToAnime"
+        >
+          ← بازگشت به اطلاعات انیمه
+        </button>
+
+      </div>
+
+    `;
+
+
+    content.innerHTML = html;
+
+
+    content
+      .querySelectorAll(".episode-card")
+      .forEach(function(button){
+
+        button.onclick = function(){
+
+          const episode =
+            this.dataset.episode;
+
+          showEpisodeMessage(
+            anime,
+            season,
+            episode
+          );
+
+        };
+
+      });
+
+
+    const back =
+      document.getElementById("backToAnime");
+
+    if(back){
+
+      back.onclick = function(){
+
+        openAnimeModal(anime);
+
+      };
+
+    }
+
+  }
+
+
+  /* ---------- پیام قسمت ---------- */
+
+  function showEpisodeMessage(
+    anime,
+    season,
+    episode
+  ){
+
+    const content =
+      document.getElementById("tsukiraAnimeContent");
+
+    if(!content) return;
+
+
+    content.innerHTML = `
+
+      <div class="episode-watch">
+
+        <div class="episode-watch-title">
+
+          🎬 ${safeText(anime.title)}
+
+        </div>
+
+        <div class="episode-watch-number">
+
+          فصل ${season} — قسمت ${episode}
+
+        </div>
+
+        <div class="subtitle-badge">
+
+          🇮🇷 زیرنویس فارسی
+
+        </div>
+
+        <div class="quality-badge">
+
+          ✨ کیفیت HD / 1080p
+
+        </div>
+
+        <div class="watch-message">
+
+          <h3>▶ آماده پخش</h3>
+
+          <p>
+
+            برای پخش این قسمت باید لینک قانونی
+            یا فایل ویدیویی مجاز آن قسمت در سایت
+            ثبت شود.
+
+          </p>
+
+        </div>
+
+        <button
+          class="back-anime-button"
+          onclick="openAnimeModal(window.currentTsukiraAnime)"
+        >
+
+          ← بازگشت
+
+        </button>
+
+      </div>
+
+    `;
+
+    window.currentTsukiraAnime = anime;
+
+  }
+
+
+  /* ---------- کتابخانه ---------- */
+
+  function getLibrary(){
+
+    try{
+
+      return JSON.parse(
+        localStorage.getItem("tsukiraLibrary") || "[]"
+      );
+
+    }catch(e){
+
+      return [];
+
+    }
+
+  }
+
+
+  function saveLibrary(library){
+
+    localStorage.setItem(
+      "tsukiraLibrary",
+      JSON.stringify(library)
+    );
+
+  }
+
+
+  function addToLibrary(anime){
+
+    if(!anime) return;
+
+    const library = getLibrary();
+
+    const exists =
+      library.some(function(id){
+        return Number(id) === Number(anime.id);
+      });
+
+
+    if(!exists){
+
+      library.push(anime.id);
+
+      saveLibrary(library);
+
+    }
+
+  }
+
+
+  function removeFromLibrary(id){
+
+    const library =
+      getLibrary().filter(function(item){
+
+        return Number(item) !== Number(id);
+
+      });
+
+    saveLibrary(library);
+
+  }
+
+
+  /* ---------- اتصال کارت‌های انیمه ---------- */
+
+  function connectAnimeCards(){
+
+    document
+      .querySelectorAll(".anime-card")
+      .forEach(function(card){
+
+        if(card.dataset.tsukiraConnected === "1")
+          return;
+
+        card.dataset.tsukiraConnected = "1";
+
+
+        card.addEventListener("click",function(e){
+
+          if(
+            e.target.closest("button") &&
+            !e.target.closest(".anime-card")
+          ){
+            return;
+          }
+
+
+          const id =
+            this.dataset.id ||
+            this.dataset.animeId;
+
+
+          let anime = null;
+
+
+          if(id && Array.isArray(window.animeData)){
+
+            anime =
+              window.animeData.find(function(a){
+
+                return Number(a.id) === Number(id);
+
+              });
+
+          }
+
+
+          if(!anime){
+
+            const titleElement =
+              this.querySelector("h3,h2,.anime-title");
+
+
+            const title =
+              titleElement
+              ? titleElement.textContent.trim()
+              : "";
+
+
+            if(title && Array.isArray(window.animeData)){
+
+              anime =
+                window.animeData.find(function(a){
+
+                  return a.title === title;
+
+                });
+
+            }
+
+          }
+
+
+          if(anime){
+
+            window.currentTsukiraAnime = anime;
+
+            openAnimeModal(anime);
+
+          }
+
+        });
+
+      });
+
+  }
+
+
+  /* ---------- جستجوی انیمه ---------- */
+
+  function setupAnimeSearch(){
+
+    const inputs =
+      document.querySelectorAll(
+        'input[placeholder*="انیمه"],' +
+        'input[placeholder*="جستجو"],' +
+        '.anime-search'
+      );
+
+
+    inputs.forEach(function(input){
+
+      if(input.dataset.tsukiraSearch === "1")
+        return;
+
+      input.dataset.tsukiraSearch = "1";
+
+
+      input.addEventListener("input",function(){
+
+        const query =
+          this.value.trim().toLowerCase();
+
+
+        document
+          .querySelectorAll(".anime-card")
+          .forEach(function(card){
+
+            const text =
+              card.textContent.toLowerCase();
+
+
+            card.style.display =
+              !query || text.includes(query)
+              ? ""
+              : "none";
+
+          });
+
+      });
+
+    });
+
+  }
+
+
+  /* ---------- منوی اصلی ---------- */
+
+  function setupNavigation(){
+
+    document
+      .querySelectorAll("a[href^='#']")
+      .forEach(function(link){
+
+        if(link.dataset.tsukiraNav === "1")
+          return;
+
+        link.dataset.tsukiraNav = "1";
+
+
+        link.addEventListener("click",function(e){
+
+          const target =
+            document.querySelector(
+              this.getAttribute("href")
+            );
+
+
+          if(target){
+
+            e.preventDefault();
+
+            target.scrollIntoView({
+              behavior:"smooth",
+              block:"start"
+            });
+
+          }
+
+        });
+
+      });
+
+  }
+
+
+  /* ---------- استایل‌های تکمیلی ---------- */
+
+  function addTsukiraStyles(){
+
+    if(document.getElementById("tsukiraExtraStyles"))
+      return;
+
+
+    const style =
+      document.createElement("style");
+
+
+    style.id =
+      "tsukiraExtraStyles";
+
+
+    style.textContent = `
+
+      #tsukiraAnimeModal{
+
+        position:fixed;
+
+        inset:0;
+
+        z-index:99999;
+
+        display:none;
+
+        align-items:center;
+
+        justify-content:center;
+
+        padding:20px;
+
+      }
+
+
+      #tsukiraAnimeModal.show{
+
+        display:flex;
+
+      }
+
+
+      .tsukira-modal-backdrop{
+
+        position:absolute;
+
+        inset:0;
+
+        background:
+          rgba(3,0,15,.88);
+
+        backdrop-filter:
+          blur(12px);
+
+      }
+
+
+      .tsukira-modal-box{
+
+        position:relative;
+
+        z-index:2;
+
+        width:min(760px,100%);
+
+        max-height:90vh;
+
+        overflow:auto;
+
+        border:1px solid #8f45ff;
+
+        border-radius:28px;
+
+        background:
+          linear-gradient(
+            145deg,
+            #10051e,
+            #17082c,
+            #06142b
+          );
+
+        box-shadow:
+          0 0 35px rgba(145,65,255,.5);
+
+        padding:28px;
+
+        color:#eee;
+
+      }
+
+
+      .tsukira-close{
+
+        position:absolute;
+
+        top:15px;
+
+        left:15px;
+
+        width:42px;
+
+        height:42px;
+
+        border-radius:50%;
+
+        border:1px solid #9b52ff;
+
+        background:#160626;
+
+        color:#fff;
+
+        font-size:20px;
+
+        cursor:pointer;
+
+      }
+
+
+      .anime-detail-title{
+
+        margin-top:15px;
+
+        font-size:34px;
+
+        font-weight:bold;
+
+        text-align:center;
+
+        color:#d59cff;
+
+        text-shadow:
+          0 0 15px #8c3cff;
+
+      }
+
+
+      .anime-japanese{
+
+        text-align:center;
+
+        margin:8px;
+
+        color:#64b9ff;
+
+      }
+
+
+      .anime-rating{
+
+        text-align:center;
+
+        margin:15px;
+
+        font-size:20px;
+
+        color:#ffd83d;
+
+      }
+
+
+      .anime-tags{
+
+        display:flex;
+
+        flex-wrap:wrap;
+
+        justify-content:center;
+
+        gap:8px;
+
+      }
+
+
+      .anime-tags span{
+
+        padding:7px 13px;
+
+        border-radius:999px;
+
+        background:#24103b;
+
+        border:1px solid #7137aa;
+
+        color:#d9b8ff;
+
+      }
+
+
+      .detail-section{
+
+        margin-top:22px;
+
+        padding:18px;
+
+        border-radius:18px;
+
+        background:
+          rgba(255,255,255,.035);
+
+        border:1px solid rgba(150,80,255,.25);
+
+      }
+
+
+      .detail-section h3{
+
+        color:#c889ff;
+
+        margin-top:0;
+
+      }
+
+
+      .detail-section p{
+
+        line-height:2;
+
+        color:#d8d2e5;
+
+      }
+
+
+      .dialogue-box{
+
+        padding:18px;
+
+        border-right:4px solid #a54cff;
+
+        border-radius:15px;
+
+        background:#1d0c30;
+
+        color:#e2bdff;
+
+        line-height:2;
+
+      }
+
+
+      .season-list{
+
+        display:grid;
+
+        gap:12px;
+
+      }
+
+
+      .season-item{
+
+        padding:15px;
+
+        border-radius:15px;
+
+        background:#12081f;
+
+        border:1px solid #452067;
+
+      }
+
+
+      .season-title{
+
+        color:#fff;
+
+        margin-bottom:10px;
+
+      }
+
+
+      .episode-button,
+
+      .add-library-button,
+
+      .back-anime-button{
+
+        border:0;
+
+        border-radius:13px;
+
+        padding:12px 18px;
+
+        background:
+          linear-gradient(
+            90deg,
+            #6d24d9,
+            #3b5cff
+          );
+
+        color:white;
+
+        cursor:pointer;
+
+        font-family:inherit;
+
+      }
+
+
+      .add-library-button{
+
+        display:block;
+
+        width:100%;
+
+        margin-top:22px;
+
+        font-size:16px;
+
+      }
+
+
+      .episodes-title{
+
+        text-align:center;
+
+        color:#d99cff;
+
+        font-size:28px;
+
+        font-weight:bold;
+
+      }
+
+
+      .episodes-subtitle{
+
+        text-align:center;
+
+        margin:10px 0 25px;
+
+        color:#79bfff;
+
+      }
+
+
+      .episodes-grid{
+
+        display:grid;
+
+        grid-template-columns:
+          repeat(auto-fit,minmax(145px,1fr));
+
+        gap:12px;
+
+      }
+
+
+      .episode-card{
+
+        min-height:105px;
+
+        border-radius:18px;
+
+        border:1px solid #54228b;
+
+        background:
+          linear-gradient(
+            145deg,
+            #170824,
+            #0b1730
+          );
+
+        color:#fff;
+
+        cursor:pointer;
+
+        transition:.25s;
+
+      }
+
+
+      .episode-card:hover{
+
+        transform:translateY(-4px);
+
+        border-color:#a95cff;
+
+        box-shadow:
+          0 0 20px
+          rgba(151,70,255,.35);
+
+      }
+
+
+      .episode-number{
+
+        display:block;
+
+        font-size:17px;
+
+        color:#dda9ff;
+
+      }
+
+
+      .episode-info{
+
+        display:block;
+
+        margin-top:8px;
+
+        font-size:13px;
+
+      }
+
+
+      .episode-quality{
+
+        display:block;
+
+        margin-top:7px;
+
+        font-size:12px;
+
+        color:#62baff;
+
+      }
+
+
+      .legal-watch-note{
+
+        margin-top:20px;
+
+        padding:15px;
+
+        border-radius:15px;
+
+        background:#160b25;
+
+        color:#aaa;
+
+        line-height:1.8;
+
+      }
+
+
+      .back-anime-button{
+
+        margin-top:20px;
+
+      }
+
+
+      .episode-watch{
+
+        text-align:center;
+
+        padding:25px 5px;
+
+      }
+
+
+      .episode-watch-title{
+
+        font-size:30px;
+
+        color:#dc9dff;
+
+      }
+
+
+      .episode-watch-number{
+
+        margin:15px;
+
+        color:#7dbfff;
+
+        font-size:19px;
+
+      }
+
+
+      .subtitle-badge,
+
+      .quality-badge{
+
+        display:inline-block;
+
+        margin:5px;
+
+        padding:8px 13px;
+
+        border-radius:999px;
+
+        background:#201039;
+
+        border:1px solid #6935a0;
+
+      }
+
+
+      .watch-message{
+
+        margin-top:30px;
+
+        padding:25px;
+
+        border-radius:20px;
+
+        background:#140a20;
+
+        border:1px solid #452260;
+
+        line-height:2;
+
+      }
+
+
+      @media(max-width:600px){
+
+        .tsukira-modal-box{
+
+          padding:22px 15px;
+
+          max-height:92vh;
+
+        }
+
+
+        .anime-detail-title{
+
+          font-size:27px;
+
+        }
+
+
+        .episodes-title{
+
+          font-size:23px;
+
+        }
+
+      }
+
+    `;
+
+
+    document.head.appendChild(style);
+
+  }
+
+
+  /* ---------- شروع سیستم ---------- */
+
+  function initTsukira(){
+
+    addTsukiraStyles();
+
+    connectAnimeCards();
+
+    setupAnimeSearch();
+
+    setupNavigation();
+
+  }
+
+
+  if(document.readyState === "loading"){
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      initTsukira
+    );
+
+  }else{
+
+    initTsukira();
+
+  }
+
+
+  /* اگر کارت‌ها بعداً توسط JS ساخته شوند */
+
+  const observer =
+    new MutationObserver(function(){
+
+      connectAnimeCards();
+
+      setupAnimeSearch();
+
+    });
+
+
+  observer.observe(
+    document.body,
+    {
+      childList:true,
+      subtree:true
+    }
+  );
+
+
+  /* دسترسی از بیرون */
+
+  window.openAnimeModal =
+    openAnimeModal;
+
+  window.showEpisodes =
+    showEpisodes;
+
+  window.addToLibrary =
+    addToLibrary;
+
+  window.removeFromLibrary =
+    removeFromLibrary;
+
+  window.getLibrary =
+    getLibrary;
+
+})();
+
+/* ---------- پایان TSUKIRA ---------- */
+  </script>
+
+<script>
+/* ================================
+   TSUKIRA - FINAL SAFETY CHECK
+   ================================ */
+
+document.addEventListener("DOMContentLoaded", function(){
+
+    /* بستن مودال با کلیک روی بیرون */
+    document.addEventListener("click", function(e){
+        const modal = document.querySelector(".modal");
+        if(modal && e.target === modal){
+            modal.classList.remove("show");
+        }
+    });
+
+    /* بستن مودال با کلید ESC */
+    document.addEventListener("keydown", function(e){
+        if(e.key === "Escape"){
+            document.querySelectorAll(".modal.show").forEach(function(m){
+                m.classList.remove("show");
+            });
+        }
+    });
+
+    /* انیمیشن نرم برای کارت‌ها */
+    const cards = document.querySelectorAll(".anime-card");
+
+    cards.forEach(function(card, index){
+        card.style.animationDelay = (index * 0.04) + "s";
+    });
+
+});
+
+/* جلوگیری از خطا در صورت نبودن بعضی توابع */
+window.addToLibrary = window.addToLibrary || function(id){
+    try{
+        const library = JSON.parse(localStorage.getItem("tsukira_library") || "[]");
+
+        if(!library.includes(id)){
+            library.push(id);
+            localStorage.setItem(
+                "tsukira_library",
+                JSON.stringify(library)
+            );
+        }
+
+        alert("📚 به کتابخانه اضافه شد");
+
+    }catch(error){
+        console.log(error);
+    }
+};
+
+window.removeFromLibrary = window.removeFromLibrary || function(id){
+    try{
+        let library = JSON.parse(
+            localStorage.getItem("tsukira_library") || "[]"
+        );
+
+        library = library.filter(function(item){
+            return item !== id;
+        });
+
+        localStorage.setItem(
+            "tsukira_library",
+            JSON.stringify(library)
+        );
+
+        alert("🗑️ از کتابخانه حذف شد");
+
+    }catch(error){
+        console.log(error);
+    }
+};
+
+window.getLibrary = window.getLibrary || function(){
+    try{
+        return JSON.parse(
+            localStorage.getItem("tsukira_library") || "[]"
+        );
+    }catch(error){
+        return [];
+    }
+};
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>TSUKIRA | Anime Universe</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap');
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+font-family:Vazirmatn,Tahoma,sans-serif;
+background:#06040d;
+color:#eee9ff;
+min-height:100vh;
+overflow-x:hidden;
+}
+body:before{
+content:"";
+position:fixed;
+inset:0;
+pointer-events:none;
+z-index:-2;
+background:
+radial-gradient(circle at 15% 15%,rgba(142,35,255,.20),transparent 27%),
+radial-gradient(circle at 85% 25%,rgba(0,126,255,.13),transparent 25%),
+radial-gradient(circle at 50% 90%,rgba(110,0,255,.12),transparent 30%);
+}
+body:after{
+content:"";
+position:fixed;
+inset:0;
+pointer-events:none;
+z-index:-1;
+opacity:.10;
+background-image:radial-gradient(#fff 1px,transparent 1px);
+background-size:70px 70px;
+animation:stars 25s linear infinite;
+}
+@keyframes stars{to{transform:translateY(70px)}}
+
+header{
+position:sticky;
+top:0;
+z-index:1000;
+background:rgba(5,3,12,.86);
+backdrop-filter:blur(18px);
+border-bottom:1px solid #45216d;
+box-shadow:0 0 30px rgba(118,25,255,.15);
+}
+.nav{
+max-width:1300px;
+margin:auto;
+min-height:72px;
+padding:10px 18px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:15px;
+}
+.logo{
+font-size:27px;
+font-weight:800;
+letter-spacing:4px;
+color:#d49aff;
+text-shadow:0 0 10px #8d28ff,0 0 25px #681cff;
+white-space:nowrap;
+}
+.logo span{color:#35aaff}
+nav{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+nav button{
+border:1px solid transparent;
+background:transparent;
+color:#d9d2e7;
+padding:9px 13px;
+border-radius:13px;
+font-family:inherit;
+cursor:pointer;
+transition:.25s;
+}
+nav button:hover,nav button.active{
+border-color:#7937b4;
+background:#170c28;
+color:#e0b4ff;
+box-shadow:0 0 16px rgba(145,42,255,.2);
+}
+
+main{max-width:1350px;margin:auto}
+
+.hero{
+min-height:570px;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:70px 20px;
+}
+.hero-inner{max-width:850px}
+.badge{
+display:inline-block;
+padding:8px 17px;
+border:1px solid #7430b0;
+border-radius:30px;
+color:#d49cff;
+background:#150923;
+box-shadow:0 0 20px rgba(132,33,255,.2);
+margin-bottom:25px;
+}
+.hero h1{
+font-size:clamp(58px,11vw,120px);
+letter-spacing:8px;
+line-height:1;
+background:linear-gradient(90deg,#fff,#cf70ff,#794cff,#37b4ff,#fff);
+background-size:300%;
+-webkit-background-clip:text;
+color:transparent;
+animation:gradient 7s linear infinite;
+}
+@keyframes gradient{50%{background-position:100%}}
+.hero h2{font-size:clamp(24px,5vw,45px);margin-top:20px}
+.hero p{
+color:#9b94aa;
+line-height:2.2;
+margin:20px auto;
+font-size:16px;
+}
+.actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+
+.btn{
+border:0;
+border-radius:14px;
+padding:12px 20px;
+background:linear-gradient(135deg,#8124e8,#3d54e8);
+color:white;
+font-family:inherit;
+font-weight:600;
+cursor:pointer;
+box-shadow:0 0 22px rgba(119,31,255,.28);
+transition:.25s;
+}
+.btn:hover{transform:translateY(-3px);box-shadow:0 0 32px rgba(139,42,255,.5)}
+.btn.secondary{background:#120d1e;border:1px solid #60318a}
+.btn.small{padding:8px 12px;font-size:12px}
+
+.section{padding:55px 20px}
+.title{text-align:center;margin-bottom:30px}
+.title h2{font-size:31px;color:#d49aff;text-shadow:0 0 18px #7025aa}
+.title p{color:#81798c;margin-top:7px}
+
+.tools{
+display:grid;
+grid-template-columns:2fr 1fr 1fr;
+gap:10px;
+margin-bottom:28px;
+}
+.input,.select{
+width:100%;
+padding:14px 16px;
+border:1px solid #452363;
+border-radius:14px;
+background:#0d0915;
+color:#eee;
+outline:none;
+font-family:inherit;
+}
+.input:focus,.select:focus{border-color:#9b45e5;box-shadow:0 0 18px #681caf33}
+
+.stats{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-bottom:25px;
+}
+.stat{
+flex:1;
+min-width:150px;
+background:#0e0917;
+border:1px solid #302040;
+border-radius:15px;
+padding:15px;
+text-align:center;
+}
+.stat strong{display:block;color:#c987ff;font-size:23px}
+.stat span{color:#777080;font-size:12px}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:17px;
+}
+.card{
+background:linear-gradient(145deg,#190d29,#0b0911);
+border:1px solid #3b2056;
+border-radius:21px;
+padding:19px;
+min-height:285px;
+position:relative;
+overflow:hidden;
+cursor:pointer;
+transition:.3s;
+}
+.card:before{
+content:"";
+position:absolute;
+width:150px;height:150px;
+border-radius:50%;
+right:-65px;top:-65px;
+background:radial-gradient(circle,#9b32ff55,transparent 70%);
+}
+.card:hover{
+transform:translateY(-6px);
+border-color:#9650d0;
+box-shadow:0 15px 35px #0008,0 0 20px #7b27b533;
+}
+.num{color:#625873;font-size:11px}
+.card h3{font-size:20px;color:#d79cff;margin:13px 0 8px}
+.rating{color:#ffd95c;margin-bottom:10px;font-size:13px}
+.tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:11px}
+.tag{
+font-size:10px;
+padding:4px 7px;
+border:1px solid #43255c;
+border-radius:20px;
+background:#160d22;
+color:#aa9bb8;
+}
+.card p{font-size:12px;line-height:1.9;color:#8d8795}
+.card-bottom{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:5px;
+margin-top:16px;
+}
+.fav{
+border:1px solid #4c286b;
+background:#120c1c;
+color:#e5baff;
+border-radius:10px;
+padding:7px 9px;
+cursor:pointer;
+}
+
+.library-grid,.continue-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px;
+}
+.box{
+background:#0d0916;
+border:1px solid #382148;
+border-radius:18px;
+padding:18px;
+}
+.box h3{color:#d394ff;margin-bottom:8px}
+.box p{color:#898291;font-size:13px;line-height:1.8}
+
+.empty{
+text-align:center;
+padding:45px 20px;
+border:1px dashed #3e2453;
+border-radius:20px;
+color:#716a7b;
+}
+
+.account{
+max-width:650px;
+margin:auto;
+background:#0d0916;
+border:1px solid #4a2767;
+border-radius:22px;
+padding:25px;
+}
+.account input{margin-bottom:10px}
+.account-status{text-align:center;margin-bottom:18px;color:#aa91bc}
+
+footer{
+margin-top:40px;
+border-top:1px solid #24172e;
+padding:30px 20px;
+text-align:center;
+color:#625b6a;
+}
+footer strong{color:#b66aff}
+
+.modal{
+position:fixed;
+inset:0;
+z-index:3000;
+display:none;
+align-items:center;
+justify-content:center;
+padding:15px;
+background:#000b;
+backdrop-filter:blur(10px);
+}
+.modal.show{display:flex}
+.modal-box{
+position:relative;
+width:min(900px,100%);
+max-height:90vh;
+overflow:auto;
+padding:28px;
+border-radius:25px;
+border:1px solid #8244b6;
+background:linear-gradient(145deg,#190c29,#08070e);
+box-shadow:0 0 60px #7018aa44;
+}
+.close{
+position:absolute;
+left:14px;top:14px;
+width:38px;height:38px;
+border-radius:50%;
+border:1px solid #55306e;
+background:#120b19;
+color:white;
+font-size:21px;
+cursor:pointer;
+}
+.modal-box h2{font-size:32px;color:#d99cff;margin-bottom:8px}
+.modal-desc{color:#aaa2b0;line-height:2;margin:15px 0}
+.dialogue{
+border-right:4px solid #9b42dd;
+padding:15px;
+border-radius:12px;
+background:#130b20;
+color:#cfc3da;
+line-height:2;
+margin:20px 0;
+}
+.dialogue b{color:#b26aff}
+.season{
+border-top:1px solid #32203f;
+padding-top:18px;
+margin-top:20px;
+}
+.season h3{color:#bca1ff;margin-bottom:13px}
+.episodes{
+display:grid;
+grid-template-columns:repeat(6,1fr);
+gap:7px;
+}
+.ep{
+text-decoration:none;
+text-align:center;
+padding:9px 3px;
+border-radius:9px;
+border:1px solid #3d2451;
+background:#0f0a16;
+color:#d7cce1;
+font-size:10px;
+transition:.2s;
+}
+.ep:hover{background:#4b1873;border-color:#b05af3;box-shadow:0 0 12px #8b28bf55}
+.ep small{display:block;color:#9c6dba;margin-top:3px}
+
+.toast{
+position:fixed;
+z-index:5000;
+bottom:20px;
+left:50%;
+transform:translate(-50%,120px);
+background:#190c28;
+border:1px solid #8541ba;
+padding:12px 20px;
+border-radius:13px;
+transition:.3s;
+box-shadow:0 0 25px #7b20b944;
+}
+.toast.show{transform:translate(-50%,0)}
+
+#topBtn{
+position:fixed;
+bottom:20px;
+right:20px;
+width:45px;height:45px;
+border-radius:50%;
+border:1px solid #693a8a;
+background:#120b1c;
+color:#d9a3ff;
+cursor:pointer;
+display:none;
+z-index:900;
+}
+
+@media(max-width:1050px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:800px){
+.tools{grid-template-columns:1fr}
+.grid{grid-template-columns:repeat(2,1fr)}
+.library-grid,.continue-grid{grid-template-columns:1fr 1fr}
+.nav{flex-direction:column}
+}
+@media(max-width:550px){
+.grid{grid-template-columns:1fr}
+.library-grid,.continue-grid{grid-template-columns:1fr}
+.episodes{grid-template-columns:repeat(3,1fr)}
+.hero{min-height:500px}
+.section{padding:40px 13px}
+.modal-box{padding:22px 14px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="nav">
+<div class="logo">TSUKIRA <span>月</span></div>
+<nav>
+<button onclick="go('home')">🏠 خانه</button>
+<button onclick="go('anime')">🎌 انیمه‌ها</button>
+<button onclick="go('popular')">🔥 محبوب‌ها</button>
+<button onclick="go('continue')">▶ ادامه تماشا</button>
+<button onclick="go('library')">📚 کتابخانه</button>
+<button onclick="go('account')">👤 حساب</button>
+</nav>
+</div>
+</header>
+
+<main>
+
+<section class="hero" id="home">
+<div class="hero-inner">
+<div class="badge">✦ ENTER THE ANIME UNIVERSE ✦</div>
+<h1>TSUKIRA</h1>
+<h2>دنیای مرموز انیمه</h2>
+<p>
+کشف انیمه‌های محبوب و کمتر دیده‌شده،
+خواندن خلاصه داستان و دیالوگ‌ها،
+ساخت کتابخانه شخصی و پیدا کردن قسمت مورد علاقه‌ات.
+</p>
+<div class="actions">
+<button class="btn" onclick="go('anime')">✨ کشف انیمه‌ها</button>
+<button class="btn secondary" onclick="randomAnime()">🎲 انیمه تصادفی</button>
+</div>
+</div>
+</section>
+
+<section class="section" id="anime">
+<div class="title">
+<h2>🎌 کتابخانه انیمه‌ها</h2>
+<p>۵۰ انیمه برای شروع ماجراجویی تو</p>
+</div>
+
+<div class="stats">
+<div class="stat"><strong id="totalCount">50</strong><span>انیمه</span></div>
+<div class="stat"><strong id="libraryCount">0</strong><span>در کتابخانه</span></div>
+<div class="stat"><strong id="favCount">0</strong><span>علاقه‌مندی</span></div>
+<div class="stat"><strong id="historyCount">0</strong><span>آخرین بازدید</span></div>
+</div>
+
+<div class="tools">
+<input class="input" id="search" placeholder="🔎 جستجوی انیمه..." oninput="renderAnime()">
+<select class="select" id="genre" onchange="renderAnime()">
+<option value="">همه ژانرها</option>
+<option>Action</option>
+<option>Adventure</option>
+<option>Fantasy</option>
+<option>Drama</option>
+<option>Comedy</option>
+<option>Sports</option>
+<option>Romance</option>
+<option>Mystery</option>
+<option>Psychological</option>
+<option>Supernatural</option>
+<option>School</option>
+</select>
+<select class="select" id="sort" onchange="renderAnime()">
+<option value="default">مرتب‌سازی</option>
+<option value="az">الف تا ی</option>
+<option value="za">ی تا الف</option>
+<option value="rating">بالاترین امتیاز</option>
+</select>
+</div>
+
+<div class="grid" id="animeGrid"></div>
+</section>
+
+<section class="section" id="popular">
+<div class="title">
+<h2>🔥 محبوب‌ها</h2>
+<p>چند انتخاب پرطرفدار</p>
+</div>
+<div class="grid" id="popularGrid"></div>
+</section>
+
+<section class="section" id="continue">
+<div class="title">
+<h2>▶ ادامه تماشا</h2>
+<p>آخرین قسمت‌هایی که باز کرده‌ای</p>
+</div>
+<div id="continueContent"></div>
+</section>
+
+<section class="section" id="library">
+<div class="title">
+<h2>📚 کتابخانه من</h2>
+<p>انیمه‌های ذخیره‌شده تو</p>
+</div>
+<div id="libraryContent"></div>
+</section>
+
+<section class="section" id="account">
+<div class="title">
+<h2>👤 حساب کاربری</h2>
+<p>پروفایل خودت را بساز</p>
+</div>
+
+<div class="account">
+<div class="account-status" id="accountStatus">هنوز وارد نشده‌ای</div>
+<input class="input" id="username" placeholder="نام کاربری">
+<div class="actions">
+<button class="btn" onclick="login()">✨ ورود</button>
+<button class="btn secondary" onclick="logout()">خروج</button>
+</div>
+</div>
+</section>
+
+</main>
+
+<footer>
+<strong>TSUKIRA</strong>
+<br>
+Anime Universe • ✦ ساخته شده برای عاشقان انیمه ✦
+</footer>
+
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<div class="modal" id="modal">
+<div class="modal-box">
+<button class="close" onclick="closeModal()">×</button>
+<h2 id="modalTitle"></h2>
+<div class="modal-desc" id="modalDesc"></div>
+
+<div class="dialogue">
+<b>💬 دیالوگ:</b>
+<span id="modalDialogue"></span>
+</div>
+
+<div id="modalActions"></div>
+<div id="seasons"></div>
+</div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+
+/* =========================
+   ANIME DATABASE - 50
+========================= */
+
+const animeData=[
+["Attack on Titan","Action,Drama,Fantasy","9.1","بشریت پشت دیوارها در برابر تایتان‌ها برای بقا مبارزه می‌کند.","اگر برای آزادی بجنگی، تسلیم نشو.",25,12,22,30],
+["Jujutsu Kaisen","Action,Supernatural,Fantasy","8.6","یوجی وارد دنیای جادوگران و نفرین‌های مرگبار می‌شود.","اگر می‌توانی به دیگران کمک کنی، زندگی‌ات را معنا بده.",24,23],
+["Demon Slayer","Action,Fantasy,Adventure","8.6","تانجیرو برای نجات خواهرش وارد مسیر شکارچیان شیاطین می‌شود.","حتی اگر شکست بخوری، می‌توانی دوباره بلند شوی.",26,18,11,8],
+["One Piece","Adventure,Action,Fantasy","9.0","لوفی و دوستانش برای پیدا کردن گنج افسانه‌ای وان پیس سفر می‌کنند.","من کسی هستم که می‌خواهد پادشاه دزدان دریایی شود.",1150],
+["Naruto","Action,Adventure,Fantasy","8.4","ناروتو برای رسیدن به رویای هوکاگه شدن تلاش می‌کند.","من وقتی تصمیم بگیرم کاری را انجام دهم، عقب‌نشینی نمی‌کنم.",220,500],
+["Bleach","Action,Supernatural,Adventure","8.2","ایچیگو قدرت شینیگامی را به دست می‌آورد و وارد نبردی بزرگ می‌شود.","اگر از دوستانم محافظت نکنم، قدرت چه فایده‌ای دارد؟",366,40],
+["My Hero Academia","Action,School,Superhero","8.0","ایزوکو رؤیای قهرمان شدن را در دنیایی پر از ابرقدرت دنبال می‌کند.","حتی وقتی می‌ترسی، قدم بردار.",13,25,25,25,25,25,21],
+["Haikyuu","Sports,Comedy,School","8.7","هیناتا با وجود قد کوتاهش رؤیای تبدیل شدن به بازیکن بزرگ والیبال را دنبال می‌کند.","تا وقتی توپ روی زمین نیفتاده، بازی تمام نشده.",25,25,10,25],
+["Hunter x Hunter","Adventure,Action,Fantasy","9.0","گون برای پیدا کردن پدرش وارد آزمون هانتر می‌شود.","گاهی مسیر از خود هدف مهم‌تر است.",148],
+["Death Note","Mystery,Psychological,Supernatural","8.9","لایت دفترچه‌ای پیدا می‌کند که می‌تواند زندگی انسان‌ها را تغییر دهد.","این دنیا را خودم تغییر خواهم داد.",37],
+["Fullmetal Alchemist: Brotherhood","Action,Fantasy,Drama","9.1","دو برادر کیمیاگر برای جبران اشتباه گذشته راهی سفری خطرناک می‌شوند.","برای به دست آوردن چیزی باید بهایش را بپردازی.",64],
+["Tokyo Ghoul","Dark Fantasy,Action,Horror","7.7","کن کانکی میان دنیای انسان‌ها و غول‌ها گرفتار می‌شود.","گاهی برای زنده ماندن باید با خودت روبه‌رو شوی.",12,12,24],
+["Solo Leveling","Action,Fantasy,Adventure","8.8","سونگ جین‌وو قدرتی مرموز برای رشد بی‌پایان به دست می‌آورد.","تنها کسی که می‌توانم به او اعتماد کنم، خودم هستم.",12,13],
+["Blue Lock","Sports,Psychological,Action","8.3","صدها مهاجم برای تبدیل شدن به بهترین مهاجم ژاپن رقابت می‌کنند.","برای رسیدن به قله باید جرئت کنی خودخواه باشی.",24],
+["Vinland Saga","Action,Historical,Drama","8.8","تورفین در جهانی پر از جنگ و انتقام بزرگ می‌شود.","دشمن واقعی تو نفرتی است که درونت رشد می‌کند.",24,24],
+["Chainsaw Man","Action,Dark Fantasy,Horror","8.4","دنجی برای پرداخت بدهی‌هایش با شیطان‌ها مبارزه می‌کند.","گاهی آرزوهای ساده بزرگ‌ترین رؤیای آدم هستند.",12],
+["Spy x Family","Comedy,Action,Family","8.4","یک جاسوس برای مأموریتی مهم خانواده‌ای جعلی تشکیل می‌دهد.","خانواده همیشه با خون ساخته نمی‌شود.",25,12],
+["Oshi no Ko","Drama,Mystery,Music","8.4","پشت صحنه صنعت سرگرمی بسیار تاریک‌تر از ظاهر درخشان آن است.","گاهی لبخند روی صحنه چیزی متفاوت را پنهان می‌کند.",11,13],
+["Black Clover","Action,Magic,Fantasy","8.2","آستا بدون داشتن جادو می‌خواهد به بزرگ‌ترین جادوگر تبدیل شود.","من تسلیم نمی‌شوم؛ این همان چیزی است که من هستم.",170],
+["Blue Exorcist","Action,Supernatural,Fantasy","7.4","پسری با سرنوشتی عجیب تصمیم می‌گیرد با سرنوشت خود مبارزه کند.","سرنوشت چیزی نیست که بدون مبارزه قبولش کنی.",25,12],
+["Mob Psycho 100","Action,Comedy,Supernatural","8.6","موب پسری آرام با قدرت‌های روانی فوق‌العاده است.","قدرت واقعی انسان فقط به توانایی‌هایش بستگی ندارد.",12,13,12],
+["Bungo Stray Dogs","Action,Mystery,Supernatural","8.0","آژانس کارآگاهان مسلح با پرونده‌ها و دشمنان عجیب روبه‌رو می‌شود.","زندگی شاید معنایی آماده نداشته باشد؛ باید خودت پیدایش کنی.",12,12,12,13,11],
+["The Apothecary Diaries","Mystery,Drama,Historical","8.7","مایائو با دانش دارویی خود رازهای قصر سلطنتی را حل می‌کند.","کنجکاوی اگر کنترل نشود می‌تواند دردسرساز شود.",24,24],
+["Frieren","Fantasy,Adventure,Drama","8.9","فریرن پس از پایان ماجراجویی تازه ارزش زمان و روابط انسانی را درک می‌کند.","وقتی کسی را نمی‌شناسی، شاید نفهمی چقدر برایت مهم بوده.",28],
+["Sword Art Online","Action,Fantasy,Adventure","7.5","بازیکنان در یک بازی واقعیت مجازی گرفتار می‌شوند.","تا وقتی تسلیم نشوی هنوز شانسی برای تغییر پایان داری.",25,24,47],
+["Dr. Stone","Adventure,Science,Comedy","8.1","سنکو تلاش می‌کند تمدن بشری را با علم دوباره بسازد.","علم می‌تواند غیرممکن‌ترین رؤیاها را ممکن کند.",24,11,22],
+["Re:Zero","Fantasy,Psychological,Drama","8.1","سوبارو در دنیایی دیگر با توانایی عجیب بازگشت پس از مرگ روبه‌رو می‌شود.","اگر شکست بخورم دوباره تلاش می‌کنم.",25,25,16],
+["Classroom of the Elite","Psychological,School,Drama","7.7","دانش‌آموزان مدرسه‌ای خاص برای رسیدن به بالاترین سطح رقابت می‌کنند.","آدم‌ها همیشه آن چیزی نیستند که نشان می‌دهند.",12,13,13],
+["Moriarty the Patriot","Mystery,Psychological,Historical","8.0","ویلیام موریارتی برای تغییر ساختار طبقاتی بریتانیا نقشه می‌کشد.","گاهی باید قوانین بازی را از نو تعریف کرد.",11,13],
+["Noragami","Action,Supernatural,Comedy","7.8","خدایی فراموش‌شده تلاش می‌کند جایگاه خود را دوباره پیدا کند.","حتی کسی که فراموش شده می‌تواند دوباره معنا پیدا کند.",12,13],
+["Code Geass","Action,Mecha,Drama","8.7","لولوش قدرتی به دست می‌آورد که می‌تواند سرنوشت جهان را تغییر دهد.","اگر قرار است دنیا تغییر کند، کسی باید شروع کند.",25,25],
+["Steins;Gate","Sci-Fi,Thriller,Drama","9.0","چند دوست به طور اتفاقی راهی برای فرستادن پیام به گذشته پیدا می‌کنند.","جهان به اندازه‌ای که فکر می‌کنی ساده نیست.",24],
+["Cowboy Bebop","Action,Sci-Fi,Adventure","8.8","گروهی جایزه‌بگیر در فضا با گذشته‌های پیچیده خود روبه‌رو می‌شوند.","هر چیزی یک پایان دارد.",26],
+["Neon Genesis Evangelion","Action,Mecha,Psychological","8.5","نوجوانانی برای دفاع از زمین در برابر موجوداتی مرموز وارد نبرد می‌شوند.","فرار کردن همیشه جواب نیست.",26],
+["Samurai Champloo","Action,Adventure,Historical","8.5","سه مسافر عجیب سفری برای پیدا کردن سامورایی‌ای مرموز آغاز می‌کنند.","زندگی مثل یک سفر بدون نقشه است.",26],
+["JoJo's Bizarre Adventure","Action,Adventure,Supernatural","8.5","نسل‌های مختلف خانواده جواستار با دشمنان عجیب مبارزه می‌کنند.","این قدرت فقط برای من نیست؛ برای کسانی است که از آنها محافظت می‌کنم.",12,17,48,39,38],
+["Fairy Tail","Action,Fantasy,Adventure","7.9","اعضای یک گیلد جادویی در مأموریت‌های خطرناک کنار هم قرار می‌گیرند.","تا وقتی دوستانم کنارم باشند، نمی‌ترسم.",48,102,51,51,51],
+["Fire Force","Action,Supernatural,Fantasy","7.7","شینرا وارد گروهی از آتش‌نشانان ویژه می‌شود که با انسان‌های شعله‌ور مبارزه می‌کنند.","من قهرمانی خواهم شد که مردم را نجات می‌دهد.",24,24],
+["Soul Eater","Action,Fantasy,Comedy","8.0","دانش‌آموزان مدرسه‌ای ویژه برای تبدیل شدن به جنگجویان قدرتمند تمرین می‌کنند.","ترس را می‌توان با شجاعت شکست داد.",51],
+["Akame ga Kill","Action,Fantasy,Drama","7.8","گروهی از مبارزان مخفی برای مقابله با حکومتی فاسد وارد نبرد می‌شوند.","اگر قرار است تغییر ایجاد شود، باید قدم اول را برداشت.",24],
+["Assassination Classroom","Action,Comedy,School","8.0","کلاس دانش‌آموزان مأمور می‌شود معلم عجیب خود را ترور کند.","معلم واقعی کسی است که به تو کمک کند خودت را پیدا کنی.",22],
+["Kuroko's Basketball","Sports,School,Action","8.0","تتسویا کوروکو با سبک بازی متفاوتش به تیم بسکتبال کمک می‌کند.","قدرت یک نفر وقتی کامل می‌شود که با دیگران ترکیب شود.",25,25,25],
+["Slam Dunk","Sports,Comedy,School","8.5","هانامیچی ساکوراگی وارد دنیای بسکتبال می‌شود و به تدریج عاشق این ورزش می‌شود.","من هنوز تمام نشده‌ام.",101],
+["Fruits Basket","Romance,Drama,Fantasy","8.6","توهرو با خانواده‌ای آشنا می‌شود که رازی عجیب درباره نفرینشان دارند.","مهربانی می‌تواند زندگی آدم‌ها را تغییر دهد.",25,25,13],
+["Your Lie in April","Drama,Romance,Music","8.6","یک پیانیست جوان پس از آشنایی با دختری نوازنده دوباره با موسیقی ارتباط برقرار می‌کند.","موسیقی می‌تواند احساساتی را بگوید که کلمات نمی‌توانند.",22],
+["Toradora","Romance,Comedy,School","8.0","دو دانش‌

@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TSUKIRA | Anime World</title>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap');
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+:root{
+    --bg:#050509;
+    --bg2:#090711;
+    --card:#0d0b15;
+    --purple:#a855f7;
+    --purple2:#7c3aed;
+    --blue:#38bdf8;
+    --text:#f5f3ff;
+    --muted:#aaa3bd;
+    --border:rgba(168,85,247,.25);
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Vazirmatn',sans-serif;
+    background:
+        radial-gradient(circle at 20% 10%,rgba(124,58,237,.18),transparent 30%),
+        radial-gradient(circle at 90% 20%,rgba(56,189,248,.10),transparent 25%),
+        linear-gradient(135deg,#030305,#080611 50%,#030305);
+    color:var(--text);
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+/* particles */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background-image:
+        radial-gradient(circle,rgba(168,85,247,.18) 1px,transparent 1px),
+        radial-gradient(circle,rgba(56,189,248,.12) 1px,transparent 1px);
+    background-size:70px 70px,110px 110px;
+    animation:stars 20s linear infinite;
+    opacity:.35;
+    z-index:0;
+}
+
+@keyframes stars{
+    from{background-position:0 0,0 0}
+    to{background-position:500px 500px,-400px 300px}
+}
+
+/* header */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    backdrop-filter:blur(18px);
+    background:rgba(5,5,9,.82);
+    border-bottom:1px solid var(--border);
+    box-shadow:0 0 30px rgba(124,58,237,.08);
+}
+
+.navbar{
+    max-width:1250px;
+    margin:auto;
+    padding:15px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:800;
+    letter-spacing:3px;
+    color:#fff;
+    text-shadow:
+        0 0 8px var(--purple),
+        0 0 25px var(--purple);
+}
+
+.logo span{
+    color:var(--blue);
+}
+
+nav{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+}
+
+nav button{
+    border:0;
+    background:transparent;
+    color:#d9d2e7;
+    padding:9px 13px;
+    border-radius:12px;
+    cursor:pointer;
+    font-family:inherit;
+    transition:.25s;
+}
+
+nav button:hover{
+    color:#fff;
+    background:rgba(168,85,247,.13);
+    box-shadow:0 0 15px rgba(168,85,247,.2);
+}
+
+.hero{
+    position:relative;
+    z-index:1;
+    max-width:1250px;
+    margin:auto;
+    padding:75px 20px 45px;
+    min-height:430px;
+    display:flex;
+    align-items:center;
+}
+
+.hero-content{
+    max-width:800px;
+}
+
+.badge{
+    display:inline-block;
+    padding:7px 14px;
+    border:1px solid rgba(168,85,247,.4);
+    border-radius:999px;
+    color:#d8b4fe;
+    background:rgba(168,85,247,.08);
+    box-shadow:0 0 20px rgba(168,85,247,.12);
+    margin-bottom:20px;
+}
+
+.hero h1{
+    font-size:clamp(38px,7vw,78px);
+    line-height:1.05;
+    margin-bottom:20px;
+}
+
+.gradient-text{
+    background:linear-gradient(90deg,#fff,#c084fc,#38bdf8,#fff);
+    background-size:250% auto;
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    animation:shine 5s linear infinite;
+}
+
+@keyframes shine{
+    to{background-position:250% center}
+}
+
+.hero p{
+    color:var(--muted);
+    max-width:700px;
+    line-height:2;
+    font-size:16px;
+}
+
+.hero-buttons{
+    margin-top:25px;
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    border:1px solid var(--border);
+    color:#fff;
+    background:rgba(168,85,247,.12);
+    padding:11px 18px;
+    border-radius:13px;
+    cursor:pointer;
+    font-family:inherit;
+    transition:.25s;
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+    background:rgba(168,85,247,.22);
+    box-shadow:0 0 25px rgba(168,85,247,.25);
+}
+
+.btn.primary{
+    background:linear-gradient(135deg,var(--purple2),#9333ea);
+    border-color:transparent;
+    box-shadow:0 0 25px rgba(124,58,237,.25);
+}
+
+.btn.blue{
+    background:rgba(56,189,248,.1);
+    border-color:rgba(56,189,248,.3);
+}
+
+.container{
+    position:relative;
+    z-index:1;
+    max-width:1250px;
+    margin:auto;
+    padding:25px 20px 80px;
+}
+
+.section{
+    margin-top:30px;
+}
+
+.section-title{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.section-title h2{
+    font-size:25px;
+}
+
+.section-title span{
+    color:var(--muted);
+    font-size:13px;
+}
+
+/* search */
+
+.search-box{
+    position:relative;
+    margin-bottom:25px;
+}
+
+.search-box input{
+    width:100%;
+    padding:16px 50px 16px 18px;
+    border-radius:16px;
+    border:1px solid var(--border);
+    background:rgba(12,9,20,.8);
+    color:#fff;
+    outline:none;
+    font-family:inherit;
+    font-size:15px;
+    box-shadow:0 0 25px rgba(124,58,237,.05);
+}
+
+.search-box input:focus{
+    border-color:rgba(168,85,247,.7);
+    box-shadow:0 0 25px rgba(168,85,247,.13);
+}
+
+.search-icon{
+    position:absolute;
+    right:17px;
+    top:50%;
+    transform:translateY(-50%);
+}
+
+/* anime grid */
+
+.anime-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+}
+
+.anime-card{
+    position:relative;
+    min-height:260px;
+    padding:20px;
+    border:1px solid var(--border);
+    border-radius:20px;
+    background:
+        linear-gradient(145deg,rgba(168,85,247,.08),rgba(56,189,248,.025)),
+        rgba(10,8,17,.9);
+    overflow:hidden;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.anime-card::before{
+    content:"";
+    position:absolute;
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    background:rgba(168,85,247,.12);
+    filter:blur(35px);
+    top:-50px;
+    left:-30px;
+}
+
+.anime-card:hover{
+    transform:translateY(-7px);
+    border-color:rgba(168,85,247,.65);
+    box-shadow:
+        0 12px 40px rgba(0,0,0,.4),
+        0 0 25px rgba(124,58,237,.17);
+}
+
+.anime-number{
+    color:#8d829d;
+    font-size:12px;
+}
+
+.anime-icon{
+    width:55px;
+    height:55px;
+    border-radius:17px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:25px;
+    background:linear-gradient(135deg,rgba(168,85,247,.2),rgba(56,189,248,.12));
+    border:1px solid rgba(168,85,247,.25);
+    margin:17px 0;
+}
+
+.anime-card h3{
+    font-size:17px;
+    margin-bottom:7px;
+}
+
+.anime-card .english{
+    color:#81798f;
+    font-size:11px;
+    direction:ltr;
+    text-align:right;
+    margin-bottom:12px;
+}
+
+.genres{
+    display:flex;
+    gap:5px;
+    flex-wrap:wrap;
+}
+
+.genre{
+    font-size:10px;
+    color:#d8b4fe;
+    border:1px solid rgba(168,85,247,.2);
+    background:rgba(168,85,247,.07);
+    border-radius:8px;
+    padding:4px 7px;
+}
+
+/* library */
+
+.library-box,
+.account-box{
+    padding:25px;
+    border:1px solid var(--border);
+    background:rgba(10,8,17,.75);
+    border-radius:20px;
+}
+
+.empty{
+    color:var(--muted);
+    text-align:center;
+    padding:30px 10px;
+}
+
+/* modal */
+
+.modal{
+    position:fixed;
+    inset:0;
+    z-index:2000;
+    background:rgba(0,0,0,.78);
+    backdrop-filter:blur(12px);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:18px;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-content{
+    width:min(850px,100%);
+    max-height:90vh;
+    overflow:auto;
+    border:1px solid rgba(168,85,247,.45);
+    background:
+        radial-gradient(circle at top right,rgba(124,58,237,.15),transparent 35%),
+        #090711;
+    border-radius:25px;
+    padding:27px;
+    box-shadow:
+        0 0 70px rgba(124,58,237,.18),
+        0 20px 70px rgba(0,0,0,.6);
+    animation:modalIn .3s ease;
+}
+
+@keyframes modalIn{
+    from{opacity:0;transform:translateY(20px) scale(.97)}
+    to{opacity:1;transform:none}
+}
+
+.modal-top{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    align-items:flex-start;
+}
+
+.close{
+    border:0;
+    background:rgba(255,255,255,.06);
+    color:#fff;
+    width:40px;
+    height:40px;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:20px;
+}
+
+.modal h2{
+    font-size:29px;
+    margin-bottom:5px;
+}
+
+.modal-english{
+    color:#777080;
+    font-size:12px;
+    direction:ltr;
+    text-align:right;
+}
+
+.modal-summary{
+    color:#bbb4c7;
+    line-height:2;
+    margin:22px 0;
+}
+
+.dialogue{
+    border-right:3px solid var(--purple);
+    padding:12px 17px;
+    background:rgba(168,85,247,.06);
+    border-radius:10px;
+    color:#e9d5ff;
+    margin-bottom:20px;
+}
+
+.modal-actions{
+    display:flex;
+    gap:9px;
+    flex-wrap:wrap;
+    margin-bottom:25px;
+}
+
+.season-title{
+    margin:20px 0 12px;
+    font-size:18px;
+}
+
+.episodes{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+}
+
+.episode{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding:13px;
+    border-radius:13px;
+    border:1px solid rgba(168,85,247,.15);
+    background:rgba(255,255,255,.025);
+}
+
+.episode-info{
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+}
+
+.episode-name{
+    font-size:13px;
+}
+
+.episode-sub{
+    font-size:10px;
+    color:#8d829d;
+}
+
+.episode-buttons{
+    display:flex;
+    gap:5px;
+}
+
+.mini-btn{
+    border:1px solid rgba(168,85,247,.25);
+    background:rgba(168,85,247,.07);
+    color:#e9d5ff;
+    padding:6px 9px;
+    border-radius:8px;
+    font-family:inherit;
+    font-size:10px;
+    cursor:pointer;
+}
+
+.mini-btn:hover{
+    background:rgba(168,85,247,.18);
+}
+
+/* account */
+
+.account-form{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:18px;
+}
+
+.account-form input{
+    flex:1;
+    min-width:200px;
+    padding:13px;
+    border-radius:12px;
+    border:1px solid var(--border);
+    background:#08070d;
+    color:#fff;
+    font-family:inherit;
+    outline:none;
+}
+
+/* toast */
+
+.toast{
+    position:fixed;
+    bottom:25px;
+    left:25px;
+    z-index:5000;
+    background:#100c1a;
+    border:1px solid rgba(168,85,247,.45);
+    color:#fff;
+    padding:13px 18px;
+    border-radius:13px;
+    box-shadow:0 0 25px rgba(124,58,237,.2);
+    transform:translateY(100px);
+    opacity:0;
+    transition:.3s;
+}
+
+.toast.show{
+    transform:none;
+    opacity:1;
+}
+
+/* footer */
+
+footer{
+    border-top:1px solid var(--border);
+    padding:30px 20px;
+    text-align:center;
+    color:#777080;
+    position:relative;
+    z-index:1;
+}
+
+/* responsive */
+
+@media(max-width:1000px){
+    .anime-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+}
+
+@media(max-width:720px){
+    .navbar{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    nav{
+        justify-content:center;
+    }
+
+    .hero{
+        padding-top:50px;
+        min-height:370px;
+    }
+
+    .anime-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .episodes{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:480px){
+    .anime-grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:42px;
+    }
+
+    .modal-content{
+        padding:20px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="navbar">
+
+<div class="logo">
+TSUKIRA<span>+</span>
+</div>
+
+<nav>
+<button onclick="goTo('home')">خانه</button>
+<button onclick="goTo('anime')">🔥 انیمه‌ها</button>
+<button onclick="goTo('library')">📚 کتابخانه من</button>
+<button onclick="goTo('account')">👤 حساب من</button>
+</nav>
+
+</div>
+
+</header>
+
+
+<main>
+
+<section class="hero" id="home">
+
+<div class="hero-content">
+
+<div class="badge">✦ دنیای مخفی انیمه ✦</div>
+
+<h1>
+به دنیای
+<span class="gradient-text">TSUKIRA</span>
+خوش اومدی
+</h1>
+
+<p>
+یک دنیای تاریک، نئونی و مرموز برای پیدا کردن انیمه‌های محبوبت.
+انیمه‌ها را جست‌وجو کن، وارد صفحه‌شان شو، فصل و قسمت را انتخاب کن
+و موارد موردعلاقه‌ات را به کتابخانه شخصی اضافه کن.
+</p>
+
+<div class="hero-buttons">
+
+<button class="btn primary" onclick="goTo('anime')">
+🎌 ورود به دنیای انیمه
+</button>
+
+<button class="btn blue" onclick="goTo('library')">
+📚 کتابخانه من
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<div class="container">
+
+
+<section class="section" id="anime">
+
+<div class="section-title">
+
+<h2>🎌 دنیای انیمه‌ها</h2>
+
+<span id="animeCount"></span>
+
+</div>
+
+<div class="search-box">
+
+<span class="search-icon">🔎</span>
+
+<input
+id="search"
+type="text"
+placeholder="اسم انیمه را جست‌وجو کن..."
+oninput="searchAnime()"
+/>
+
+</div>
+
+<div class="anime-grid" id="animeGrid"></div>
+
+</section>
+
+
+<section class="section" id="library">
+
+<div class="section-title">
+
+<h2>📚 کتابخانه من</h2>
+
+<span>انیمه‌های ذخیره‌شده</span>
+
+</div>
+
+<div class="library-box">
+
+<div id="libraryList"></div>
+
+</div>
+
+</section>
+
+
+<section class="section" id="account">
+
+<div class="section-title">
+
+<h2>👤 حساب کاربری</h2>
+
+<span>پروفایل شخصی</span>
+
+</div>
+
+<div class="account-box">
+
+<h3 id="welcomeUser">هنوز وارد حساب نشدی</h3>
+
+<p style="color:#999;line-height:2;margin-top:8px;">
+نام کاربری خودت را وارد کن تا داخل همین مرورگر ذخیره شود.
+</p>
+
+<div class="account-form">
+
+<input
+id="usernameInput"
+type="text"
+placeholder="مثلاً: Nazanin"
+/>
+
+<button class="btn primary" onclick="saveAccount()">
+💾 ذخیره حساب
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+</div>
+
+</main>
+
+
+<footer>
+
+<div>✦ TSUKIRA Anime World ✦</div>
+
+<div style="margin-top:8px;">
+ساخته شده برای عاشقان دنیای انیمه
+</div>
+
+</footer>
+
+
+<!-- MODAL -->
+
+<div class="modal" id="animeModal">
+
+<div class="modal-content">
+
+<div class="modal-top">
+
+<div>
+
+<h2 id="modalTitle"></h2>
+
+<div class="modal-english" id="modalEnglish"></div>
+
+</div>
+
+<button class="close" onclick="closeModal()">×</button>
+
+</div>
+
+<div class="modal-summary" id="modalSummary"></div>
+
+<div class="dialogue" id="modalDialogue"></div>
+
+<div class="modal-actions">
+
+<button class="btn primary" id="libraryButton">
+❤️ افزودن به کتابخانه
+</button>
+
+</div>
+
+<div class="season-title">
+📺 فصل‌ها و قسمت‌ها
+</div>
+
+<div id="seasonContainer"></div>
+
+</div>
+
+</div>
+
+
+<div class="toast" id="toast"></div>
+
+
+<script>
+
+/* =========================================
+   TSUKIRA DATABASE
+   50 ANIME
+========================================= */
+
+const animeData = [
+
+{
+id:1,
+title:"Attack on Titan",
+fa:"حمله به تایتان",
+genres:["اکشن","فانتزی","درام"],
+summary:"در جهانی که انسان‌ها پشت دیوارهای عظیم زندگی می‌کنند، ظهور تایتان‌ها آرامش بشر را نابود می‌کند و ارن، میکاسا و آرمین وارد نبردی بزرگ می‌شوند.",
+dialogue:"وقتی امید باقی مانده، هنوز می‌شود برای آزادی جنگید.",
+seasons:4
+},
+
+{
+id:2,
+title:"Jujutsu Kaisen",
+fa:"جوجوتسو کایسن",
+genres:["اکشن","فانتزی","ماورایی"],
+summary:"یوجی ایتادوری پس از ورود به دنیای نفرین‌ها با جادوگران جوجوتسو همراه می‌شود.",
+dialogue:"قدرت واقعی فقط در شکست دادن دشمن نیست؛ در محافظت از دیگران هم هست.",
+seasons:2
+},
+
+{
+id:3,
+title:"Demon Slayer",
+fa:"شیطان‌کش",
+genres:["اکشن","فانتزی","ماجراجویی"],
+summary:"تانجیرو پس از نابودی خانواده‌اش به دست شیاطین برای نجات خواهرش وارد مسیر شیطان‌کش‌ها می‌شود.",
+dialogue:"حتی اگر راه تاریک باشد، می‌توان قدم بعدی را برداشت.",
+seasons:4
+},
+
+{
+id:4,
+title:"One Piece",
+fa:"وان پیس",
+genres:["ماجراجویی","اکشن","کمدی"],
+summary:"لوفی و خدمه‌اش در جست‌وجوی گنج افسانه‌ای وان پیس وارد بزرگ‌ترین ماجراجویی دریایی دنیا می‌شوند.",
+dialogue:"رؤیاها وقتی واقعی می‌شوند که برایشان حرکت کنی.",
+seasons:21
+},
+
+{
+id:5,
+title:"Naruto",
+fa:"ناروتو",
+genres:["اکشن","نینجا","درام"],
+summary:"ناروتو، نینجایی جوان و تنها، می‌خواهد به هوکاگه تبدیل شود و احترام روستایش را به دست آورد.",
+dialogue:"شکست خوردن پایان نیست؛ متوقف شدن است که پایان می‌سازد.",
+seasons:5
+},
+
+{
+id:6,
+title:"Bleach",
+fa:"بلیچ",
+genres:["اکشن","ماورایی","فانتزی"],
+summary:"ایچیگو پس از به دست آوردن قدرت شینیگامی وارد دنیایی از ارواح و هالوها می‌شود.",
+dialogue:"اگر قدرتی داری، انتخاب کن که از چه چیزی محافظت کنی.",
+seasons:17
+},
+
+{
+id:7,
+title:"My Hero Academia",
+fa:"آکادمی قهرمان من",
+genres:["اکشن","مدرسه‌ای","قهرمانی"],
+summary:"ایزوکو در دنیایی که بیشتر مردم قدرت دارند، بدون قدرت متولد شده اما رؤیای قهرمان شدن را رها نمی‌کند.",
+dialogue:"قهرمان بودن از لحظه‌ای شروع می‌شود که تصمیم می‌گیری کمک کنی.",
+seasons:8
+},
+
+{
+id:8,
+title:"Haikyuu",
+fa:"هایکیو",
+genres:["ورزشی","کمدی","مدرسه‌ای"],
+summary:"هیناتا شویو با وجود قد کوتاهش عاشق والیبال است و برای تبدیل شدن به بازیکنی بزرگ تلاش می‌کند.",
+dialogue:"تا وقتی توپ روی زمین نیفتاده، بازی تمام نشده.",
+seasons:4
+},
+
+{
+id:9,
+title:"Hunter x Hunter",
+fa:"هانتر × هانتر",
+genres:["اکشن","ماجراجویی","فانتزی"],
+summary:"گون برای پیدا کردن پدرش وارد آزمون هانتر می‌شود و با دوستان و دشمنان قدرتمند روبه‌رو می‌شود.",
+dialogue:"گاهی مسیر پیدا کردن یک نفر، خودت را به تو نشان می‌دهد.",
+seasons:1
+},
+
+{
+id:10,
+title:"Death Note",
+fa:"دفترچه مرگ",
+genres:["روان‌شناختی","معمایی","ماورایی"],
+summary:"لایت یاگامی دفترچه‌ای پیدا می‌کند که قدرت کشتن افراد با نوشتن نامشان را دارد.",
+dialogue:"قدرت، انتخاب‌های آدم را بیشتر از قبل آشکار می‌کند.",
+seasons:1
+},
+
+{
+id:11,
+title:"Fullmetal Alchemist Brotherhood",
+fa:"کیمیاگر تمام‌فلزی",
+genres:["اکشن","فانتزی","درام"],
+summary:"ادوارد و آلفونس الریک برای بازگرداندن بدن‌هایشان سفری خطرناک را آغاز می‌کنند.",
+dialogue:"هر چیزی بهایی دارد؛ مهم این است بدانی برای چه می‌پردازی.",
+seasons:1
+},
+
+{
+id:12,
+title:"Tokyo Ghoul",
+fa:"توکیو غول",
+genres:["ترسناک","اکشن","درام"],
+summary:"کن کانکی پس از حادثه‌ای عجیب تبدیل به موجودی نیمه‌انسان و نیمه‌غول می‌شود.",
+dialogue:"گاهی برای شناختن خودت باید با چیزی که از آن می‌ترسی روبه‌رو شوی.",
+seasons:4
+},
+
+{
+id:13,
+title:"Solo Leveling",
+fa:"سولو لولینگ",
+genres:["اکشن","فانتزی","ماجراجویی"],
+summary:"سونگ جین‌وو که ضعیف‌ترین شکارچی شناخته می‌شود، توانایی منحصربه‌فردی برای رشد پیدا می‌کند.",
+dialogue:"دیروز ضعیف بودم؛ امروز فقط یک مرحله از مسیرم گذشته است.",
+seasons:2
+},
+
+{
+id:14,
+title:"Blue Lock",
+fa:"بلو لاک",
+genres:["ورزشی","فوتبال","رقابتی"],
+summary:"مهاجمان جوان در پروژه‌ای سخت برای ساختن بهترین مهاجم فوتبال ژاپن رقابت می‌کنند.",
+dialogue:"برای رسیدن به قله باید جرئت متفاوت بودن داشته باشی.",
+seasons:2
+},
+
+{
+id:15,
+title:"Vinland Saga",
+fa:"حماسه وینلند",
+genres:["اکشن","تاریخی","درام"],
+summary:"تورفین در میان جنگ وایکینگ‌ها بزرگ می‌شود و سال‌ها با هدف انتقام زندگی می‌کند.",
+dialogue:"گاهی بزرگ‌ترین پیروزی، کنار گذاشتن نفرت است.",
+seasons:2
+},
+
+{
+id:16,
+title:"Chainsaw Man",
+fa:"مرد اره‌ای",
+genres:["اکشن","ترسناک","فانتزی"],
+summary:"دنجی پس از خیانتی مرگبار با شیطان اره‌ای یکی می‌شود و زندگی‌اش کاملاً تغییر می‌کند.",
+dialogue:"گاهی ساده‌ترین آرزوها، برای کسی که سختی کشیده بزرگ‌ترین رویا هستند.",
+seasons:1
+},
+
+{
+id:17,
+title:"Spy x Family",
+fa:"اسپای × فمیلی",
+genres:["کمدی","اکشن","خانوادگی"],
+summary:"یک جاسوس برای مأموریتی مهم مجبور می‌شود خانواده‌ای جعلی تشکیل دهد؛ اما همه اعضای خانواده راز دارند.",
+dialogue:"ممکن است خانواده با دروغ شروع شود، اما احساسات می‌توانند واقعی شوند.",
+seasons:3
+},
+
+{
+id:18,
+title:"Oshi no Ko",
+fa:"اوشی نو کو",
+genres:["درام","معمایی","موسیقی"],
+summary:"پشت صحنه دنیای آیدل‌ها و سرگرمی رازهایی وجود دارد که زندگی شخصیت‌ها را تغییر می‌دهد.",
+dialogue:"در دنیای درخشان شهرت، هر لبخند داستانی پشت خودش دارد.",
+seasons:3
+},
+
+{
+id:19,
+title:"Black Clover",
+fa:"بلک کلاور",
+genres:["اکشن","فانتزی","جادویی"],
+summary:"آستا بدون داشتن جادو در دنیایی جادویی رؤیای امپراتور جادو شدن را دنبال می‌کند.",
+dialogue:"اگر چیزی ندارم، خودم آن را می‌سازم.",
+seasons:1
+},
+
+{
+id:20,
+title:"Blue Exorcist",
+fa:"بلواگزورسیست",
+genres:["اکشن","فانتزی","شیطانی"],
+summary:"رین متوجه می‌شود فرزند شیطان است و تصمیم می‌گیرد سرنوشتش را خودش انتخاب کند.",
+dialogue:"گذشته ممکن است بخشی از تو باشد، اما تمام تو نیست.",
+seasons:3
+},
+
+{
+id:21,
+title:"Mob Psycho 100",
+fa:"ماب سایکو ۱۰۰",
+genres:["اکشن","کمدی","روانی"],
+summary:"موب قدرت‌های روانی فوق‌العاده‌ای دارد اما تلاش می‌کند انسان خوبی باشد و خودش را بهتر بشناسد.",
+dialogue:"قدرت واقعی فقط چیزی نیست که بتوانی با آن دیگران را شکست بدهی.",
+seasons:3
+},
+
+{
+id:22,
+title:"Bungo Stray Dogs",
+fa:"بانگو استری داگز",
+genres:["اکشن","معمایی","ماورایی"],
+summary:"آتسوشی پس از ورود به آژانس کارآگاهان مسلح وارد دنیایی از قدرت‌های عجیب می‌شود.",
+dialogue:"هر آدمی می‌تواند جایی برای خودش پیدا کند.",
+seasons:5
+},
+
+{
+id:23,
+title:"The Apothecary Diaries",
+fa:"خاطرات داروساز",
+genres:["معمایی","تاریخی","درام"],
+summary:"مایائو با دانش دارویی خود در قصر سلطنتی با رازها و پرونده‌های عجیب روبه‌رو می‌شود.",
+dialogue:"کنجکاوی گاهی خطرناک است، اما جواب‌ها ارزشش را دارند.",
+seasons:2
+},
+
+{
+id:24,
+title:"Frie

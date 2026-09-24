@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TSUKIRA | Anime World</title>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap');
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#0b0714;
+    color:#eee8ff;
+    font-family:"Vazirmatn",sans-serif;
+    overflow-x:hidden;
+}
+
+/* پس زمینه */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background:
+        radial-gradient(circle at 20% 20%,rgba(125,55,220,.12),transparent 30%),
+        radial-gradient(circle at 80% 60%,rgba(91,65,220,.10),transparent 30%);
+    z-index:-1;
+}
+
+/* هدر */
+
+header{
+    background:linear-gradient(180deg,#171025,#100a1d);
+    border-bottom:1px solid #43266b;
+    padding:30px 20px 22px;
+    text-align:center;
+}
+
+.logo{
+    font-family:"Cormorant Garamond",serif;
+    font-size:48px;
+    font-style:italic;
+    font-weight:600;
+    letter-spacing:4px;
+    color:#d9b5ff;
+    text-shadow:0 0 18px rgba(170,95,255,.7);
+}
+
+.subtitle{
+    margin-top:4px;
+    color:#a987d2;
+    font-family:"Cormorant Garamond",serif;
+    font-size:21px;
+    font-style:italic;
+}
+
+/* منو */
+
+nav{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:12px;
+    padding:22px 15px;
+    background:#120b1d;
+    border-bottom:1px solid #241531;
+}
+
+nav a{
+    text-decoration:none;
+    color:#eee8ff;
+    background:#25133d;
+    padding:13px 25px;
+    border-radius:18px;
+    font-size:16px;
+    transition:.25s;
+}
+
+nav a:hover{
+    background:#713bc4;
+    transform:translateY(-2px);
+}
+
+/* بخش اصلی */
+
+main{
+    max-width:1000px;
+    margin:auto;
+    padding:45px 20px;
+}
+
+.section-title{
+    font-size:35px;
+    font-weight:700;
+    margin-bottom:28px;
+    color:#fff;
+}
+
+.section-title span{
+    color:#b77aff;
+}
+
+/* معرفی */
+
+.hero{
+    text-align:center;
+    padding:50px 20px 70px;
+}
+
+.hero-badge{
+    display:inline-block;
+    border:1px solid #7841ba;
+    border-radius:30px;
+    padding:10px 25px;
+    color:#d8b8ff;
+    margin-bottom:25px;
+    font-family:"Cormorant Garamond",serif;
+    font-size:22px;
+    font-style:italic;
+}
+
+.hero h1{
+    font-family:"Cormorant Garamond",serif;
+    font-size:65px;
+    font-style:italic;
+    color:#d5a7ff;
+    text-shadow:0 0 25px rgba(157,78,255,.5);
+}
+
+.hero p{
+    max-width:700px;
+    margin:20px auto;
+    line-height:2.2;
+    color:#c7bdd5;
+    font-size:18px;
+}
+
+.hero-button{
+    display:inline-block;
+    margin-top:15px;
+    padding:15px 38px;
+    border-radius:35px;
+    background:linear-gradient(90deg,#7424d8,#485cff);
+    color:white;
+    text-decoration:none;
+    box-shadow:0 0 25px rgba(105,55,220,.35);
+    transition:.25s;
+}
+
+.hero-button:hover{
+    transform:scale(1.04);
+}
+
+/* جستجو */
+
+.search-box{
+    margin:20px 0 40px;
+}
+
+.search-box input{
+    width:100%;
+    padding:18px 22px;
+    border-radius:25px;
+    border:2px solid #6734a2;
+    background:#140d1e;
+    color:white;
+    font-family:inherit;
+    font-size:17px;
+    outline:none;
+}
+
+.search-box input:focus{
+    border-color:#a363ff;
+    box-shadow:0 0 18px rgba(145,75,255,.25);
+}
+
+/* کارت انیمه */
+
+.anime-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+
+.anime-card{
+    background:linear-gradient(145deg,#181020,#120b19);
+    border:1px solid #39205a;
+    border-radius:25px;
+    padding:27px;
+    transition:.3s;
+    position:relative;
+    overflow:hidden;
+}
+
+.anime-card::before{
+    content:"";
+    position:absolute;
+    width:120px;
+    height:120px;
+    background:rgba(126,55,210,.08);
+    border-radius:50%;
+    top:-50px;
+    left:-50px;
+}
+
+.anime-card:hover{
+    transform:translateY(-5px);
+    border-color:#7540b7;
+    box-shadow:0 10px 30px rgba(83,39,125,.18);
+}
+
+.anime-name{
+    font-family:"Cormorant Garamond",serif;
+    font-size:31px;
+    font-style:italic;
+    color:#d5adff;
+    margin-bottom:8px;
+}
+
+.rating{
+    color:#ffd34d;
+    font-size:19px;
+    margin-bottom:17px;
+}
+
+.genres{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:18px;
+}
+
+.genre{
+    background:#291342;
+    color:#cba6ef;
+    padding:6px 12px;
+    border-radius:13px;
+    font-family:"Cormorant Garamond",serif;
+    font-style:italic;
+    font-size:15px;
+}
+
+.description{
+    color:#c8bfd2;
+    line-height:2;
+    margin-bottom:20px;
+}
+
+/* دیالوگ */
+
+.quote{
+    border-right:3px solid #9b59e8;
+    background:rgba(111,53,166,.08);
+    padding:15px 17px;
+    margin:20px 0;
+    border-radius:12px;
+    color:#e0caff;
+    line-height:2;
+    font-size:15px;
+}
+
+.quote::before{
+    content:"❝";
+    color:#b16cff;
+    font-size:25px;
+    margin-left:7px;
+}
+
+/* دکمه */
+
+.add-btn{
+    width:100%;
+    border:none;
+    padding:14px;
+    border-radius:16px;
+    background:#743cc5;
+    color:white;
+    font-family:inherit;
+    font-size:16px;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.add-btn:hover{
+    background:#8b4ce0;
+}
+
+.add-btn.added{
+    background:#342049;
+    color:#cdb4e9;
+}
+
+/* کتابخانه */
+
+.library-box{
+    background:#120c19;
+    border:1px solid #38204f;
+    border-radius:25px;
+    padding:35px 25px;
+    text-align:center;
+}
+
+.library-count{
+    color:#c89cff;
+    font-size:22px;
+    margin:15px 0;
+}
+
+.library-list{
+    display:grid;
+    gap:10px;
+    margin-top:20px;
+}
+
+.library-item{
+    background:#21122f;
+    padding:12px;
+    border-radius:14px;
+    color:#ddd0e9;
+}
+
+/* حساب */
+
+.account-box{
+    background:#120c19;
+    border:1px solid #38204f;
+    border-radius:25px;
+    padding:35px 25px;
+    line-height:2.2;
+}
+
+/* فوتر */
+
+footer{
+    margin-top:50px;
+    border-top:1px solid #2c1b3b;
+    padding:30px 15px;
+    text-align:center;
+    color:#766982;
+    font-family:"Cormorant Garamond",serif;
+    font-size:20px;
+}
+
+/* موبایل */
+
+@media(max-width:600px){
+
+    .logo{
+        font-size:39px;
+    }
+
+    .hero h1{
+        font-size:48px;
+    }
+
+    .hero p{
+        font-size:16px;
+    }
+
+    nav{
+        gap:10px;
+    }
+
+    nav a{
+        padding:11px 16px;
+        font-size:14px;
+    }
+
+    .anime-grid{
+        grid-template-columns:1fr;
+    }
+
+    main{
+        padding:35px 15px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">✦ TSUKIRA</div>
+
+    <div class="subtitle">
+        Anime World
+    </div>
+
+</header>
+
+
+<nav>
+
+    <a href="#home">🏠 خانه</a>
+
+    <a href="#anime">🔥 انیمه‌ها</a>
+
+    <a href="#library">📚 کتابخانه من</a>
+
+    <a href="#account">👤 حساب من</a>
+
+</nav>
+
+
+<section id="home" class="hero">
+
+    <div class="hero-badge">
+        ✦ Welcome to the Anime World ✦
+    </div>
+
+    <h1>TSUKIRA</h1>
+
+    <p>
+        دنیای انیمه، شخصیت‌ها، داستان‌ها و کتابخانه‌ای
+        برای کسانی که دنیای واقعی برایشان کافی نیست ✦
+    </p>
+
+    <a href="#anime" class="hero-button">
+        ✦ ورود به دنیای انیمه
+    </a>
+
+</section>
+
+
+<main>
+
+<section id="anime">
+
+    <h2 class="section-title">
+        انیمه‌ها 🔥
+    </h2>
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="🔎 اسم انیمه را جستجو کن..."
+        >
+
+    </div>
+
+
+    <div class="anime-grid" id="animeGrid">
+
+
+        <!-- Attack on Titan -->
+
+        <article class="anime-card" data-name="attack on titan">
+
+            <div class="anime-name">
+                Attack on Titan
+            </div>
+
+            <div class="rating">
+                9.1 ⭐
+            </div>
+
+            <div class="genres">
+                <span class="genre">Fantasy</span>
+                <span class="genre">Drama</span>
+                <span class="genre">Action</span>
+            </div>
+
+            <p class="description">
+                داستان بشریت در جهانی که برای زنده ماندن
+                از دست تایتان‌ها مبارزه می‌کند.
+            </p>
+
+            <div class="quote">
+                اگر نجنگی، نمی‌توانی پیروز شوی.
+            </div>
+
+            <button class="add-btn"
+                onclick="addToLibrary('Attack on Titan', this)">
+                ➕ افزودن به کتابخانه
+            </button>
+
+        </article>
+
+
+        <!-- Solo Leveling -->
+
+        <article class="anime-card" data-name="solo leveling">
+
+            <div class="anime-name">
+                Solo Leveling
+            </div>
+
+            <div class="rating">
+                8.8 ⭐
+            </div>
+
+            <div class="genres">
+                <span class="genre">Adventure</span>
+                <span class="genre">Fantasy</span>
+                <span class="genre">Action</span>
+            </div>
+
+            <p class="description">
+                سونگ جین‌وو از ضعیف‌ترین شکارچی‌ها
+                به یکی از قدرتمندترین افراد تبدیل می‌شود.
+            </p>
+
+            <div class="quote">
+                من تنها کسی هستم که می‌توانم خودم را ارتقا دهم.
+            </div>
+
+            <button class="add-btn"
+                onclick="addToLibrary('Solo Leveling', this)">
+                ➕ افزودن به کتابخانه
+            </button>
+
+        </article>
+
+
+        <!-- Bleach -->
+
+        <article class="anime-card" data-name="bleach">
+
+            <div class="anime-name">
+                Bleach
+            </div>
+
+            <div class="rating">
+                8.2 ⭐
+            </div>
+
+            <div class="genres">
+                <span class="genre">Supernatural</span>
+                <span class="genre">Adventure</span>
+                <span class="genre">Action</span>
+            </div>
+
+            <p class="description">
+                ایچیگو کوروساکی پس از به دست آوردن
+                قدرت شینیگامی وارد دنیایی خطرناک می‌شود.
+            </p>
+
+            <div class="quote">
+                اگر ترس را بپذیری، چیزی برای محافظت کردن نداری.
+            </div>
+
+            <button class="add-btn"
+                onclick="addToLibrary('Bleach', this)">
+                ➕ افزودن به کتابخانه
+            </button>
+
+        </article>
+
+
+        <!-- Vanitas -->
+
+        <article class="anime-card" data-name="the case study of vanitas vanitas">
+
+            <div class="anime-name">
+                The Case Study of Vanitas
+            </div>
+
+            <div class="rating">
+                8.2 ⭐
+            </div>
+
+            <div class="genres">
+                <span class="genre">Vampire</span>
+                <span class="genre">Mystery</span>
+                <span class="genre">Fantasy</span>
+            </div>
+
+            <p class="description">
+                ماجراهایی مرموز درباره خون‌آشام‌ها و
+                کتاب افسانه‌ای به نام کتاب وانیتاس.
+            </p>
+
+            <div class="quote">
+                بعضی رازها فقط وقتی ارزشمندند که کسی از آن‌ها خبر نداشته باشد.
+            </div>
+
+            <button class="add-btn"
+                onclick="addToLibrary('The Case Study of Vanitas', this)">
+                ➕ افزودن به کتابخانه
+            </button>
+
+        </article>
+
+
+        <!-- Bungou -->
+
+        <article class="anime-card" data-name="bungo stray dogs">
+
+            <div class="anime-name">
+                Bungo Stray Dogs
+            </div>
+
+            <div class="rating">
+                8.5 ⭐
+            </div>
+
+            <div class="genres">
+                <span class="genre">Supernatural</span>
+                <span class="genre">Mystery</span>
+                <span class="genre">Action</span>
+            </div>
+
+            <p class="description">
+                گروهی از افراد دارای قدرت‌های عجیب
+                که در آژانس کارآگاهی مسلح فعالیت می‌کنند.
+            </p>
+
+            <div class="quote">
+                زندگی چیزی نیست جز فرصتی برای پیدا کردن معنای آن.
+            </div>
+
+            <button class="add-btn"
+                onclick="addToLibrary('Bungo Stray Dogs', this)">
+                ➕ افزودن به کتابخانه
+            </button>
+
+        </article>
+
+
+        <!-- JJK -->
+
+        <article class="anime-card" data-name="jujutsu kaisen jjk">
+
+            <div class="anime-name">
+                Jujutsu Kaisen
+            </div>
+
+            <div class="rating">
+                8.6 ⭐
+            </div>
+
+            <div class="genres">
+                <span class="genre">Fantasy</span>
+                <span class="genre">Supernatural</span>
+                <span class="genre">Action</span>
+            </div>
+
+            <p class="description">
+                داستان یوجی ایتادوری و دنیای جادوگران
+                جوجوتسو.
+            </p>
+
+            <div class="quote">
+                درست است که مرگ دردناک است، اما نحوه زندگی کردن ما اهمیت دارد.
+            </div>
+
+            <button class="add-btn"
+                onclick="addToLibrary('Jujutsu Kaisen', this)">
+                ➕ افزودن به کتابخانه
+            </button>
+
+        </article>
+
+
+        <!-- Haikyuu -->
+
+        <article class="anime-card" data-name="haikyuu">
+
+            <div class="anime-name">
+                Haikyuu!!
+            </div>
+
+            <div class="rating">
+                8.7 ⭐
+            </div>
+
+            <div class="genres">
+                <span class="genre">Drama</span>
+                <span class="genre">Comedy</span>
+                <span class="genre">Sports</span>
+            </div>
+
+            <p class="description">
+                داستان هیناتا و تلاش او برای تبدیل شدن
+                به یک بازیکن قدرتمند والیبال.
+            </p>
+
+            <div class="quote">
+                اگر بلند بپری، حتی اگر کوتاه باشی، می‌توانی به توپ برسی.
+            </div>
+
+            <button class="add-btn"
+                onclick="addToLibrary('Haikyuu!!', this)">
+                ➕ افزودن به کتابخانه
+            </button>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- کتابخانه -->
+
+<section id="library" style="margin-top:90px;">
+
+    <h2 class="section-title">
+        کتابخانه من 📚
+    </h2>
+
+    <div class="library-box">
+
+        <p>
+            انیمه‌هایی که انتخاب کردی اینجا ذخیره می‌شن.
+        </p>
+
+        <div class="library-count">
+            تعداد انیمه‌های کتابخانه:
+            <strong id="libraryCount">0</strong>
+        </div>
+
+        <div class="library-list" id="libraryList">
+
+            <p>
+                هنوز انیمه‌ای به کتابخانه اضافه نکردی. 📚
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- حساب -->
+
+<section id="account" style="margin-top:90px;">
+
+    <h2 class="section-title">
+        حساب من 👤
+    </h2>
+
+    <div class="account-box">
+
+        <h3>
+            🌙 خوش اومدی به TSUKIRA
+        </h3>
+
+        <p>
+            اینجا می‌تونی انیمه‌های مورد علاقه‌ات رو
+            به کتابخانه شخصیت اضافه کنی.
+        </p>
+
+        <p>
+            تعداد انیمه‌های انتخاب‌شده:
+            <strong id="accountCount">0</strong>
+        </p>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<footer>
+    TSUKIRA © 2026
+</footer>
+
+
+<script>
+
+/* =========================
+   کتابخانه
+========================= */
+
+let library = JSON.parse(
+    localStorage.getItem("tsukiraLibrary")
+) || [];
+
+
+/* نمایش کتابخانه */
+
+function updateLibrary(){
+
+    const count =
+        document.getElementById("libraryCount");
+
+    const accountCount =
+        document.getElementById("accountCount");
+
+    const list =
+        document.getElementById("libraryList");
+
+
+    count.textContent = library.length;
+
+    accountCount.textContent = library.length;
+
+
+    if(library.length === 0){
+
+        list.innerHTML =
+        "<p>هنوز انیمه‌ای به کتابخانه اضافه نکردی. 📚</p>";
+
+        return;
+    }
+
+
+    list.innerHTML = "";
+
+    library.forEach(function(anime){
+
+        const item =
+        document.createElement("div");
+
+        item.className = "library-item";
+
+        item.textContent = "✦ " + anime;
+
+        list.appendChild(item);
+
+    });
+
+
+    /* دکمه‌های اضافه‌شده */
+
+    document.querySelectorAll(".add-btn")
+    .forEach(function(button){
+
+        const name =
+        button.getAttribute("data-anime");
+
+        if(library.includes(name)){
+
+            button.classList.add("added");
+
+            button.textContent =
+                "✓ در کتابخانه";
+
+        }
+
+    });
+
+}
+
+
+/* اضافه کردن */
+
+function addToLibrary(name, button){
+
+    if(library.includes(name)){
+
+        return;
+
+    }
+
+
+    library.push(name);
+
+    localStorage.setItem(
+        "tsukiraLibrary",
+        JSON.stringify(library)
+    );
+
+
+    button.setAttribute(
+        "data-anime",
+        name
+    );
+
+    button.classList.add("added");
+
+    button.textContent =
+        "✓ در کتابخانه";
+
+
+    updateLibrary();
+
+}
+
+
+/* =========================
+   جستجوی انیمه
+========================= */
+
+document
+.getElementById("searchInput")
+.addEventListener("input", function(){
+
+    const search =
+        this.value.toLowerCase().trim();
+
+
+    document
+    .querySelectorAll(".anime-card")
+    .forEach(function(card){
+
+        const name =
+            card
+            .getAttribute("data-name")
+            .toLowerCase();
+
+
+        if(name.includes(search)){
+
+            card.style.display = "";
+
+        }else{
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+});
+
+
+/* =========================
+   آماده‌سازی دکمه‌ها
+========================= */
+
+document
+.querySelectorAll(".add-btn")
+.forEach(function(button){
+
+    const onclickText =
+        button.getAttribute("onclick");
+
+    const match =
+        onclickText.match(/'([^']+)'/);
+
+    if(match){
+
+        button.setAttribute(
+            "data-anime",
+            match[1]
+        );
+
+    }
+
+});
+
+
+updateLibrary();
+
+</script>
+
+</body>
+  </html>
